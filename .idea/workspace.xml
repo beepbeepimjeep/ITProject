@@ -31,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,10 +93,12 @@
       <updated>1598939225077</updated>
       <workItem from="1598939227442" duration="628000" />
       <workItem from="1598952751870" duration="1950000" />
+
       <workItem from="1598954767183" duration="5123000" />
       <workItem from="1598966178074" duration="126000" />
       <workItem from="1598966310763" duration="2000" />
       <workItem from="1599005584270" duration="11484000" />
+
     </task>
     <servers />
   </component>
