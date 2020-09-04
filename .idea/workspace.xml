@@ -20,18 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71d8ad92-77b8-4695-9891-501559776a44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/keys.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/authRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/passport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apollo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/fileController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helper/googleCloudStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/itproject-comp30022-7efc22006ee3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/file.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/fileRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/uploadRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/web_design_draft1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/微信图片_20200828150410.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/main.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/body-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/express/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +48,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -59,10 +67,11 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../parkMe" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -73,14 +82,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/services.js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/services.js" />
+    </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -93,24 +102,27 @@
       <updated>1598939225077</updated>
       <workItem from="1598939227442" duration="628000" />
       <workItem from="1598952751870" duration="1950000" />
-
       <workItem from="1598954767183" duration="5123000" />
       <workItem from="1598966178074" duration="126000" />
       <workItem from="1598966310763" duration="2000" />
       <workItem from="1599005584270" duration="11484000" />
-
+      <workItem from="1599112842859" duration="2979000" />
+      <workItem from="1599131617731" duration="4167000" />
+      <workItem from="1599188382466" duration="7716000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -128,9 +140,14 @@
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
     <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598953853640" />
-    <state x="2469" y="167" key="FileChooserDialogImpl" timestamp="1598955151562">
+    <state x="686" y="209" key="FileChooserDialogImpl" timestamp="1599104433770">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="686" y="209" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599104433770" />
+    <state x="2469" y="167" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598955151562" />
+    <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup" timestamp="1599141673246">
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
-    <state x="2469" y="167" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598955151562" />
+    <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1599141673246" />
   </component>
 </project>
