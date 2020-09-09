@@ -34,6 +34,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
 
 //storage
 const storage = new GridFsStorage({
@@ -61,14 +62,32 @@ const fileRouter = require('./routes/fileRouter')
 app.use('/user',usertestRouter);
 app.use('/fileInfo',fileRouter);
 
+
 app.get('/', (req, res) => {
+    res.render('visitor-mainpage');
+});
+
+app.get('/main', (req, res) => {
     res.render('main');
+});
+
+app.get('/visitor-mainpage', (req, res) => {
+    res.render('visitor-mainpage');
+});
+
+app.get('/user-mainpage', (req, res) => {
+    res.render('user-mainpage');
+});
+
+
+app.get('/go_to_upload', (req, res) => {
+    res.render('user-upload');
 });
 
 //@route POST
 app.post('/upload', upload.single('file'),(req,res)=>{
     console.log('upload file');
-    res.redirect('back')
+    res.redirect('/go_to_upload')
 })
 
 //@ropute get

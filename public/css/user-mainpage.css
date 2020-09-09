@@ -14,79 +14,48 @@ html { height:100%; }
   left: 0px;
   overflow: hidden;
 }
+
 .language_button {
   width: 11%;
   height: 8%;
-  opacity: 1;
-  position: absolute;
-  top: 10%;
-  left: 82%;
-  overflow: hidden;
-}
-.language_button_back {
-  width: 100%;
-  height: 100%;
-  background: rgba(194,77,44,1);
-  opacity: 1;
-  position: relative;
-  overflow: hidden;
-}
-.language_button:hover .language_button_back {
-  background: rgba(246,225,184,1);
-}
-.language_button_text {
-  width: 88%;
+  border: none;
   color: rgba(246,225,184,1);
-  position: absolute;
-  top: 21%;
-  left: 15%;
-  font-family: Roboto;
-  font-weight: Regular;
+  background-color: rgba(194,77,44,1);
+  text-align: center;
   font-size: 175%;
-  opacity: 1;
-  text-align: left;
+  position: absolute;
+  cursor: pointer;
+  top: 10%;
+  left: 83%;
+  overflow: hidden;
 }
-.language_button:hover .language_button_text {
+.language_button:hover {
   color: rgba(194,77,44,1);
+  background-color: rgba(246,225,184,1);
 }
 .logout_button {
   width: 11%;
   height: 8%;
-  opacity: 1;
+  border: none;
+  color: rgba(246,225,184,1);
+  background-color: rgba(194,77,44,1);
+  text-align: center;
+  font-size: 175%;
   position: absolute;
+  cursor: pointer;
   top: 10%;
   left: 68%;
   overflow: hidden;
 }
-.logout_button_back {
-  width: 100%;
-  height: 100%;
-  background: rgba(194,77,44,1);
-  opacity: 1;
-  position: relative;
-  overflow: hidden;
-}
-.logout_button:hover .logout_button_back {
-  background: rgba(246,225,184,1);
-}
-.logout_button_text {
-  width: 88%;
-  color: rgba(246,225,184,1);
-  position: absolute;
-  top: 21%;
-  left: 23%;
-  font-family: Roboto;
-  font-weight: Regular;
-  font-size: 175%;
-  opacity: 1;
-  text-align: left;
-}
-.logout_button:hover .logout_button_text {
+.logout_button:hover {
   color: rgba(194,77,44,1);
+  background-color: rgba(246,225,184,1);
 }
-
 .myportfolio_button {
   color: #3D5476;
+  background-color: rgba(26,38,57,1);
+  border: none;
+  cursor: pointer;
   position: absolute;
   top: 12%;
   left: 50%;
@@ -94,7 +63,7 @@ html { height:100%; }
   font-weight: Regular;
   font-size: 175%;
   opacity: 1;
-  text-align: left;
+  text-align: center;
 }
 .myportfolio_button:hover{
   color: rgba(246,225,184,1);
@@ -108,6 +77,7 @@ html { height:100%; }
   top: 25%;
   left: 32.27%;
   overflow: hidden;
+  cursor: default;
 }
 .text_portfolio {
   width: 63%;
@@ -139,40 +109,32 @@ html { height:100%; }
   top: 0%;
   left: 0%;
 }
-.searchbar_container {
-  width: 66.67%;
-  height: 14%;
+.searchbar {
+  width: 66%;
+  height: 15%;
+  border: none;
   background: rgba(38,53,77,1);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 42%;
-  left: 16.67%;
-  overflow: hidden;
-}
-.search_text {
-  width: 19.2%;
-  color: #3D5476;
-  position: absolute;
-  top: 15%;
-  left: 18%;
-  font-family: Roboto;
-  font-weight: Regular;
+  left: 17%;
+  cursor: text;
   font-size: 400%;
-  opacity: 1;
-  text-align: left;
+  border-radius: 10px;
+}
+:hover.searchbar{
+  background: #293952;
+}
+::placeholder{
+  color: #1A2639;
+  opacity: 10;
+  left: 10%;
 }
 .search_icon {
-  width: 100%;
+  width: 6%;
   height: auto;
+  top: 43%;
+  left: 75%;
   filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);
   opacity: 1;
   position: absolute;
-  top: 14%;
-  left: 5%;
-}
-:hover.search_icon {
-  filter: invert(33%) sepia(34%) saturate(2277%) hue-rotate(340deg) brightness(98%) contrast(88%);
 }

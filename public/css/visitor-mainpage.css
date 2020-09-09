@@ -14,40 +14,24 @@ html { height:100%; }
   left: 0px;
   overflow: hidden;
 }
+
 .language_button {
   width: 11%;
   height: 8%;
-  opacity: 1;
-  position: absolute;
-  top: 10%;
-  left: 82%;
-  overflow: hidden;
-}
-.language_button_back {
-  width: 100%;
-  height: 100%;
-  background: rgba(194,77,44,1);
-  opacity: 1;
-  position: relative;
-  overflow: hidden;
-}
-.language_button:hover .language_button_back {
-  background: rgba(246,225,184,1);
-}
-.language_button_text {
-  width: 88%;
+  border: none;
   color: rgba(246,225,184,1);
+  background-color: rgba(194,77,44,1);
+  text-align: center;
+  font-size: 175%;
   position: absolute;
-  top: 21%;
-  left: 11.25%;
-  font-family: Roboto;
-  font-weight: Regular;
-  font-size: 28px;
-  opacity: 1;
-  text-align: left;
+  cursor: pointer;
+  top: 10%;
+  left: 83%;
+  overflow: hidden;
 }
-.language_button:hover .language_button_text {
+.language_button:hover {
   color: rgba(194,77,44,1);
+  background-color: rgba(246,225,184,1);
 }
 .logo_container {
   width: 37.13%;
@@ -67,6 +51,7 @@ html { height:100%; }
   position: absolute;
   top: 0%;
   left: 35%;
+  cursor: default;
 }
 .text_E {
   width: 20%;
@@ -77,6 +62,7 @@ html { height:100%; }
   position: absolute;
   top: -5%;
   left: 25%;
+  cursor: default;
 }
 .text_My {
   width: 25%;
@@ -87,52 +73,36 @@ html { height:100%; }
   position: absolute;
   top: 0%;
   left: 0%;
+  cursor: default;
 }
-.searchbar_container {
-  width: 66.67%;
-  height: 14%;
+.searchbar {
+  width: 66%;
+  height: 15%;
+  border: none;
   background: rgba(38,53,77,1);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
   position: absolute;
   top: 42%;
-  left: 16.67%;
-  overflow: hidden;
-}
-.search_text {
-  width: 19.2%;
-  color: #3D5476;
-  position: absolute;
-  top: 15%;
-  left: 18%;
-  font-family: Roboto;
-  font-weight: Regular;
+  left: 17%;
+  cursor: text;
   font-size: 400%;
-  opacity: 1;
-  text-align: left;
+  border-radius: 10px;
+}
+:hover.searchbar{
+  background: #293952;
+}
+::placeholder{
+  color: #1A2639;
+  opacity: 10;
+  left: 10%;
 }
 .search_icon {
-  width: 100%;
+  width: 6%;
   height: auto;
+  top: 43%;
+  left: 75%;
   filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);
   opacity: 1;
   position: absolute;
-  top: 14%;
-  left: 5%;
-}
-:hover.search_icon {
-  filter: invert(33%) sepia(34%) saturate(2277%) hue-rotate(340deg) brightness(98%) contrast(88%);
-}
-.login_logo_container{
-  width: 100%;
-  height: 30%;
-  opacity: 1;
-  position: absolute;
-  top: 65%;
-  left: 25%;
-  overflow: hidden;
 }
 .text_login_with{
   width: 20%;
@@ -142,20 +112,45 @@ html { height:100%; }
   font-weight: Regular;
   font-size: 400%;
   opacity: 1;
+  top: 65%;
+  left:20%;
+  cursor: default;
+}
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: ease;
+}
+@keyframes bounce {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(50%); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(10%); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
 }
 .google_icon {
-  width: 100%;
-  height: auto;
+  height: 100px;
+  width: auto;
   opacity: 1;
   position: absolute;
-  top: 0%;
-  left: 25%;
+  cursor: pointer;
+  top: 65%;
+  left:48%;
 }
-.linkedin_icon{
-  width: 30%;
-  height: auto;
+.google_icon:hover {
+  animation: bounce 3s infinite alternate;
+}
+
+.linkedin_icon {
+  height: 110px;
+  width: auto;
   opacity: 1;
   position: absolute;
-  top: 0%;
-  left: 38%;
+  cursor: pointer;
+  top: 65%;
+  left:62%;
+}
+.linkedin_icon:hover {
+  animation: bounce 3s infinite alternate;
 }
