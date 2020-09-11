@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="./css/visitor-mainpage.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="background_container"></div>
+    <form action="/language" method="get">
+        <button class = language_button>Language</button> 
+    </form>
+    <div class="logo_container">
+        <div class="text_portfolio">portfolio</div>
+        <div class="text_E">E</div>
+        <div class="text_My">My</div>
+    </div>
+    <form id="search_container"> 
+        <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
+        aria-label="Search through site content"/>
+        <img src = "images/search.svg" class = search_icon></img>
+        <button>Search</button>
+    </form>
+
+    <div class="text_login_with">Login with</div>
+    <form action="/auth/google" method="get">
+        <input type = "image" src = "images/google.svg" class = google_icon></input> 
+    </form>
+    <form action="/user-mainpage" method="get">
+        <input type = "image" src = "images/linkedin.svg" class = linkedin_icon></input> 
+    </form>
+</body>
+</html>
