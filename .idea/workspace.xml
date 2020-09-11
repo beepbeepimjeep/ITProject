@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
     <expand>
@@ -20,11 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71d8ad92-77b8-4695-9891-501559776a44" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/searchResult.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/authRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/searchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/searchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/searchRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/searchRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/visitor-mainpage.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/visitor-mainpage.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ITProject-siqi/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,6 +72,7 @@
       <recent name="$PROJECT_DIR$/services.js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\temp.DESKTOP-LFH9E5J\Desktop\ITProject\views" />
       <recent name="C:\Users\temp.DESKTOP-LFH9E5J\Desktop\ITProject-siqi\views" />
       <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
     </key>
@@ -101,6 +102,7 @@
       <workItem from="1599202595203" duration="1240000" />
       <workItem from="1599786282090" duration="242000" />
       <workItem from="1599631364758" duration="5169000" />
+      <workItem from="1599836132267" duration="3494000" />
     </task>
     <servers />
   </component>
@@ -132,14 +134,16 @@
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
     <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598953853640" />
-    <state x="686" y="209" key="FileChooserDialogImpl" timestamp="1599104433770">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="515" y="173" key="FileChooserDialogImpl" timestamp="1599837067582">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="515" y="173" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1599837067582" />
     <state x="686" y="209" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599104433770" />
     <state x="2469" y="167" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598955151562" />
-    <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup" timestamp="1599141673246">
-      <screen x="1920" y="0" width="1536" height="832" />
+    <state x="404" y="158" width="630" height="701" key="search.everywhere.popup" timestamp="1599837531808">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="404" y="158" width="630" height="701" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1599837531808" />
     <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1599141673246" />
   </component>
 </project>
