@@ -11,7 +11,7 @@ const getUser = async (req,res)=>{
         const user = users[0];
 
         if(!user){
-            return res.send("can't find user");
+            res.render('resultNotFound.ejs')
         }
         else {
             var result = [];
@@ -20,7 +20,8 @@ const getUser = async (req,res)=>{
                 result.push(users[i]);
                 i++;
             }
-            return res.send(result[0].userName);
+            //return res.send(result[0].userName);
+            res.render('searchResult.ejs', {result})
         }
     } catch (err) {
         res.status(400);
