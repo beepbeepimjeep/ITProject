@@ -20,21 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71d8ad92-77b8-4695-9891-501559776a44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apollo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/fileController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helper/googleCloudStorage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/itproject-comp30022-7efc22006ee3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/file.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/fileRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/uploadRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload/web_design_draft1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload/微信图片_20200828150410.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/main.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/resultNotFound.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-=======
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/body-parser/package.json" afterDir="false" />
@@ -45,7 +32,8 @@
       <change beforePath="$PROJECT_DIR$/config/keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/keys.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/authRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRouter.js" afterDir="false" />
->>>>>>> 7febdcb0365867ac4cead2a466acd788ff15f716
+      <change beforePath="$PROJECT_DIR$/controllers/searchController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/searchController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/searchResult.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/searchResult.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../parkMe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -89,11 +77,13 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/services.js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\temp.DESKTOP-LFH9E5J\Desktop\ITProject\views" />
+      <recent name="C:\Users\temp.DESKTOP-LFH9E5J\Desktop\ITProject-siqi\views" />
+      <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
     </key>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
@@ -119,7 +109,9 @@
       <workItem from="1599005584270" duration="12411000" />
       <workItem from="1599050096135" duration="4800000" />
       <workItem from="1599202595203" duration="1240000" />
-      <workItem from="1599786282090" duration="849000" />
+      <workItem from="1599786282090" duration="242000" />
+      <workItem from="1599631364758" duration="5169000" />
+      <workItem from="1599836132267" duration="5353000" />
     </task>
     <servers />
   </component>
@@ -138,7 +130,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -152,14 +143,16 @@
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
     <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598953853640" />
-    <state x="686" y="209" key="FileChooserDialogImpl" timestamp="1599104433770">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="515" y="173" key="FileChooserDialogImpl" timestamp="1599837067582">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="515" y="173" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1599837067582" />
     <state x="686" y="209" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599104433770" />
     <state x="2469" y="167" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598955151562" />
-    <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup" timestamp="1599141673246">
-      <screen x="1920" y="0" width="1536" height="832" />
+    <state x="404" y="158" width="630" height="701" key="search.everywhere.popup" timestamp="1599837531808">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="404" y="158" width="630" height="701" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1599837531808" />
     <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1599141673246" />
   </component>
 </project>
