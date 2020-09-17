@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-module.exports = (app) => {
+module.exports = app => {
     app.get('/auth/google', passport.authenticate('google',{
             scope: ['profile', 'email']
         })
@@ -11,14 +11,16 @@ module.exports = (app) => {
     );
 
     app.get('/auth/google/callback', passport.authenticate('google'),(req, res) => {
-        res.redirect('/');});
+        res.redirect('/user-mainpage');});
 
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin'),(req, res) => {
-        res.redirect('/');});
+        res.redirect('/user-mainpage');});
+
 
     app.get('/api/logout',(req, res)=>{
         req.logout();
-        res.send(req.user);
+        res.send(req.user)
+            .redirect('/visitor-mainpage');
     });
 
     app.get('/api/current_user', (req, res)=> {

@@ -13,10 +13,8 @@ const passport = require('passport');
 const keys = require('./config/keys')
 const formidable = require('formidable')
 
-
 require('./models/User');
 require('./services/passport');
-require('./routes/authRouter');
 require('./models')
 require('./models/index')
 require('./models/file')
@@ -62,9 +60,11 @@ const upload = multer({ storage });
 
 const usertestRouter = require('./routes/usertestRouter')
 const fileRouter = require('./routes/fileRouter')
+
 app.use('/user',usertestRouter);
 app.use('/fileInfo',fileRouter);
 
+require('./routes/authRouter')(app);
 
 app.get('/', (req, res) => {
     res.render('visitor-mainpage');
@@ -82,8 +82,6 @@ app.get('/user-mainpage', (req, res) => {
     res.render('user-mainpage');
 });
 
-app.get('/auth/google', (req, res) => {
-});
 
 app.get('/go_to_upload', (req, res) => {
     res.render('user-upload');
