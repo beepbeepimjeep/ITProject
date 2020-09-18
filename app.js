@@ -87,6 +87,10 @@ app.get('/go_to_upload', (req, res) => {
     res.render('user-upload');
 });
 
+//search
+const searchRouter = require('./routes/searchRouter')
+app.use('/searchresult', searchRouter);
+
 //@route POST
 app.post('/upload', upload.single('file'),(req,res)=>{
     console.log('upload file');
