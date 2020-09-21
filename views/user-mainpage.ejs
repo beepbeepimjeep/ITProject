@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="./css/user-mainpage.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="background_container"></div>
+    <form action="/visitor-mainpage" method="get">
+        <button class = logout_button>Logout</button> 
+    </form>
+    <form action="/language" method="get">
+        <button class = language_button>Language</button> 
+    </form>
+    <form action="/go_to_upload" method="get">
+        <button class = myportfolio_button>go to my Eportfolio</button> 
+    </form>
+    
+    
+    <div class="logo_container">
+        <div class="text_portfolio">portfolio</div>
+        <div class="text_E">E</div>
+        <div class="text_My">My</div>
+    </div>
+    <form id="search_container"> 
+        <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
+        aria-label="Search through site content"/>
+        <img src = "images/search.svg" class = search_icon></img>
+        <button>Search</button>
+    </form>
+</body>
+</html>
