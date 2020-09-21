@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71d8ad92-77b8-4695-9891-501559776a44" name="Default Changelist" comment="" />
+    <list default="true" id="71d8ad92-77b8-4695-9891-501559776a44" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/css/visitor-mainpage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/google.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/linkedin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/visitor-mainpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../parkMe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,12 +70,23 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/services.js" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject\web" />
+      <recent name="C:\Users\zihen\OneDrive\文档\GitHub\ITProject" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="visitor-mainpage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ITProject/web/visitor-mainpage.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.visitor-mainpage.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -91,6 +110,14 @@
       <workItem from="1599188382466" duration="7716000" />
       <workItem from="1599005584270" duration="12411000" />
       <workItem from="1599050096135" duration="4545000" />
+      <workItem from="1599619072079" duration="1057000" />
+      <workItem from="1599628143144" duration="1954000" />
+      <workItem from="1599747451219" duration="471000" />
+      <workItem from="1599783147574" duration="2432000" />
+      <workItem from="1599883952052" duration="619000" />
+      <workItem from="1599888632565" duration="37000" />
+      <workItem from="1600489783783" duration="54000" />
+      <workItem from="1600489847336" duration="1225000" />
     </task>
     <servers />
   </component>
@@ -114,35 +141,36 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="369" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599011026399">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="492" y="129" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599529429031">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="369" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1599011026399" />
+    <state x="492" y="129" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599529429031" />
     <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598953853640">
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
     <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598953853640" />
-    <state x="686" y="209" key="FileChooserDialogImpl" timestamp="1599104433770">
+    <state x="686" y="209" key="FileChooserDialogImpl" timestamp="1600489852789">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="686" y="209" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599104433770" />
+    <state x="686" y="209" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1600489852789" />
     <state x="2469" y="167" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1598955151562" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1599528589975">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1599531922777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599528589975" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1599528589975">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599531922777" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1599531922777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599528589975" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1599528589975">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599531922777" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1599531922777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599528589975" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1599528589975">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599531922777" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1599531922777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599528589975" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599531922777" />
     <state x="2351" y="153" width="672" height="678" key="search.everywhere.popup" timestamp="1599141673246">
       <screen x="1920" y="0" width="1536" height="832" />
     </state>
