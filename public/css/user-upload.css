@@ -1,0 +1,135 @@
+* {
+  overflow: hidden;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+html { height:100%; }
+.background_container {
+  width: 100%;
+  height: 100%;
+  background: rgba(26,38,57,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.language_button {
+  width: 11%;
+  height: 8%;
+  border: none;
+  color: rgba(246,225,184,1);
+  background-color: rgba(194,77,44,1);
+  text-align: center;
+  font-size: 175%;
+  position: absolute;
+  cursor: pointer;
+  top: 10%;
+  left: 83%;
+  overflow: hidden;
+}
+.language_button:hover {
+  color: rgba(194,77,44,1);
+  background-color: rgba(246,225,184,1);
+}
+
+.logout_button {
+  width: 11%;
+  height: 8%;
+  border: none;
+  color: rgba(246,225,184,1);
+  background-color: rgba(194,77,44,1);
+  text-align: center;
+  font-size: 175%;
+  position: absolute;
+  cursor: pointer;
+  top: 10%;
+  left: 68%;
+  overflow: hidden;
+}
+.logout_button:hover {
+  color: rgba(194,77,44,1);
+  background-color: rgba(246,225,184,1);
+}
+
+.myportfolio_button {
+  color: #3D5476;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 175%;
+  opacity: 1;
+  text-align: left;
+}
+.myportfolio_button:hover{
+  color: rgba(246,225,184,1);
+}
+.logo_container {
+  width: 13%;
+  height: 15%;
+  opacity: 1;
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  overflow: hidden;
+  cursor: default;
+}
+.text_portfolio {
+  width: 63%;
+  height: 91%;
+  font-size: 175%;
+  color: rgba(246,225,184,1);
+  opacity: 1;
+  position: absolute;
+  top: 0%;
+  left: 35%;
+  cursor: default;
+}
+.text_E {
+  width: 20%;
+  height: 100%;
+  font-size: 175%;
+  color: rgba(194,77,44,1);
+  opacity: 1;
+  position: absolute;
+  top: -5%;
+  left: 25%;
+  cursor: default;
+}
+.text_My {
+  width: 25%;
+  height: 91.15%;
+  font-size: 175%;
+  color: rgba(246,225,184,1);
+  opacity: 1;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  cursor: default;
+}
+.welcome_text {
+  width: 80%;
+  height: 60%;
+  color: rgba(246,225,184,1);
+  font-size: 550%;
+  opacity: 1;
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  overflow: hidden;
+  cursor: default;
+}
+.upload_icon {
+  filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);
+  opacity: 1;
+  position: absolute;
+  cursor: pointer;
+  top: 80%;
+  left:80%;
+}
+:hover.upload_icon {
+  filter: invert(33%) sepia(34%) saturate(2277%) hue-rotate(340deg) brightness(98%) contrast(88%);
+}

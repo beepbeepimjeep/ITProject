@@ -13,14 +13,14 @@ const passport = require('passport');
 const keys = require('./config/keys')
 const formidable = require('formidable')
 
-
 require('./models/User');
 require('./services/passport');
-require('./routes/authRouter');
 require('./models')
 require('./models/index')
 require('./models/file')
+
 const app = express();
+
 
 //middle
 app.set('view engine', 'ejs');
@@ -34,6 +34,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 //storage
 const storage = new GridFsStorage({
@@ -58,18 +60,42 @@ const upload = multer({ storage });
 
 const usertestRouter = require('./routes/usertestRouter')
 const fileRouter = require('./routes/fileRouter')
+
 app.use('/user',usertestRouter);
 app.use('/fileInfo',fileRouter);
 
+require('./routes/authRouter')(app);
+
 app.get('/', (req, res) => {
+    res.render('visitor-mainpage');
+});
+
+app.get('/main', (req, res) => {
     res.render('main');
 });
+
+app.get('/visitor-mainpage', (req, res) => {
+    res.render('visitor-mainpage');
+});
+
+app.get('/user-mainpage', (req, res) => {
+    res.render('user-mainpage');
+});
+
+
+app.get('/go_to_upload', (req, res) => {
+    res.render('user-upload');
+});
+
+//search
+const searchRouter = require('./routes/searchRouter')
+app.use('/searchresult', searchRouter);
 
 //@route POST
 app.post('/upload', upload.single('file'),(req,res)=>{
     console.log('upload file');
-    res.redirect('back')
-})
+    res.redirect('/go_to_upload')
+});
 
 //@ropute get
 //@desc show all file info
