@@ -75,4 +75,6 @@ module.exports = {
     displayImage,
     displayAll,
     deleteOne
+
 }
+

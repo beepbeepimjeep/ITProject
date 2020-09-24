@@ -7,6 +7,7 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
+const nodemailer = require("nodemailer");
 
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -18,6 +19,7 @@ require('./services/passport');
 require('./models')
 require('./models/index')
 require('./models/file')
+
 
 const app = express();
 
@@ -34,7 +36,25 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
+
+
+
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded( { extended: false } )); // this is to handle URL encoded data
+// end parser middleware
+
+
+// custom middleware to log data access
+const log = function (request, response, next) {
+    console.log(`${new Date()}: ${request.protocol}://${request.get('host')}${request.originalUrl}`);
+    console.log(request.body); // make sure JSON middleware is loaded before this line
+    next();
+}
+app.use(log);
+// end custom middleware
+
 
 
 //storage
@@ -65,13 +85,22 @@ const upload = multer({ storage });
 
 const usertestRouter = require('./routes/usertestRouter')
 const fileRouter = require('./routes/fileRouter')
+const inquiryRouter = require('./routes/inquiryRouter')
+const userRouter = require('./routes/userRouter')
+const User = mongoose.model("users");
 
 app.use('/user',usertestRouter);
+
 app.use('/file',fileRouter);
 
 app.get('/file/image/:filename', function (req,res,next){
     next();
 },fileRouter)
+
+
+app.use('/user-mainpage', userRouter);
+
+app.post('/ajax/email',inquiryRouter);
 
 require('./routes/authRouter')(app);
 
@@ -89,14 +118,20 @@ app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-app.get('/user-mainpage', (req, res) => {
-    res.render('user-mainpage');
-});
+/*app.get('/user-mainpage/:user_id', (req, res) => {
+    var id = req.params.user_id;
+    res.render('user-mainpage', {id: id});
+});*/
 
+app.get('/user-mainpage/:user_id', userRouter)
 
-app.get('/go_to_upload', (req, res) => {
+app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
+
+/*app.get('/go_to_upload', (req, res) => {
     res.render('user-upload');
-});
+});*/
+
+
 
 //search
 const searchRouter = require('./routes/searchRouter')
