@@ -111,9 +111,11 @@ app.get('/visitor-mainpage', (req, res) => {
 
 app.get('/user-mainpage/:user_id', userRouter)
 
-app.get('/go_to_upload', (req, res) => {
+app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
+
+/*app.get('/go_to_upload', (req, res) => {
     res.render('user-upload');
-});
+});*/
 
 
 
