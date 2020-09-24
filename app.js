@@ -62,7 +62,12 @@ const storage = new GridFsStorage({
     url: 'mongodb+srv://zihengt:tangziheng@cluster0.htzok.mongodb.net/ITProject?retryWrites=true&w=majority',
     file: (req, file) => {
         return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
+            const fileInfo = {
+                filename: file.originalname,
+                bucketName: 'upload'
+            };
+            resolve(fileInfo);
+            /*crypto.randomBytes(16, (err, buf) => {
                 if (err) {
                     return reject(err);
                 }
@@ -72,7 +77,7 @@ const storage = new GridFsStorage({
                     bucketName: 'upload'
                 };
                 resolve(fileInfo);
-            });
+            });*/
         });
     }
 });
@@ -85,7 +90,14 @@ const userRouter = require('./routes/userRouter')
 const User = mongoose.model("users");
 
 app.use('/user',usertestRouter);
-app.use('/fileInfo',fileRouter);
+
+app.use('/file',fileRouter);
+
+app.get('/file/image/:filename', function (req,res,next){
+    next();
+},fileRouter)
+
+
 app.use('/user-mainpage', userRouter);
 
 app.post('/ajax/email',inquiryRouter);
@@ -96,9 +108,11 @@ app.get('/', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-app.get('/main', (req, res) => {
+/*app.get('/main', (req, res) => {
     res.render('main');
-});
+});*/
+
+app.get('/file/main',fileRouter)
 
 app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
@@ -126,12 +140,10 @@ app.use('/searchresult', searchRouter);
 //@route POST
 app.post('/upload', upload.single('file'),(req,res)=>{
     console.log('upload file');
-    res.redirect('/go_to_upload')
+    res.redirect('/file/main');
 });
 
-//@ropute get
-//@desc show all file info
-
+app.post('/file/delete/:id',fileRouter)
 
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
