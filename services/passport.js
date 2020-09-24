@@ -31,7 +31,7 @@ passport.use(new GoogleStrategy({
                 done(null, existingUser);
             }else{
                 //we don't have the record, create one
-                new User({ googleId: profile.id, userName: profile.displayName }).save()
+                new User({ googleId: profile.id, userName: profile.displayName, email: profile.emails[0].value  }).save()
                     .then(user => done(null, user));
             }
 

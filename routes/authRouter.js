@@ -11,7 +11,13 @@ module.exports = app => {
     );
 
     app.get('/auth/google/callback', passport.authenticate('google'),(req, res) => {
-        res.redirect('/user-mainpage');});
+        var user = req.user;
+        res.render('user-mainpage', {
+            user: user
+        });
+    });
+
+
 
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin'),(req, res) => {
         res.redirect('/user-mainpage');});

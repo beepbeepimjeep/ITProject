@@ -2,8 +2,30 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link href="./css/user-mainpage.css" rel="stylesheet" />
     <title>Document</title>
+    <script type="text/javascript">
+        function submitEmailForm(form) {
+            var obj = new XMLHttpRequest();
+            obj.onreadystatechange = function(){
+                if(obj.readyState == 4){
+                    if(obj.status == 200){
+                        var res = JSON.parse(obj.responseText);
+                        alert(res.message);
+                    }
+                    else{
+                        alert("XMLHttp status " + obj.status + ": " + obj.statusText);
+                    }
+                }
+            };
+            obj.open("post", form.action, true);
+            obj.setRequestHeader("Content-Type", "application/json"); // NOTICE: "application/json"
+            obj.send(JSON.stringify({ name: form.name.value, email: form.email.value, message: form.message.value }));
+            return false;
+        }
+    </script>
 </head>
-<body>
+<body ng-init="getCurrentUser('<%= user._id %>')">
+
+
     <div class="background_container"></div>
     <form action="/visitor-mainpage" method="get">
         <button class = logout_button>Logout</button> 
@@ -27,5 +49,25 @@
         <img src = "images/search.svg" class = search_icon></img>
         <button>Search</button>
     </form>
+
+
+    <form action="/ajax/email" class="contact-form" method="POST" onsubmit="return submitEmailForm(this);">
+        <div>
+            <input type="text" name="name" placeholder="name" class="contact-form-input" required />
+        </div>
+        <div>
+            <input type="email" name="email" placeholder="email" class="contact-form-input" required />
+        </div>
+        <div>
+            <textarea name="message" class="contact-form-input" placeholder="MESSAGE" required></textarea>
+        </div>
+        <div>
+            <button type="submit">send</button>
+        </div>
+    </form>
+
+
+
+
 </body>
 </html>

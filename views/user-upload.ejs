@@ -3,7 +3,7 @@
     <link href="./css/user-upload.css" rel="stylesheet" />
     <title>Document</title>
 </head>
-<body>
+<body >
     <div class="background_container"></div>
     <form action="/visitor-mainpage" method="get">
         <button class = logout_button>Logout</button> 
@@ -24,5 +24,47 @@
     <form action="/main" method="get">
         <input type = "image" src = "images/plus.svg" class = upload_icon></input> 
     </form>
+
+    <!-- comment form -->
+    <div class="container">
+        <form method = "POST" onsubmit="doComment(this);" ng-init="getCurrentUser('<%= user._id %>')">
+            <input type="hidden" name="visitor_id" value="<%= visitor._id %>">
+            <div>
+                <input class="form-control", name = "visitorName"/>
+            </div>
+
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+            </select>
+
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+    <script>
+        function doComment (form) {
+            $.ajax({
+                url:"/doComment",
+                method:"POST",
+                data: {visitorName: form.visitorName.value, comment: form.comment.value, visitor_id: form.visitor_id.value},
+                success: function(res){
+                    alert(res);
+                }
+            });
+            return false;
+        }
+    </script>
 </body>
 </html>
