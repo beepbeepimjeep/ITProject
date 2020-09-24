@@ -36,7 +36,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
+
 
 
 // body parser middleware
@@ -85,7 +86,7 @@ const User = mongoose.model("users");
 
 app.use('/user',usertestRouter);
 app.use('/fileInfo',fileRouter);
-app.use('/current_user', userRouter);
+app.use('/user-mainpage', userRouter);
 
 app.post('/ajax/email',inquiryRouter);
 
@@ -103,23 +104,15 @@ app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-app.get('/user-mainpage', (req, res) => {
-    res.render('user-mainpage');
-});
+/*app.get('/user-mainpage/:user_id', (req, res) => {
+    var id = req.params.user_id;
+    res.render('user-mainpage', {id: id});
+});*/
+
+app.get('/user-mainpage/:user_id', userRouter)
 
 app.get('/go_to_upload', (req, res) => {
     res.render('user-upload');
-});
-
-
-app.post('/doComment', (req, res) => {
-    User.update({"_id": ObjectId(req.body.users_id)}, {
-        $push: {
-            "comments": {visitorName: req.body.visitorName, comment: req.body.comment}
-        }
-    }, function (error, post) {
-        res.send("comment successfully")
-    });
 });
 
 

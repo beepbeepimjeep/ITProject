@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <link href="./css/user-mainpage.css" rel="stylesheet" />
+    <link href="/css/user-mainpage.css" rel="stylesheet" />
     <title>Document</title>
     <script type="text/javascript">
         function submitEmailForm(form) {
@@ -23,8 +23,9 @@
         }
     </script>
 </head>
-<body ng-init="getCurrentUser('<%= user._id %>')">
+<body>
 
+    <h1 value="<%= user._id %>" ><%=user._id%></h1>
 
     <div class="background_container"></div>
     <form action="/visitor-mainpage" method="get">
@@ -33,7 +34,7 @@
     <form action="/language" method="get">
         <button class = language_button>Language</button> 
     </form>
-    <form action="/go_to_upload" method="get">
+    <form action="/go_to_upload" method="post">
         <button class = myportfolio_button>go to my Eportfolio</button> 
     </form>
     
@@ -43,10 +44,10 @@
         <div class="text_E">E</div>
         <div class="text_My">My</div>
     </div>
-    <form id="search_container"> 
+    <form id="search_container">
         <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
         aria-label="Search through site content"/>
-        <img src = "images/search.svg" class = search_icon></img>
+        <img src = "/images/search.svg" class = search_icon></img>
         <button>Search</button>
     </form>
 

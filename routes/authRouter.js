@@ -1,6 +1,11 @@
 const passport = require('passport');
+const express = require('express');
+const path = require('path');
+
 
 module.exports = app => {
+    app.use(express.static(path.join(__dirname, 'public')));
+
     app.get('/auth/google', passport.authenticate('google',{
             scope: ['profile', 'email']
         })
@@ -12,15 +17,15 @@ module.exports = app => {
 
     app.get('/auth/google/callback', passport.authenticate('google'),(req, res) => {
         var user = req.user;
-        res.render('user-mainpage', {
-            user: user
-        });
-    });
+        var user_id = user._id
+        res.redirect(`/user-mainpage/${user_id}`);});
 
 
 
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin'),(req, res) => {
-        res.redirect('/user-mainpage');});
+        var user = req.user;
+        var user_id = user._id
+        res.redirect(`/user-mainpage/${user_id}`);});
 
 
     app.get('/api/logout',(req, res)=>{

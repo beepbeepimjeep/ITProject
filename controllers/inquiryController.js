@@ -14,11 +14,13 @@ const getInquiry = function (req,res) {
         }
     });
 
+    const User = req.user
+
     var textBody = `FROM: ${req.body.name} EMAIL: ${req.body.email} MESSAGE: ${req.body.message}`;
     var htmlBody = `<h2>Greetings from ${req.body.name}</h2><p>from: ${req.body.name} <a href="mailto:${req.body.email}">${req.body.email}</a></p><p>Message: ${req.body.message}</p>`;
     var mail = {
         from: "myeportfoliounimelb@gmail.com", // sender address
-        to: '<%= user.email %>', // list of receivers (THIS COULD BE A DIFFERENT ADDRESS or ADDRESSES SEPARATED BY COMMAS)
+        to: User.email, // list of receivers (THIS COULD BE A DIFFERENT ADDRESS or ADDRESSES SEPARATED BY COMMAS)
         subject: "A Message From My E-Portfolio", // Subject line
         text: textBody,
         html: htmlBody

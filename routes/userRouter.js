@@ -4,6 +4,6 @@ const userRouter = express.Router();
 
 const userController = require('../controllers/userController.js');
 
-userRouter.get('/:user_id', (req, res) => userController.getCurrentUser(req, res));
+userRouter.get('/:user_id', userController.getCurrentUser);
 
 module.exports = userRouter;
