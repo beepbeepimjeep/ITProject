@@ -2,11 +2,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link href="./css/visitor-mainpage.css" rel="stylesheet" />
     <title>Document</title>
-    <script>
-        window.location.hash="no-back-button";
-        window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
-        window.onhashchange=function(){window.location.hash="no-back-button";}
+    <script type = "text/javascript" >
+        history.pushState(null, null, location.href);
+        history.back();
+        history.forward();
+        window.onpopstate = function () {
+            history.go(1);
+        };
     </script>
+
 </head>
 <body>
     <div class="background_container"></div>
