@@ -4,6 +4,10 @@ const fileRouter = express.Router();
 
 const fileController = require('../controllers/fileController');
 
-fileRouter.get("/",fileController.getAllFile);
+fileRouter.get("/image/:filename",fileController.displayImage);
+fileRouter.get("/main",fileController.displayAll)
+fileRouter.delete("/delete/:id",fileController.deleteOne)
+
+
 
 module.exports = fileRouter;

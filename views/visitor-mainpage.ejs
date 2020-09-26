@@ -2,6 +2,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link href="./css/visitor-mainpage.css" rel="stylesheet" />
     <title>Document</title>
+    <script>
+        window.location.hash="no-back-button";
+        window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
+        window.onhashchange=function(){window.location.hash="no-back-button";}
+    </script>
+
 </head>
 <body>
     <div class="background_container"></div>
@@ -23,8 +29,11 @@
     <form action="/auth/google" method="get">
         <input type = "image" src = "images/google.svg" class = google_icon></input> 
     </form>
-    <form action="/user-mainpage" method="get">
+    <form action="/auth/linkedin" method="get">
         <input type = "image" src = "images/linkedin.svg" class = linkedin_icon></input> 
     </form>
+
+
+
 </body>
 </html>

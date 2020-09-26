@@ -1,9 +1,11 @@
 <!DOCTYPE html><html><head>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <link href="./css/user-upload.css" rel="stylesheet" />
+    <link href="/css/user-upload.css" rel="stylesheet" />
     <title>Document</title>
 </head>
-<body>
+<body >
+    <h1 value="<%= user._id %>" ><%=user._id%></h1>
+
     <div class="background_container"></div>
     <form action="/visitor-mainpage" method="get">
         <button class = logout_button>Logout</button> 
@@ -21,8 +23,9 @@
     <div class="welcome_text">
         Welcome to MyEportfolio <br> Click "+" to start!
     </div>
-    <form action="/main" method="get">
+    <form action="/file/main" method="get">
         <input type = "image" src = "images/plus.svg" class = upload_icon></input> 
     </form>
+
 </body>
 </html>
