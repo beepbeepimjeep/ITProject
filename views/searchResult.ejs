@@ -1,5 +1,16 @@
 <div class="container">
+    <% if(noMatch !== null) { %>
+        <h3><%= noMatch %></h3>
+        <%}%>
+
     <!-- listing to be added -->
-    <h3 class="user-name"> <%= result[0].userName%> </h3>
+        <% users.forEach(function(user){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="caption">
+                    <h4><%= user.userName %></h4>
+                </div>
+                </div>
+            </div>
+    <% }); %>
 
 </div>
