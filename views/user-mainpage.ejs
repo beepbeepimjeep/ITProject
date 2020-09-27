@@ -1,7 +1,64 @@
-<!DOCTYPE html><html><head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="/css/user-mainpage.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>user-mainpage</title>
+    <style>
+        body { background:rgba(26,38,57,1) !important; }
+        .content {position: relative;}
+        #right-panel-files {
+            position: absolute;
+            top: 12%;
+            left: 53%;
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            color:#3D5476;
+            border:none;
+        }
+        #right-panel-files:hover{
+            color: rgba(246,225,184,1);
+        }
+        #right-panel-logout {
+            position: absolute;
+            top: 12%;
+            left: 68%;
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 11%;
+            height: 8%;
+            font-size: 175%;
+            border:none;
+        }
+        #right-panel-logout:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #right-panel-language {
+            position: absolute;
+            top: 12%;
+            left: 83%;
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 11%;
+            height: 8%;
+            font-size: 175%;
+            border:none;
+        }
+        #right-panel-language:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #logo {
+            position: absolute;
+            top: 23%;
+            left: 32%;
+        }
+        #logo1 {
+            font-size: 525%;
+        }
+       
+    </style>
     <script type="text/javascript">
         function submitEmailForm(form) {
             var obj = new XMLHttpRequest();
@@ -27,22 +84,27 @@
 
     <h1 value="<%= user._id %>" ><%=user._id%></h1>
 
-    <div class="background_container"></div>
-    <form action="/visitor-mainpage" method="get">
-        <button class = logout_button>Logout</button> 
+    <form action="/file/main/<%=user._id%>" method="get">
+        <button
+        class = "btn" id="right-panel-files">
+            go to my files
+        </button> 
+    </form>
+    <form action="/api/logout" method="get">
+        <button class = "btn-lg" id="right-panel-logout">
+            Logout
+        </button> 
     </form>
     <form action="/language" method="get">
-        <button class = language_button>Language</button> 
+        <button class = "btn-lg" id="right-panel-language">
+            Language
+        </button> 
     </form>
-    <form action="/file/main" method="get">
-        <button class = myportfolio_button>go to my files</button> 
-    </form>
-    
-    
-    <div class="logo_container">
-        <div class="text_portfolio">portfolio</div>
-        <div class="text_E">E</div>
-        <div class="text_My">My</div>
+
+    <div class="row" id="logo">
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
     <form id="search_container">
         <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
