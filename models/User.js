@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
             ref: "projects"
         }
     ]
+    fileid: [String]
 });
 
 const users = mongoose.model('users', userSchema, "users");

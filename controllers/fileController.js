@@ -58,7 +58,8 @@ const displayAll = (req,res)=>{
                     file.isImage=false;
                 }
             })
-            res.render('main',{files:files})
+
+            res.render('main',{files:files, userid:req.params.id})
         }
     })
 }
@@ -68,13 +69,18 @@ const deleteOne = (req,res)=>{
         if(err){
             return res.status(404).json({error: err})
         }
-        res.redirect('/file/main')
+        res.redirect(`/file/main/${req.params.id}`);
     })
+}
+
+const uploadFile = (req,res)=>{
+    var userid = req.params.id;
+    res.redirect(`/file/main/${userid}`)
 }
 module.exports = {
     displayImage,
     displayAll,
-    deleteOne
-
+    deleteOne,
+    uploadFile
 }
 

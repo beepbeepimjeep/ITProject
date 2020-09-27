@@ -7,7 +7,6 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
-const nodemailer = require("nodemailer");
 
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -90,6 +89,7 @@ const inquiryRouter = require('./routes/inquiryRouter')
 const userRouter = require('./routes/userRouter')
 const projectRouter = require('./routes/projectRouter')
 
+
 app.use('/user',usertestRouter);
 
 app.use('/file',fileRouter);
@@ -107,11 +107,7 @@ app.get('/', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-/*app.get('/main', (req, res) => {
-    res.render('main');
-});*/
-
-app.get('/file/main',fileRouter)
+app.get('/file/main/:id',fileRouter)
 
 app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
@@ -133,10 +129,16 @@ const searchRouter = require('./routes/searchRouter')
 app.use('/searchresult', searchRouter);
 
 //@route POST
-app.post('/upload', upload.single('file'),(req,res)=>{
+/*app.post('/file/upload/:userid', upload.single('file'),(req,res)=>{
     console.log('upload file');
     res.redirect('/file/main');
+});*/
+
+app.post('/file/upload/:userid', upload.single('file'),(req,res)=>{
+    console.log("upload");
+    res.redirect(`/file/main/${req.params.userid}`)
 });
+
 
 app.post('/file/delete/:id',fileRouter)
 
