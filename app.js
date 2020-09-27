@@ -14,6 +14,7 @@ const keys = require('./config/keys')
 const formidable = require('formidable')
 
 require('./models/User');
+require('./models/Project');
 require('./services/passport');
 require('./models')
 require('./models/index')
@@ -86,6 +87,8 @@ const usertestRouter = require('./routes/usertestRouter')
 const fileRouter = require('./routes/fileRouter')
 const inquiryRouter = require('./routes/inquiryRouter')
 const userRouter = require('./routes/userRouter')
+const projectRouter = require('./routes/projectRouter')
+
 
 app.use('/user',usertestRouter);
 
@@ -95,8 +98,6 @@ app.get('/file/image/:filename', function (req,res,next){
     next();
 },fileRouter)
 
-
-app.use('/user-mainpage', userRouter);
 
 app.post('/ajax/email',inquiryRouter);
 
@@ -112,20 +113,16 @@ app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-/*app.get('/user-mainpage/:user_id', (req, res) => {
-    var id = req.params.user_id;
-    res.render('user-mainpage', {id: id});
-});*/
-
+//user
+app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage/:user_id', userRouter)
-
 app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
 
-/*app.get('/go_to_upload', (req, res) => {
-    res.render('user-upload');
-});*/
 
-
+//comment box
+app.use('/user-eportfoliopage/user-projectpage', projectRouter)
+app.get('/user-eportfoliopage/user-projectpage/:project_id', projectRouter)
+app.post('/user-eportfoliopage/user-projectpage/:project_id', projectRouter)
 
 //search
 const searchRouter = require('./routes/searchRouter')
