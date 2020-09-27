@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div>
+    <h1 value="<%= project.projectName %>" ><%=project.projectName%></h1>
+</div>
+<div>
+    <form action="/user-eportfoliopage/user-projectpage/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return doComment(this);">
+        <div>
+            <input type="text" name="visitorName" placeholder="Type in your name" class="contact-form-input" required />
+        </div>
+        <div>
+            <textarea name="comment" class="contact-form-input" placeholder="Leave a message" required></textarea>
+        </div>
+        <div>
+            <button type="submit">send</button>
+        </div>
+    </form>
+
+</div>
+<div>
+    <hr>
+    <h2>Comments</h2>
+    <% if (project.comments) { %>
+        <% project.comments.forEach( function (comment) { %>
+            <div class="card card-body mb-3">
+                <h3><%= comment.visitorName%>: <%= comment.comment%></h3>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p> No comments currently</p>
+    <% } %>
+
+</div>
+
+<br/>
+<div id="submitted">
+</div>
+
+</body>
+
+<script>
+
+    function doComment (form) {
+
+        $.ajax({
+            url:"/user-eportfoliopage/user-projectpage/<%=project._id%>",
+            method:"POST",
+            data: {visitorName: form.visitorName.value, comment: form.comment.value},
+            success: function(res){
+                alert(res);
+            }
+        });
+        return false;
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

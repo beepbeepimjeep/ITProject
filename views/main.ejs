@@ -13,11 +13,12 @@
 </head>
 
 <body>
+<h1 value="<%= userid %>" ><%=userid%></h1>
     <div class="container">
         <div class="row">
             <div class="col-md-6 m-auto">
                 <h1 class="text-center display-4 my-4">MONGO</h1>
-                <form action="/upload" method="post" enctype="multipart/form-data">
+                <form method="post" action="/file/upload/<%= userid%>"  enctype="multipart/form-data">
                     <div class="custom-file mb-3">
                         <input type="file" name="file" id="file" class="custom-file-input">
                         <label for="file" class="custom-file-label">Choose File</label>
