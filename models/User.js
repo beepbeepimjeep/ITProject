@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     userName: String,
     linkedinId: String,
     email: String,
-    fileid: [String]
+    fileName: [String]
 });
 
 const users = mongoose.model('users', userSchema, "users");

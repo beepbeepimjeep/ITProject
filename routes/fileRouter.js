@@ -9,5 +9,4 @@ fileRouter.get("/main/:id",fileController.displayAll)
 fileRouter.delete("/delete/:id",fileController.deleteOne)
 //fileRouter.post("/upload/:id",fileController.uploadFile)
 
-
 module.exports = fileRouter;
