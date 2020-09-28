@@ -1,19 +1,14 @@
-* {
-  overflow: hidden;
-  padding: 0px !important;
-  margin: 0px !important;
-}
-html { height:100%; }
+
 .searchbar {
-  width: 66%;
-  height: 15%;
+  width: 1030px;
+  height: 100px;
   border: none;
   background: rgba(38,53,77,1);
   position: absolute;
-  top: 42%;
-  left: 17%;
+  top: 305px;
+  left: 255px;
   cursor: text;
-  font-size: 400%;
+  font-size: 64px;
   border-radius: 10px;
 }
 :hover.searchbar{
@@ -22,13 +17,13 @@ html { height:100%; }
 ::placeholder{
   color: #1A2639;
   opacity: 10;
-  left: 10%;
+  left: 100px;
 }
 .search_icon {
-  width: 6%;
+  width: 80px;
   height: auto;
-  top: 43%;
-  left: 75%;
+  top: 315px;
+  left: 1160px;
   filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);
   opacity: 1;
   position: absolute;
@@ -40,9 +35,9 @@ html { height:100%; }
 @keyframes bounce {
   0%   { transform: scale(1,1)      translateY(0); }
   10%  { transform: scale(1.1,.9)   translateY(0); }
-  30%  { transform: scale(.9,1.1)   translateY(20%); }
+  30%  { transform: scale(.9,1.1)   translateY(30px); }
   50%  { transform: scale(1.05,.95) translateY(0); }
-  57%  { transform: scale(1,1)      translateY(10%); }
+  57%  { transform: scale(1,1)      translateY(10px); }
   64%  { transform: scale(1,1)      translateY(0); }
   100% { transform: scale(1,1)      translateY(0); }
 }
@@ -52,8 +47,8 @@ html { height:100%; }
   opacity: 1;
   position: absolute;
   cursor: pointer;
-  top: 65%;
-  left:48%;
+  top: 460px;
+  left:800px;
 }
 .google_icon:hover {
   animation: bounce 3s infinite alternate;
@@ -65,8 +60,8 @@ html { height:100%; }
   opacity: 1;
   position: absolute;
   cursor: pointer;
-  top: 65%;
-  left:62%;
+  top: 460px;
+  left:1000px;
 }
 .linkedin_icon:hover {
   animation: bounce 3s infinite alternate;
