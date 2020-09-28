@@ -11,12 +11,15 @@
         #logo {
             position: relative;
             top: 0%;
-            left: 28%;
+            left: 18%;
+        }
+        #logo1 {
+            font-size: 400%;
         }
         #right-panel-home {
             position: absolute;
             top: 40px;
-            right: 200px;
+            right: 75px;
             font-size: 175%;
             background-color:rgba(26,38,57,1);
             color:#3D5476;
@@ -28,7 +31,7 @@
         #right-panel-portfolio {
             position: absolute;
             top:100px;
-            right: 200px;
+            right: 75px;
             font-size: 175%;
             background-color:rgba(26,38,57,1);
             color:#3D5476;
@@ -41,14 +44,14 @@
 </head>
 
 <body>
-    <h1 value="<%= userid %>" ><%=userid%></h1>
+    <h5 style="color:rgba(246,225,184,1);"value="<%= userid %>" >User: <%=userid%></h5>
     <form action="/user-mainpage/<%=userid%>" method="get">
         <button id="right-panel-home"
         class = "btn">
             back to home page
         </button> 
     </form>
-    <form action="/user-project/<%=userid%>" method="get">
+    <form action="/user-eportfolio/<%=userid%>" method="get">
         <button id="right-panel-portfolio"
         class = "btn">
             go to my eportfolio
@@ -58,9 +61,9 @@
         <div class="row">
             <div class="col-md-6 m-auto">
                 <div class="row" id="logo">
-                    <h1 class="my-4" style="color:rgba(194,77,44,1);">My</h1>
-                    <h1 class="my-3" style="color:rgba(246,225,184,1);">E</h1>
-                    <h1 class="my-4" style="color:rgba(194,77,44,1);">Portfolio</h1>
+                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+                    <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
                 </div>
                 <form method="post" action="/file/upload/<%= userid%>"  enctype="multipart/form-data">
                     <div class="custom-file mb-3">

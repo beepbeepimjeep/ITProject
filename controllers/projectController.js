@@ -7,7 +7,7 @@ const getCurrentProject = async (req, res) => {
     try {
         const current_project = await project.findById({_id: req.params.project_id});
         const all_comments = await current_project.populate("comments");
-        res.render('testing-projectpage', {project: current_project, comments: all_comments})
+        res.render('user-project', {project: current_project, comments: all_comments})
     } catch (err){
         res.status(400);
         return res.send("Database query failed")

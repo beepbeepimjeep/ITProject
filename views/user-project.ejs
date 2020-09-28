@@ -7,7 +7,6 @@
     <title>user-project</title>
     <style>
         body { background:rgba(26,38,57,1) !important; }
-        .content {position: relative;}
         #right-panel-home {
             position: absolute;
             top: 12%;
@@ -55,20 +54,35 @@
             top: 8%;
             left: 10%;
         }
+        #commentButton{
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            border:none;
+        }
+        #commentButton:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #comment{
+            position: absolute;
+            width:100%;
+            top: 70%;
+        }
+        #comment_text{
+            color: rgba(246,225,184,1);
+            background-color: rgba(38,53,77,1);
+        }
     </style>
 </head>
-    <h1 value="<%= user._id %>" ><%=user._id%></h1>
+<body>
+    <div>
+        <h5 style="color:rgba(246,225,184,1);" value="<%= project.projectName %>" ><%=project.projectName%></h5>
+    </div>
     <div class="row" id="logo">
         <h1 class="my-4" style="color:rgba(194,77,44,1);">My</h1>
         <h1 class="my-3" style="color:rgba(246,225,184,1);">E</h1>
         <h1 class="my-4" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
-    <form action="/user-mainpage/<%=user._id%>" method="get">
-        <button
-        class = "btn" id="right-panel-home">
-            back to home page
-        </button> 
-    </form>
     <form action="/api/logout" method="get">
         <button class = "btn-lg" id="right-panel-logout">
             Logout
@@ -79,6 +93,77 @@
             Language
         </button> 
     </form>
-<body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="commentForm" tabindex="-1" role="dialog" aria-labelledby="commentFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Leave your comments here!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/user-eportfolio/user-project/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return doComment(this);">
+                        <div>
+                            <label for="visitor" class="col-form-label">Visitor Name</label>
+                            <input type="text" id="visitor" name="visitorName" placeholder="Type in your name" class="form-control" required />
+                        </div>
+                        <div>
+                            <label for="entercomment" class="col-form-label">Comments</label>
+                            <textarea id="entercomment" name="comment" class="form-control" placeholder="Leave a message" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">send</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="comment">
+        <hr>
+        <h2 style="color:#3D5476;">Comments</h2>
+        <!-- Button trigger modal -->
+        <button type="button" id="commentButton" class="btn btn-primary" data-toggle="modal"data-target="#commentForm">
+            add your comment
+        </button>
+        <% if (project.comments) { %>
+            <% project.comments.forEach( function (comment) { %>
+                <div id="comment_text" class="card card-body mb-3">
+                    <h3 ><%= comment.visitorName%>: <%= comment.comment%></h3>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p> No comments currently</p>
+        <% } %>
+    
+    </div>
+    
+    <br/>
+    <div id="submitted">
+    </div>
+    
+    
+    <script>
+        function doComment (form) {
+            $.ajax({
+                url:"/user-eportfolio/user-project/<%=project._id%>",
+                method:"POST",
+                data: {visitorName: form.visitorName.value, comment: form.comment.value},
+                success: function(res){
+                    alert(res);
+                }
+            });
+            return false;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
