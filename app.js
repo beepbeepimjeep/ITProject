@@ -116,13 +116,13 @@ app.get('/visitor-mainpage', (req, res) => {
 //user
 app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage/:user_id', userRouter)
-app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
+app.get('/user-eportfolio/:user_id', userRouter)
 
 
 //comment box
-app.use('/user-eportfoliopage/user-projectpage', projectRouter)
-app.get('/user-eportfoliopage/user-projectpage/:project_id', projectRouter)
-app.post('/user-eportfoliopage/user-projectpage/:project_id', projectRouter)
+app.use('/user-eportfolio/user-project', projectRouter)
+app.get('/user-eportfolio/user-project/:project_id', projectRouter)
+app.post('/user-eportfolio/user-project/:project_id', projectRouter)
 
 //search
 const searchRouter = require('./routes/searchRouter')

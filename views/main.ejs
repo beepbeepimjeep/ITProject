@@ -6,18 +6,72 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Mongo File Upload</title>
     <style>
-        img{
-            width: 100%;
+        img{width: 100%;}
+        body { background:rgba(26,38,57,1) !important; 
+                overflow: hidden !important;} 
+        #logo {
+            width: 500px;
+            height: 180px;
+            position: relative;
+            top: 0px;
+            left: 80px;
+        }
+        #logo1 {
+            font-size: 440%;
+        }
+        #right-panel-home {
+            position: absolute;
+            top: 40px;
+            right: 75px;
+            width: 300px;
+            height: 60px;
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            color:#3D5476;
+            border:none;
+        }
+        #right-panel-home:hover{
+            color: rgba(246,225,184,1);
+        }
+        #right-panel-portfolio {
+            position: absolute;
+            top:100px;
+            right: 75px;
+            width: 300px;
+            height: 60px;
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            color:#3D5476;
+            border:none;
+        }
+        #right-panel-portfolio:hover{
+            color: rgba(246,225,184,1);
         }
     </style>
 </head>
 
 <body>
-<h1 value="<%= userid %>" ><%=userid%></h1>
+    <h5 style="color:rgba(246,225,184,1);"value="<%= userid %>" >User: <%=userid%></h5>
+    <form action="/user-mainpage/<%=userid%>" method="get">
+        <button id="right-panel-home"
+        class = "btn">
+            back to home page
+        </button> 
+    </form>
+    <form action="/user-eportfolio/<%=userid%>" method="get">
+        <button id="right-panel-portfolio"
+        class = "btn">
+            go to my eportfolio
+        </button>
+    </form>
     <div class="container">
         <div class="row">
             <div class="col-md-6 m-auto">
-                <h1 class="text-center display-4 my-4">MONGO</h1>
+                <div class="row" id="logo">
+                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+                    <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
+                </div>
                 <form method="post" action="/file/upload/<%= userid%>"  enctype="multipart/form-data">
                     <div class="custom-file mb-3">
                         <input type="file" name="file" id="file" class="custom-file-input">
@@ -46,7 +100,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -1,7 +1,43 @@
-<!DOCTYPE html><html><head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="./css/visitor-mainpage.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>visitor-mainpage</title>
+    <style>
+        body { background:rgba(26,38,57,1) !important;
+                overflow: hidden !important;}
+        #right-panel-language {
+            position: absolute;
+            top: 80px;
+            left: 1300px;
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 160px;
+            height: 60px;
+            font-size: 175%;
+            border:none;
+        }
+        #right-panel-language:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #logo {
+            position: absolute;
+            top: 170px;
+            left: 500px;
+        }
+        #logo1 {
+            font-size: 525%;
+        }
+        #loginwith {
+            position: absolute;
+            color: #C24D2C;
+            font-size: 400%;
+            top: 460px;
+            left:330px;
+        }
+    </style>
     <script type = "text/javascript" >
         history.pushState(null, null, location.href);
         history.back();
@@ -13,22 +49,23 @@
 
 </head>
 <body>
-    <div class="background_container"></div>
     <form action="/language" method="get">
-        <button class = language_button>Language</button> 
+        <button class = "btn-lg" id="right-panel-language">
+            Language
+        </button> 
     </form>
-    <div class="logo_container">
-        <div class="text_portfolio">portfolio</div>
-        <div class="text_E">E</div>
-        <div class="text_My">My</div>
+    <div class="row" id="logo">
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
     <form id="search_container" method="GET" action="/searchresult">
         <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
         aria-label="Search through site content"/>
-        <input type = "image" src = "images/search.svg" class = search_icon></input>
+        <input type = "image" src = "/images/search.svg" class = search_icon></input>
     </form>
 
-    <div class="text_login_with">Login with</div>
+    <div class="text" id="loginwith">Login with</div>
     <form action="/auth/google" method="get">
         <input type = "image" src = "images/google.svg" class = google_icon></input> 
     </form>

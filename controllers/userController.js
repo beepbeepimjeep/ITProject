@@ -16,7 +16,7 @@ const getCurrentUser = async (req, res) => {
 const userUploadFile = async (req, res) => {
     try {
         const current_user = await User.findById({_id: req.params.user_id})
-        res.render('user-upload', {user: current_user})
+        res.render('user-eportfolio', {user: current_user})
     } catch (err){
         res.status(400);
         return res.send("Database query failed")
