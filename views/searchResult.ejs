@@ -12,7 +12,9 @@
 </head>
 
 <body>
-
+    <% if(noMatch !== null) { %>
+        <h3 style="color:#f8fff1" ;><%= noMatch %></h3>
+    <%}%>
     <% users.forEach(function(user){ %>
         <div class="col-md-3 col-sm-6">
             <div class="caption">
