@@ -117,6 +117,7 @@ app.get('/visitor-mainpage', (req, res) => {
 app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage/:user_id', userRouter)
 app.get('/user-eportfolio/:user_id', userRouter)
+app.use('/user-eportfolio', userRouter);
 
 
 //comment box
