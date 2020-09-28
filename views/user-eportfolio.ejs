@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>user-eportfolio</title>
+    <style>
+        body { background:rgba(26,38,57,1) !important; 
+                overflow: hidden !important;}
+        .content {position: relative;}
+        #right-panel-home {
+            position: absolute;
+            top: 80px;
+            left: 780px;
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            width: 300px;
+            height: 60px;
+            color:#3D5476;
+            border:none;
+        }
+        #right-panel-home:hover{
+            color: rgba(246,225,184,1);
+        }
+        #right-panel-logout {
+            position: absolute;
+            top: 80px;
+            left: 1100px;
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 160px;
+            height: 60px;
+            font-size: 175%;
+            border:none;
+        }
+        #right-panel-logout:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #right-panel-language {
+            position: absolute;
+            top: 80px;
+            left: 1300px;
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 160px;
+            height: 60px;
+            font-size: 175%;
+            border:none;
+        }
+        #right-panel-language:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #logo {
+            position: absolute;
+            width: 500px;
+            height: auto;
+            top: 60px;
+            left: 100px;
+        }
+        #project{
+            position: absolute;
+            top: 300px;
+            left: 400px;
+            width: 800px;
+        }
+    </style>
+</head>
+    <h5 style="color:rgba(246,225,184,1);"value="<%= user._id %>">User: <%=user._id%></h5>
+
+<form onsubmit = "successfulalert()" action= "/user-eportfolio/<%= user._id %>?_method=PUT" method= "POST">
+    <div class ="loginform-wrapper">
+        <div>
+            <h5 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" >UserName: <%=user.userName%></h5>
+            <input type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
+        </div>
+        <div>
+            <h5 style="color:rgba(246,225,184,1);"value="<%= user.email %>" id = user_email>User email: <%=user.email%></h5>
+            <input type="email" id="useremail" name="useremail" placeholder="Enter new email" style="display:none;"><br>
+        </div>
+        
+        <button type = "button" onclick="toggle_visibility()" id = edit_button>Edit</button>
+        <button type= "submit" style="display:none;" id = "submit_button"> Submit </button>
+    </div>
+
+</form>
+
+
+    <div class="row" id="logo">
+        <h1 class="my-4" style="color:rgba(194,77,44,1);">My</h1>
+        <h1 class="my-3" style="color:rgba(246,225,184,1);">E</h1>
+        <h1 class="my-4" style="color:rgba(194,77,44,1);">Portfolio</h1>
+    </div>
+    <form action="/user-mainpage/<%=user._id%>" method="get">
+        <button
+        class = "btn" id="right-panel-home">
+            back to home page
+        </button> 
+    </form>
+    <form action="/api/logout" method="get">
+        <button class = "btn-lg" id="right-panel-logout">
+            Logout
+        </button> 
+    </form>
+    <form action="/language" method="get">
+        <button class = "btn-lg" id="right-panel-language">
+            Language
+        </button> 
+    </form>
+    <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
+        <button class = "btn-lg btn-info" id="project">
+            Project1
+        </button> 
+    </form>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+        function successfulalert() {
+            alert("Update completed.");
+        }
+    </script>
+
+
+    <script>
+        // shows edit info form onclick
+        function toggle_visibility(){
+            test_visibility(document.getElementById("username"));
+            test_visibility(document.getElementById("useremail"));
+            test_visibility(document.getElementById("edit_button"));
+            test_visibility(document.getElementById("submit_button"));
+
+            function test_visibility(x){
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        }
+
+        function validate(form) {
+            var validator = require("email-validator");
+            var username = form.username.value;
+            var email = form.useremail.value;
+
+            return !(!validator.validate(email) || username.length < 5);
+
+
+        }
+    </script>
+</body>
+</html>

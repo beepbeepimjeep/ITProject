@@ -7,9 +7,10 @@
     <h1 value="<%= user._id %>" ><%=user._id%></h1>
 
     <div class="background_container"></div>
-    <form action="/visitor-mainpage" method="get">
+    <form action="/api/logout" method="get">
         <button class = logout_button>Logout</button> 
     </form>
+
     <form action="/language" method="get">
         <button class = language_button>Language</button> 
     </form>
@@ -23,8 +24,8 @@
     <div class="welcome_text">
         Welcome to MyEportfolio <br> Click "+" to start!
     </div>
-    <form action="/file/main" method="get">
-        <input type = "image" src = "images/plus.svg" class = upload_icon></input> 
+    <form action="/file/main/<%= user._id%>" method="get">
+        <input type = "image" src = "/images/plus.svg" class = upload_icon></input>
     </form>
 
 </body>
