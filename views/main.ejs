@@ -7,8 +7,9 @@
     <title>Mongo File Upload</title>
     <style>
         img{width: 100%;}
-        body { background:rgba(26,38,57,1) !important; 
-                overflow: hidden !important;} 
+        body {
+            background:rgba(26,38,57,1) !important;
+        }
         #logo {
             width: 500px;
             height: 180px;
@@ -47,58 +48,77 @@
         #right-panel-portfolio:hover{
             color: rgba(246,225,184,1);
         }
+        .container-main{
+            margin-right: 5%;
+            margin-left: 5%;
+        }
+        .card-columns {
+            column-gap: 80px;
+        }
+
+        .btn-colorupload {
+            background-color: lightgoldenrodyellow;
+            color: rgba(26,38,57,1);
+        }
+
+        .btn-colordelete {
+            background-color: #C24D2C;
+            color: #f8fff1;
+        }
+
+        .card {
+            width: 400px;
+            hight: 400px;
+        }
+
+
     </style>
 </head>
 
 <body>
-    <h5 style="color:rgba(246,225,184,1);"value="<%= userid %>" >User: <%=userid%></h5>
-    <form action="/user-mainpage/<%=userid%>" method="get">
-        <button id="right-panel-home"
-        class = "btn">
-            back to home page
-        </button> 
-    </form>
-    <form action="/user-eportfolio/<%=userid%>" method="get">
-        <button id="right-panel-portfolio"
-        class = "btn">
-            go to my eportfolio
-        </button>
-    </form>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 m-auto">
-                <div class="row" id="logo">
-                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
-                    <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
-                    <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
-                </div>
-                <form method="post" action="/file/upload/<%= userid%>"  enctype="multipart/form-data">
-                    <div class="custom-file mb-3">
-                        <input type="file" name="file" id="file" class="custom-file-input">
-                        <label for="file" class="custom-file-label">Choose File</label>
+    <div class="container-main">
+        <form action="/user-mainpage/<%=userid%>" method="get">
+            <button id="right-panel-home"
+            class = "btn">
+                back to home page
+            </button>
+        </form>
+                <div class="col-md-6 m-auto">
+                    <div class="row" id="logo">
+                        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+                        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+                        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
                     </div>
-                    <input type="submit" value="Submit" class="btn btn-primary btn-block">
-                </form>
-                <hr>
-                <% if (files) { %>
-                    <% files.forEach( function (file) { %>
-                        <div class="card card-body mb-3">
-                            <% if(file.isImage){%>
-                                <img src="image/<%= file.filename%>" alt="">
-                            <%} else { %>
-                                <%= file.filename%>
-                            <% } %>
-                                <p>desc</p>
-                                <form method="POST" action="/file/delete/<%= file._id %>?_method=DELETE">
-                                    <button class="btn btn-danger btn-block mt-4">Delete</button>
-                                </form>
+                    <form method="post" action="/file/upload/<%= userid%>"  enctype="multipart/form-data">
+                        <div class="custom-file mb-3">
+                            <input type="file" name="file" id="file" class="custom-file-input">
+                            <label for="file" class="custom-file-label">Choose File</label>
                         </div>
-                    <% }) %>
-                <% } else { %>
-                    <p> No Files to show</p>
-                <% } %>
-            </div>
-        </div>
+                        <input type="submit" value="Submit" class="btn btn-block btn-colorupload">
+                    </form>
+                </div>
+                    <hr>
+                    <div class="card-columns">
+                        <% if (files) { %>
+                            <% files.forEach( function (file) { %>
+                                <div class="card">
+                                    <% if(file.isImage){%>
+                                        <img class="card-img-top" src="image/<%= file.filename%>" alt="">
+                                    <%} else { %>
+                                        <%= file.filename%>
+                                    <% } %>
+                                        <p>desc</p>
+                                        <form method="POST" action="/file/delete/<%= file._id %>?_method=DELETE">
+                                            <button class="btn btn-colordelete btn-block mt-4">Delete</button>
+                                        </form>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <p> No Files to show</p>
+                        <% } %>
+                    </div>
+
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

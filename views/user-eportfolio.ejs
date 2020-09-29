@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>user-eportfolio</title>
     <style>
-        body { background:rgba(26,38,57,1) !important; 
-                overflow: hidden !important;}
-        .content {position: relative;}
-        #right-panel-home {
-            position: absolute;
-            top: 80px;
-            left: 780px;
-            font-size: 175%;
-            background-color:rgba(26,38,57,1);
-            width: 300px;
-            height: 60px;
-            color:#3D5476;
-            border:none;
+        body {
+            background:rgba(26,38,57,1) !important;
         }
-        #right-panel-home:hover{
-            color: rgba(246,225,184,1);
-        }
+
+        /*
         #right-panel-logout {
             position: absolute;
             top: 80px;
@@ -39,82 +26,216 @@
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
         }
+        #logo {
+            width: 500px;
+        }
+        */
+
+        #right-panel-home {
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            color:#3D5476;
+            border:none;
+            margin-top: 10px;
+        }
+        #right-panel-home:hover{
+            color: rgba(246,225,184,1);
+        }
         #right-panel-language {
-            position: absolute;
-            top: 80px;
-            left: 1300px;
             background-color:rgba(194,77,44,1);
             color:rgba(246,225,184,1);
             width: 160px;
-            height: 60px;
             font-size: 175%;
             border:none;
+            margin-left: 20px;
         }
         #right-panel-language:hover{
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
         }
-        #logo {
-            position: absolute;
-            width: 500px;
-            height: auto;
-            top: 60px;
-            left: 100px;
+        #right-panel-logout {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 160px;
+            font-size: 175%;
+            border:none;
+            float: right;
+            margin-left: 3px;
         }
-        #project{
-            position: absolute;
-            top: 300px;
-            left: 400px;
-            width: 800px;
+        #right-panel-logout:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        .circle-img {
+            width: 120px;
+            height: 120px;
+
+        }
+
+
+        .btn-viewproject {
+            background-color: lightgoldenrodyellow;
+        }
+
+        .editprofile {
+            margin: 10px;
+        }
+        .portfolio-nav {
+            background-color:rgba(26,38,57,1)
+        }
+        .logo_text {
+            font-size: 250%;
+        }
+        .navbar-nav-right {
+             margin-left: auto;
+         }
+        .profile-margin {
+           margin-left: 30px;
         }
     </style>
 </head>
-    <h5 style="color:rgba(246,225,184,1);"value="<%= user._id %>">User: <%=user._id%></h5>
 
-<form onsubmit = "successfulalert()" action= "/user-eportfolio/<%= user._id %>?_method=PUT" method= "POST">
-    <div class ="loginform-wrapper">
-        <div>
-            <h5 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" >UserName: <%=user.userName%></h5>
-            <input type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
+
+<body>
+<nav class="navbar portfolio-nav">
+
+        <ul class="navbar-nav">
+            <div >
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+            </div>
+        </ul>
+        <ul class="navbar-nav-right">
+            <form action="/user-mainpage/<%=user._id%>" method="get">
+                <button class = "btn" id="right-panel-home">back to home page</button>
+            </form>
+        </ul>
+        <ul class="navbar-nav">
+            <form action="/api/logout" method="get">
+                <button class = "btn-lg" id="right-panel-logout">Logout</button>
+            </form>
+        </ul>
+        <ul class="navbar-nav">
+            <form action="/language" method="get">
+                <button class = "btn-lg" id="right-panel-language">Language</button>
+            </form>
+        </ul>
+
+</nav>
+<div class = "container-fluid">
+    <div class="row mt-3">
+        <div class="col-lg-1">
+            <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="">
         </div>
-        <div>
-            <h5 style="color:rgba(246,225,184,1);"value="<%= user.email %>" id = user_email>User email: <%=user.email%></h5>
-            <input type="email" id="useremail" name="useremail" placeholder="Enter new email" style="display:none;"><br>
+        <div class="col-lg-9 profile-margin">
+            <div>
+                <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" >Hi, I am <%=user.userName%></h3>
+            </div>
+            <div>
+                <p style="color:rgba(246,225,184,1);"value="<%= user.email %>" id = user_email>Email: <%=user.email%></p>
+            </div>
+            <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
+                Contact <%=user.userName%>
+            </button>
+            <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#editProfile">
+                Edit Profile
+            </button>
         </div>
-        
-        <button type = "button" onclick="toggle_visibility()" id = edit_button>Edit</button>
-        <button type= "submit" style="display:none;" id = "submit_button"> Submit </button>
     </div>
 
-</form>
-
-
-    <div class="row" id="logo">
-        <h1 class="my-4" style="color:rgba(194,77,44,1);">My</h1>
-        <h1 class="my-3" style="color:rgba(246,225,184,1);">E</h1>
-        <h1 class="my-4" style="color:rgba(194,77,44,1);">Portfolio</h1>
+    <!-- Modal for contact form -->
+    <div class="modal fade" id="queryForm" tabindex="-1" role="dialog" aria-labelledby="queryFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Me!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="contact-form" action="/ajax/email" method="POST" onsubmit="return submitEmailForm(this);">
+                        <div>
+                            <label for="sendername" class="col-form-label">Name</label>
+                            <input type="text" id="sendername" name="name" class="form-control" placeholder="Name" required />
+                        </div>
+                        <div>
+                            <label for="senderemail" class="col-form-label">Email</label>
+                            <input type="email" id="senderemail" name="email" class="form-control" placeholder="Email" required />
+                        </div>
+                        <div>
+                            <label for="emailcontent" class="col-form-label">Message</label>
+                            <textarea name="message" id="emailcontent" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">Send</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <form action="/user-mainpage/<%=user._id%>" method="get">
-        <button
-        class = "btn" id="right-panel-home">
-            back to home page
-        </button> 
-    </form>
-    <form action="/api/logout" method="get">
-        <button class = "btn-lg" id="right-panel-logout">
-            Logout
-        </button> 
-    </form>
-    <form action="/language" method="get">
-        <button class = "btn-lg" id="right-panel-language">
-            Language
-        </button> 
-    </form>
-    <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
-        <button class = "btn-lg btn-info" id="project">
-            Project1
-        </button> 
-    </form>
+
+
+    <!-- Modal for edit profile-->
+    <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="queryFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit My Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit = "successfulalert()" action= "/user-eportfolio/<%= user._id %>?_method=PUT" method= "POST">
+                        <div>
+                            <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Current Username: <%=user.userName%></p>
+                            <input  class="editprofile" type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
+                        </div>
+                        <div>
+                            <p class="editprofile" value="<%= user.email %>" id = user_email>Current Email: <%=user.email%></p>
+                            <input  class="editprofile" type="email" id="useremail" name="useremail" placeholder="Enter new email" style="display:none;"><br>
+                        </div>
+                        <button class ="btn mt-4 btn-viewproject" type = "button" onclick="toggle_visibility()" id = edit_button>Edit</button>
+                        <button class ="btn mt-4 btn-viewproject" type= "submit" style="display:none;" id = "submit_button"> Submit </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-columns mt-5">
+        <div class="card">
+            <h5 class="card-text editprofile">Testing Project 1</h5>
+            <p class="card-text editprofile">Some description here</p>
+            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
+                <button class = "btn btn-block mt-4 btn-viewproject" >
+                    View
+                </button>
+            </form>
+        </div>
+        <div class="card">
+            <h5 class="card-text editprofile">Testing Project 2</h5>
+            <p class="card-text editprofile">Some description here</p>
+            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
+                <button class = "btn btn-block mt-4 btn-viewproject" >
+                    View
+                </button>
+            </form>
+        </div>
+        <div class="card">
+            <h5 class="card-text editprofile">Testing Project 3</h5>
+            <p class="card-text editprofile">Some description here</p>
+            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
+                <button class = "btn btn-block mt-4 btn-viewproject" >
+                    View
+                </button>
+            </form>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -123,8 +244,6 @@
             alert("Update completed.");
         }
     </script>
-
-
     <script>
         // shows edit info form onclick
         function toggle_visibility(){
@@ -149,8 +268,9 @@
 
             return !(!validator.validate(email) || username.length < 5);
 
-
         }
     </script>
+
+</div>
 </body>
 </html>
