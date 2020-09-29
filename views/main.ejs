@@ -7,8 +7,7 @@
     <title>Mongo File Upload</title>
     <style>
         img{width: 100%;}
-        body { background:rgba(26,38,57,1) !important; 
-                overflow: hidden !important;} 
+        body { background:rgba(26,38,57,1) !important;}
         #logo {
             width: 500px;
             height: 180px;
@@ -89,7 +88,7 @@
                                 <%= file.filename%>
                             <% } %>
                                 <p>desc</p>
-                                <form method="POST" action="/file/delete/<%= file._id %>?_method=DELETE">
+                                <form method="POST" action="/file/delete/<%= file._id %>/<%= userid%>?_method=DELETE">
                                     <button class="btn btn-danger btn-block mt-4">Delete</button>
                                 </form>
                         </div>

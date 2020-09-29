@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>user-project</title>
-    <style>
-        body { background:rgba(26,38,57,1) !important; }
+    <!--<style>
+        body { background:rgba(26,38,57,1) !important;
+        padding-left: 10px;
+        padding-right: 10px}
         #right-panel-home {
             position: absolute;
             top: 80px;
@@ -76,27 +78,46 @@
             color: rgba(246,225,184,1);
             background-color: rgba(38,53,77,1);
         }
+    </style>-->
+    <style>
+
+        li {
+            float: right;
+        }
     </style>
 </head>
 <body>
-    <div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--<div class="container-fluid">
         <h5 style="color:rgba(246,225,184,1);" value="<%= project.projectName %>" ><%=project.projectName%></h5>
-    </div>
-    <div class="row" id="logo">
+    </div>-->
+    <!--<div class="row" id="logo">
         <h1 class="my-4" style="color:rgba(194,77,44,1);">My</h1>
         <h1 class="my-3" style="color:rgba(246,225,184,1);">E</h1>
         <h1 class="my-4" style="color:rgba(194,77,44,1);">Portfolio</h1>
-    </div>
-    <form action="/api/logout" method="get">
-        <button class = "btn-lg" id="right-panel-logout">
-            Logout
-        </button> 
-    </form>
-    <form action="/language" method="get">
-        <button class = "btn-lg" id="right-panel-language">
-            Language
-        </button> 
-    </form>
+    </div>-->
+    <ul style="margin-left: 20px">
+        <li>
+            <form style="" action="/api/logout" method="get">
+                <button class = "btn-lg" id="right-panel-logout">
+                    Logout
+                </button>
+            </form>
+        </li>
+        <li>
+            <form action="/language" method="get">
+                <button class = "btn-lg" id="right-panel-language">
+                    Language
+                </button>
+            </form>
+        </li>
+
+
+    </ul>
+
+
+</nav>
+
 
     <!-- Modal -->
     <div class="modal fade" id="commentForm" tabindex="-1" role="dialog" aria-labelledby="commentFormLabel" aria-hidden="true">
@@ -132,9 +153,7 @@
         <hr>
         <h2 style="color:#3D5476;">Comments</h2>
         <!-- Button trigger modal -->
-        <button type="button" id="commentButton" class="btn btn-primary" data-toggle="modal"data-target="#commentForm">
-            add your comment
-        </button>
+
         <% if (project.comments) { %>
             <% project.comments.forEach( function (comment) { %>
                 <div id="comment_text" class="card card-body mb-3">
@@ -144,9 +163,16 @@
         <% } else { %>
             <p> No comments currently</p>
         <% } %>
-    
+        <button type="button" id="commentButton" class="btn btn-primary" data-toggle="modal"data-target="#commentForm">
+            add your comment
+        </button>
     </div>
-    
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">John Doe</h4>
+            <p>Lorem ipsum...</p>
+        </div>
+    </div>
     <br/>
     <div id="submitted">
     </div>
