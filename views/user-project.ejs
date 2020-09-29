@@ -7,86 +7,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script href="/js/bootstrap.js"></script>
     <title>user-project</title>
-    <!--<style>
-        body { background:rgba(26,38,57,1) !important;
-        padding-left: 10px;
-        padding-right: 10px}
-        #right-panel-home {
-            position: absolute;
-            top: 80px;
-            left: 780px;
-            font-size: 175%;
-            background-color:rgba(26,38,57,1);
-            width: 300px;
-            height: 60px;
-            color:#3D5476;
-            border:none;
-        }
-        #right-panel-home:hover{
-            color: rgba(246,225,184,1);
-        }
-        #right-panel-logout {
-            position: absolute;
-            top: 80px;
-            left: 1100px;
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
-        }
-        #right-panel-logout:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #right-panel-language {
-            position: absolute;
-            top: 80px;
-            left: 1300px;
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
-        }
-        #right-panel-language:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #logo {
-            position: absolute;
-            width: 500px;
-            height: auto;
-            top: 60px;
-            left: 100px;
-        }
-        #commentButton{
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            border:none;
-        }
-        #commentButton:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #comment{
-            position: absolute;
-            width:100%;
-            top: 500px;
-        }
-        #comment_text{
-            color: rgba(246,225,184,1);
-            background-color: rgba(38,53,77,1);
-        }
-    </style>-->
     <style>
         body { background:rgba(26,38,57,1)}
+        .right-panel-logout {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            border:none;
+        }
+        .right-panel-logout:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        .right-panel-language {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            border:none;
+        }
+        .right-panel-language:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg " style="background:rgba(26,38,57,1) !important">
+    <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
             <ul class="navbar-nav leftUl">
                 <li>
@@ -107,14 +51,14 @@
             <ul class="navbar-nav rightUl">
                 <li class="navRight" style="margin-right: 10px">
                     <form style="" action="/api/logout" method="get">
-                        <button class = "btn-lg" id="right-panel-logout">
+                        <button class = "btn-lg right-panel-logout">
                             Logout
                         </button>
                     </form>
                 </li>
                 <li class="nav-item">
                     <form action="/language" method="get">
-                        <button class = "btn-lg" id="right-panel-language">
+                        <button class = "btn-lg right-panel-language">
                             Language
                         </button>
                     </form>
@@ -136,7 +80,7 @@
                         <img src="/file/main/image/github.jpg" alt="Github">
                         <div class="carousel-caption" style="color: black;">
                             <h2>Github</h2>
-                            <h4>Setting up repository</h4>
+                            <h4>Setting up repository!</h4>
                         </div>
                     </div>
 
@@ -171,16 +115,23 @@
                                 <td style="padding-bottom: 10px"> - Cat: meow meow 1234</td>
                             </tr>
                             <tr>
-                                <td style="padding-bottom: 10px"> - Dog: woff woff 5678</td>
+                                <td style="padding-bottom: 10px"> - Dog: bark bark 5678</td>
                             </tr>
                             <tr>
-                                <td> - ? ? ?</td>
+                                <td style="padding-bottom: 10px"> - Wolf: wolf wolf 9101</td>
                             </tr>
                             <tr>
                                 <th>Core Function</th>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>Function 1 : Backend Boys<br>
+                                You Are <br>
+                                Inside<br>
+                                I Am<br>
+                                Inside<br>
+                                Believe When I Say<br>
+                                Corona, Go Away<br>
+                                </td>
                             </tr>
                         </table>
                     </h5>
