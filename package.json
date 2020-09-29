@@ -30,10 +30,11 @@
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
     "graphql": "^15.3.0",
-    "graphql-tools": "^6.2.0",
+    "graphql-tools": "^6.2.3",
     "gridfs-stream": "^1.1.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.2",
@@ -45,5 +46,8 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
     "react-dropzone": "^11.0.3"
+  },
+  "devDependencies": {
+    "locus": "^2.0.4"
   }
 }
