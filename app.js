@@ -1,3 +1,4 @@
+
 const express = require('express');
 const path = require('path');
 const crypto = require ('crypto');
@@ -13,6 +14,8 @@ const passport = require('passport');
 const keys = require('./config/keys')
 const formidable = require('formidable')
 
+
+
 require('./models/User');
 require('./models/Project');
 require('./services/passport');
@@ -20,6 +23,7 @@ require('./models')
 require('./models/index')
 require('./models/file')
 
+const user = mongoose.model('users')
 
 const app = express();
 
@@ -113,12 +117,16 @@ app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
 });
 
+
+
 //user
 app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage/:user_id', userRouter)
 app.get('/user-eportfolio/:user_id', userRouter)
 app.use('/user-eportfolio', userRouter);
 
+//check url
+//app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
 
 //comment box
 app.use('/user-eportfolio/user-project', projectRouter)
@@ -135,11 +143,27 @@ app.use('/searchresult', searchRouter);
     res.redirect('/file/main');
 });*/
 
-app.post('/file/upload/:userid', upload.single('file'),(req,res)=>{
-    console.log("upload");
+app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
+    console.log("userid = " + req.params.userid)
+    console.log("filename = " + req.file.filename)
+    var ObjectId = require('mongodb').ObjectID;
+    try{
+        const bindFile = await user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{'fileName': req.file.filename}},(err,user)=>{
+            console.log(user.fileName[0])
+        });
+        console.log("line 137")
+    }
+    catch (e) {
+        console.error(e)
+    }
+
     res.redirect(`/file/main/${req.params.userid}`)
 });
-
+/*app.post('/file/upload/:userid',postData);
+function postData (req, res){
+    upload.single('file');
+    var fileName = req.file.filename;
+}*/
 
 app.post('/file/delete/:id',fileRouter)
 

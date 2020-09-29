@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema({
     userName: String,
     linkedinId: String,
     email: String,
+    fileName: [String],
     projects: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "projects"
         }
     ],
-    fileid: [String]
 });
 
 const users = mongoose.model('users', userSchema, "users");
