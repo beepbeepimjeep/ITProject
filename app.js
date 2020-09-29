@@ -165,7 +165,7 @@ function postData (req, res){
     var fileName = req.file.filename;
 }*/
 
-app.post('/file/delete/:id',fileRouter)
+app.post('/file/delete/:fileid/:userid',fileRouter)
 
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')

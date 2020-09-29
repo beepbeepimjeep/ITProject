@@ -65,11 +65,11 @@ const displayAll = (req,res)=>{
 }
 
 const deleteOne = (req,res)=>{
-    gfs.remove({_id: req.params.id, root: 'upload'},(err)=>{
+    gfs.remove({_id: req.params.fileid, root: 'upload'},(err)=>{
         if(err){
             return res.status(404).json({error: err})
         }
-        res.redirect(`/file/main/${req.params.id}`);
+        res.redirect(`/file/main/${req.params.userid}`);
     })
 }
 

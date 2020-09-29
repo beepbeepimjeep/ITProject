@@ -5,37 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div>
-    <h1 value="<%= project.projectName %>" ><%=project.projectName%></h1>
-</div>
-<div>
-    <form action="/user-eportfoliopage/user-projectpage/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return doComment(this);">
-        <div>
-            <input type="text" name="visitorName" placeholder="Type in your name" class="contact-form-input" required />
-        </div>
-        <div>
-            <textarea name="comment" class="contact-form-input" placeholder="Leave a message" required></textarea>
-        </div>
-        <div>
-            <button type="submit">send</button>
-        </div>
-    </form>
-
-</div>
-<div>
-    <hr>
-    <h2>Comments</h2>
-    <% if (project.comments) { %>
-        <% project.comments.forEach( function (comment) { %>
-            <div class="card card-body mb-3">
-                <h3><%= comment.visitorName%>: <%= comment.comment%></h3>
+    <div>
+        <h1 value="<%= project.projectName %>" ><%=project.projectName%></h1>
+    </div>
+    <div>
+        <form action="/user-eportfoliopage/user-projectpage/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return doComment(this);">
+            <div>
+                <input type="text" name="visitorName" placeholder="Type in your name" class="contact-form-input" required />
             </div>
-        <% }) %>
-    <% } else { %>
-        <p> No comments currently</p>
-    <% } %>
+            <div>
+                <textarea name="comment" class="contact-form-input" placeholder="Leave a message" required></textarea>
+            </div>
+            <div>
+                <button type="submit">send</button>
+            </div>
+        </form>
 
-</div>
+    </div>
+    <div>
+        <hr>
+        <h2>Comments</h2>
+        <% if (project.comments) { %>
+            <% project.comments.forEach( function (comment) { %>
+                <div class="card card-body mb-3">
+                    <h3><%= comment.visitorName%>: <%= comment.comment%></h3>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p> No comments currently</p>
+        <% } %>
+
+    </div>
 
 <br/>
 <div id="submitted">
