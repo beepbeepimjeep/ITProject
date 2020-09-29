@@ -36,6 +36,7 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.2.3",
     "gridfs-stream": "^1.1.1",
+    "jquery": "^3.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.2",
     "multer": "^1.4.2",
