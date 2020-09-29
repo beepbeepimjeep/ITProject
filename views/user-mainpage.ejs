@@ -7,27 +7,24 @@
     <link href="/css/user-mainpage.css" rel="stylesheet" />
     <title>user-mainpage</title>
     <style>
-        body { background:rgba(26,38,57,1) !important; 
-                overflow: hidden !important;}
-        .content {position: relative;}
+        body {
+            background:rgba(26,38,57,1) !important;
+
+        }
+
         #right-panel-files {
-            position: absolute;
-            top: 80px;
-            left: 880px;
             font-size: 175%;
             background-color:rgba(26,38,57,1);
-            width: 200px;
-            height: 60px;
             color:#3D5476;
             border:none;
+            width: 200px;
+            margin-top: 6px;
+            margin-right: -25px;
         }
         #right-panel-files:hover{
             color: rgba(246,225,184,1);
         }
         #right-panel-logout {
-            position: absolute;
-            top: 80px;
-            left: 1100px;
             background-color:rgba(194,77,44,1);
             color:rgba(246,225,184,1);
             width: 160px;
@@ -40,9 +37,6 @@
             background-color: rgba(246,225,184,1);
         }
         #right-panel-language {
-            position: absolute;
-            top: 80px;
-            left: 1300px;
             background-color:rgba(194,77,44,1);
             color:rgba(246,225,184,1);
             width: 160px;
@@ -54,6 +48,19 @@
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
         }
+
+        #right-panel-portfolio {
+            font-size: 175%;
+            background-color:rgba(26,38,57,1);
+            height: 60px;
+            width: 250px;
+            color:#3D5476;
+            border:none;
+            margin-right:-10px;
+        }
+        #right-panel-portfolio:hover{
+            color: rgba(246,225,184,1);
+        }
         #logo {
             position: absolute;
             width: 500px;
@@ -64,21 +71,9 @@
         #logo1 {
             font-size: 525%;
         }
-        #emailButton{
-            position: absolute;
-            top: 80px;
-            left: 150px;
-            font-size: 175%;
-            width: 200px;
-            height: 60px;
-            background-color:rgba(26,38,57,1);
-            color: rgba(194,77,44,1);
-            border:none;
+        .main-header {
+            float: right;
         }
-        #emailButton:hover{
-            color:rgba(246,225,184,1);
-        }
-       
     </style>
     <script type="text/javascript">
         function submitEmailForm(form) {
@@ -102,80 +97,47 @@
     </script>
 </head>
 <body>
-    <h5 style="color:rgba(246,225,184,1);"value="<%= user._id %>" >User: <%=user._id%></h5>
-
-    <form action="/file/main/<%=user._id%>" method="get">
-        <button
-        class = "btn" id="right-panel-files">
-            go to my files
-        </button> 
-    </form>
-    <form action="/api/logout" method="get">
-        <button class = "btn-lg" id="right-panel-logout">
-            Logout
-        </button> 
-    </form>
-    <form action="/language" method="get">
-        <button class = "btn-lg" id="right-panel-language">
-            Language
-        </button> 
-    </form>
-
-    <div class="row" id="logo">
-        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
-        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
-        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
-    </div>
-    <form id="search_container" method="GET" action="/searchresult">
-        <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
-        aria-label="Search through site content"/>
-        <input type = "image" src = "/images/search.svg" class = search_icon></input>
-    </form>
-
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" id="emailButton" data-toggle="modal" data-target="#queryForm">
-        Contact Me
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="queryForm" tabindex="-1" role="dialog" aria-labelledby="queryFormLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Contact Me!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+    <div class = "container-fluid">
+        <div class = "row mt-5 main-header">
+            <div class = "col">
+                <form action="/file/main/<%=user._id%>" method="get">
+                    <button class = "btn" id="right-panel-files"> go to my files </button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action="/user-eportfolio/<%=user._id%>" method="get">
+                    <button class = "btn" id="right-panel-portfolio"> go to my eportfolio </button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action="/api/logout" method="get">
+                    <button class = "btn-lg" id="right-panel-logout">Logout</button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action="/language" method="get">
+                    <button class = "btn-lg" id="right-panel-language">
+                        Language
                     </button>
-                </div>
-                <div class="modal-body">
-                    <form class="contact-form" action="/ajax/email" method="POST" onsubmit="return submitEmailForm(this);">
-                        <div>
-                            <label for="sendername" class="col-form-label">Name</label>
-                            <input type="text" id="sendername" name="name" class="form-control" placeholder="name" required />
-                        </div>
-                        <div>
-                            <label for="senderemail" class="col-form-label">Email</label>
-                            <input type="email" id="senderemail" name="email" class="form-control" placeholder="email" required />
-                        </div>
-                        <div>
-                            <label for="emailcontent" class="col-form-label">Message</label>
-                            <textarea name="message" id="emailcontent" class="form-control" placeholder="MESSAGE" required></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary">send</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+
+
+
+        <div class="row" id="logo">
+            <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+            <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+            <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
+        </div>
+        <form id="search_container" method="GET" action="/searchresult">
+            <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
+                   aria-label="Search through site content"/>
+            <input type = "image" src = "/images/search.svg" class = search_icon></input>
+        </form>
     </div>
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
 </body>
 </html>
