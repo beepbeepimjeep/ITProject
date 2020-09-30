@@ -27,6 +27,17 @@
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
         }
+        .card-body {
+            width: auto;
+            background-color:rgba(26,38,57,1);
+            color: lightgoldenrodyellow;
+            border: none;
+        }
+        .comment-button {
+            background-color: lightgoldenrodyellow;
+            color: #1A2639;
+            font: bolder;
+        }
     </style>
 </head>
 <body>
@@ -103,11 +114,11 @@
             </div>
             <div class="container projectBody" style="margin-left: -15px">
                 <div class="card card-body">
-                    <h2 class="card-header" style="text-decoration: underline">Group Name: Gamma</h2>
+                    <h2 class="card-header" style="text-decoration: underline; border: none">Group Name: Gamma</h2>
                     <h5 class="card-body" style="list-style-type: none">
                         <p>Final project for COMP30022, the aim is to design a node js project<br></p>
                         <p>as a platform to freely create each own e-Portfolio</p>
-                        <table class="table table-striped">
+                        <table class="table">
                             <tr>
                                 <th>Team member</th>
                             </tr>
@@ -156,11 +167,11 @@
                             <input type="text" id="visitor" name="visitorName" placeholder="Type in your name" class="form-control" required />
                         </div>
                         <div>
-                            <label for="entercomment" class="col-form-label">Comments</label>
+                            <label for="entercomment" class="col-form-label" >Comments</label>
                             <textarea id="entercomment" name="comment" class="form-control" placeholder="Leave a message" required></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary">send</button>
+                            <button type="submit" class="btn btn-secondary">Send</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </form>
@@ -177,14 +188,14 @@
         <% if (project.comments) { %>
             <% project.comments.forEach( function (comment) { %>
                 <div id="comment_text" class="card card-body mb-3" style="color: rgba(246,225,184,1); background-color: rgba(38,53,77,1);">
-                    <h3 class="card-title"><%= comment.visitorName%> : </h3>
+                    <h4 class="card-title"><%= comment.visitorName%> : </h4>
                     <h5 class="card-text"><%= comment.comment%></h5>
                 </div>
             <% }) %>
         <% } else { %>
             <p> No comments currently</p>
         <% } %>
-        <button type="button" id="commentButton" class="btn btn-primary" data-toggle="modal"data-target="#commentForm">
+        <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
             Add Your Comment
         </button>
     </div>
