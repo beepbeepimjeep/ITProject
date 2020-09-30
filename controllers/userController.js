@@ -31,6 +31,7 @@ const userInfoUpdate = async (req, res) => {
         //to be implemented: at least one field edited
         const username = req.body.username;
         const useremail = req.body.useremail;
+        const userexpertise = req.body.userexpertise;
 
         if(username != "") {
             current_user["userName"] = username;
@@ -39,6 +40,11 @@ const userInfoUpdate = async (req, res) => {
         if(useremail != ""){
             current_user["email"] = useremail;
         }
+        if(useremail != ""){
+            current_user["expertise"] = userexpertise;
+        }
+
+
 
         // save the updated user data in the database
         current_user.save();

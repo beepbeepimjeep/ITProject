@@ -5,12 +5,10 @@
     <link href="./css/visitor-mainpage.css" rel="stylesheet" />
     <title>visitor-mainpage</title>
     <style>
-        body { background:rgba(26,38,57,1) !important;
-                overflow: hidden !important;}
+        body { background:rgba(26,38,57,1) !important;}
         #right-panel-language {
-            position: absolute;
-            top: 80px;
-            left: 1300px;
+            float: right;
+            margin-top: 20px;
             background-color:rgba(194,77,44,1);
             color:rgba(246,225,184,1);
             width: 160px;
@@ -48,7 +46,7 @@
     </script>
 
 </head>
-<body>
+<body class = "container-fluid">
     <form action="/language" method="get">
         <button class = "btn-lg" id="right-panel-language">
             Language
