@@ -22,7 +22,7 @@ const createNewComment = async (req, res) => {
                 comments:{
                     "comment": req.body.comment,
                     "visitorName": req.body.visitorName}}}).exec();
-        res.json({message: `comment added!`})
+        res.redirect(`/user-eportfolio/user-project/${current_project._id}`)
 
     } catch (err){
         res.status(400);
