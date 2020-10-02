@@ -27,6 +27,10 @@
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
         }
+        .circle-img {
+            width: 120px;
+            height: 120px;
+        }
      </style>
     <title>User Files</title>
 </head>
@@ -65,7 +69,7 @@
     <h4 style="color: lightgoldenrodyellow; padding-top: 20px"> There are <%= users.length%> results</h4>
     <% users.forEach(function(user){ %>
         <div class="row mt-3">
-            <div class="col-lg-9" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px">
+            <div class="col-lg-3" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px;">
                 <div class = "row ml-1">
                     <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" ><%=user.userName%></h3>
                 </div>
