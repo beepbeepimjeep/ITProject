@@ -11,56 +11,6 @@
             background:rgba(26,38,57,1) !important;
 
         }
-
-        #right-panel-files {
-            font-size: 175%;
-            background-color:rgba(26,38,57,1);
-            color:#3D5476;
-            border:none;
-            width: 200px;
-            margin-top: 6px;
-            margin-right: -25px;
-        }
-        #right-panel-files:hover{
-            color: rgba(246,225,184,1);
-        }
-        #right-panel-logout {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
-        }
-        #right-panel-logout:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #right-panel-language {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
-        }
-        #right-panel-language:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-
-        #right-panel-portfolio {
-            font-size: 175%;
-            background-color:rgba(26,38,57,1);
-            height: 60px;
-            width: 250px;
-            color:#3D5476;
-            border:none;
-            margin-right:-10px;
-        }
-        #right-panel-portfolio:hover{
-            color: rgba(246,225,184,1);
-        }
         #logo {
             position: absolute;
             width: 500px;
@@ -71,8 +21,28 @@
         #logo1 {
             font-size: 525%;
         }
-        .main-header {
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
             float: right;
+        }
+
+        #right-panel {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 150px;
+            font-size: 150%;
+            border:none;
+        }
+        #right-panel:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
         }
     </style>
     <script type="text/javascript">
@@ -98,33 +68,32 @@
 </head>
 <body>
     <div class = "container-fluid">
-        <div class = "row mt-5 main-header">
-            <div class = "col">
-                <form action="/file/main/<%=user._id%>" method="get">
-                    <button class = "btn" id="right-panel-files"> go to my files </button>
-                </form>
+        <nav class="navbar nav topnav-right">
+            <div >
+                <div class ="row">
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/user-eportfolio/<%=user._id%>" method="get">
+                            <button class = "btn" id="right-panel">E-Portfolio</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/file/main/<%=user._id%>" method="get">
+                            <button class = "btn" id="right-panel">Cloud</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/language" method="get">
+                            <button class = "btn" id="right-panel">Setting</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/api/logout" method="get">
+                            <button class = "btn" id="right-panel">Logout</button>
+                        </form>
+                    </ul>
+                </div>
             </div>
-            <div class = "col">
-                <form action="/user-eportfolio/<%=user._id%>" method="get">
-                    <button class = "btn" id="right-panel-portfolio"> go to my eportfolio </button>
-                </form>
-            </div>
-            <div class = "col">
-                <form action="/api/logout" method="get">
-                    <button class = "btn-lg" id="right-panel-logout">Logout</button>
-                </form>
-            </div>
-            <div class = "col">
-                <form action="/language" method="get">
-                    <button class = "btn-lg" id="right-panel-language">
-                        Language
-                    </button>
-                </form>
-            </div>
-        </div>
-
-
-
+        </nav>
         <div class="row" id="logo">
             <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
             <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
