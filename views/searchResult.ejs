@@ -7,42 +7,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style type="text/css">
         body { background:rgba(26,38,57,1) !important; }
-        .portfolio-nav {
-            background-color:rgba(26,38,57,1)
-        }
-        .navbar-nav-right {
-            margin-left: auto;
-        }
      </style>
     <title>User Files</title>
 </head>
 
 <body>
-<nav class="navbar portfolio-nav">
 
-    <ul class="navbar-nav">
-        <div >
-            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-            <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
-            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
-        </div>
-    </ul>
-    <ul class="navbar-nav-right">
-        <form action="/user-mainpage/<%=user._id%>" method="get">
-            <button class = "btn" id="right-panel-home">back to home page</button>
-        </form>
-    </ul>
-    <ul class="navbar-nav">
-        <form action="/api/logout" method="get">
-            <button class = "btn-lg" id="right-panel-logout">Logout</button>
-        </form>
-    </ul>
-    <ul class="navbar-nav">
-        <form action="/language" method="get">
-            <button class = "btn-lg" id="right-panel-language">Language</button>
-        </form>
-    </ul>
-</nav>
     <% if(noMatch !== null) { %>
         <h3 style="color:#f8fff1" ;><%= noMatch %></h3>
     <%}%>
