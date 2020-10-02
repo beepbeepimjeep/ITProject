@@ -4,29 +4,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link href="/css/user-mainpage.css" rel="stylesheet" />
     <style type="text/css">
         body { background:rgba(26,38,57,1) !important; }
+        .nav-btn {
+            margin-left: 30px;
+        }
+        .topnav-right {
+            float: right;}
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
+        }
+        .profile-text {
+            margin-right:20px;
+        }
+        .btn-viewproject {
+            background-color: lightgoldenrodyellow;
+        }
      </style>
     <title>User Files</title>
 </head>
 
 <body>
+    <div class="container-fluid">
+        <nav class="navbar nav">
+            <ul class="navbar-nav">
+                <div >
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </ul>
+            <div class = "topnav-right">
+                <div class ="row">
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/language" method="get">
+                            <button class = "btn" id="right-panel">Setting</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <form class="form-check-inline active-purple-4" method="get" action="/searchresult">
+            <input class="form-control" id="query" name="q" type="text" placeholder="Search...">
+            <button type="submit" class="btn">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+        </form>
+
 
     <% if(noMatch !== null) { %>
         <h3 style="color:#f8fff1" ;><%= noMatch %></h3>
-    <%}%>
+    <%}else{%>
+    <h4 style="color: lightgoldenrodyellow; padding-top: 20px"> There are <%= users.length%> results</h4>
     <% users.forEach(function(user){ %>
-        <div class="col-md-3 col-sm-6">
-            <div class="caption">
-                <h1 class="text-center" style="color:#27364E"> <%= user.userName%> </h1>
+        <div class="row mt-3">
+            <div class="col-lg-9" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px">
+                <div class = "row ml-1">
+                    <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" ><%=user.userName%></h3>
+                </div>
+
+                <div class = "row ml-1">
+                    <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_email>Email: <%=user.email%></p>
+                    <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+                </div>
+                <ul class="list-group" style="list-style-type: none; border-style: none">
+                    <li class="list-group-item" style="background-color: rgba(26,38,57,1);border-style: none; margin-left: -20px">
+                        <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
+                            Contact <%=user.userName%>
+                        </button>
+                    </li>
+                    <li class="list-group-item" style="background-color: rgba(26,38,57,1);border-style: none; margin-left: -20px">
+                        <form action="/user-eportfolio/<%=user._id%>" method="get">
+                            <button type="submit" class = "btn btn-viewproject" >E-Portfolio</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
         </div>
+    <% })}; %>
+    </div>
+    <!-- Modal for contact form -->
+    <div class="modal fade" id="queryForm" tabindex="-1" role="dialog" aria-labelledby="queryFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Me!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="contact-form" action="/ajax/email" method="POST" onsubmit="return submitEmailForm(this);">
+                        <div>
+                            <label for="sendername" class="col-form-label">Name</label>
+                            <input type="text" id="sendername" name="name" class="form-control" placeholder="Name" required />
+                        </div>
+                        <div>
+                            <label for="senderemail" class="col-form-label">Email</label>
+                            <input type="email" id="senderemail" name="email" class="form-control" placeholder="Email" required />
+                        </div>
+                        <div>
+                            <label for="emailcontent" class="col-form-label">Message</label>
+                            <textarea name="message" id="emailcontent" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">Send</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    <% }); %>
-
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+        function successfulalert() {
+            alert("Update completed.");
+        }
+    </script>
+    <script>
+        // shows edit info form onclick
+        function toggle_visibility(){
+            test_visibility(document.getElementById("username"));
+            test_visibility(document.getElementById("useremail"));
+            test_visibility(document.getElementById("userexpertise"));
+            test_visibility(document.getElementById("edit_button"));
+            test_visibility(document.getElementById("submit_button"));
+            function test_visibility(x){
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        }
+        function validate(form) {
+            var validator = require("email-validator");
+            var username = form.username.value;
+            var email = form.useremail.value;
+            return !(!validator.validate(email) || username.length < 5);
+        }
+    </script>
 </body>
 </html>

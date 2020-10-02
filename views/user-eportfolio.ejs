@@ -9,96 +9,55 @@
         body {
             background:rgba(26,38,57,1) !important;
         }
-
-        /*
-        #right-panel-logout {
-            position: absolute;
-            top: 80px;
-            left: 1100px;
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
+        .nav-btn {
+            margin-left: 30px;
         }
-        #right-panel-logout:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #logo {
-            width: 500px;
-        }
-        */
-
-        #right-panel-home {
-            font-size: 175%;
-            background-color:rgba(26,38,57,1);
-            color:#3D5476;
-            border:none;
-            margin-top: 10px;
-        }
-        #right-panel-home:hover{
-            color: rgba(246,225,184,1);
-        }
-        #right-panel-language {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            font-size: 175%;
-            border:none;
-            margin-left: 20px;
-        }
-        #right-panel-language:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
-        #right-panel-logout {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            font-size: 175%;
-            border:none;
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
             float: right;
-            margin-left: 3px;
         }
-        #right-panel-logout:hover{
+        #right-panel {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 150px;
+            font-size: 150%;
+            border:none;
+        }
+        #right-panel:hover{
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
+        }
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+        .profile-margin {
+            margin-left: 30px;
         }
         .circle-img {
             width: 120px;
             height: 120px;
-
         }
-
-
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
         }
-
         .editprofile {
             margin: 10px;
         }
-        .portfolio-nav {
-            background-color:rgba(26,38,57,1)
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
         }
-        .logo_text {
-            font-size: 250%;
-        }
-        .navbar-nav-right {
-             margin-left: auto;
-         }
-        .profile-margin {
-           margin-left: 30px;
+        .profile-text {
+            margin-right:20px;
         }
     </style>
 </head>
 
 
 <body>
-<nav class="navbar portfolio-nav">
-
+<div class = "container-fluid">
+    <nav class="navbar nav">
         <ul class="navbar-nav">
             <div >
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
@@ -106,33 +65,38 @@
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
             </div>
         </ul>
-        <ul class="navbar-nav-right">
-            <form action="/user-mainpage/<%=user._id%>" method="get">
-                <button class = "btn" id="right-panel-home">back to home page</button>
-            </form>
-        </ul>
-        <ul class="navbar-nav">
-            <form action="/api/logout" method="get">
-                <button class = "btn-lg" id="right-panel-logout">Logout</button>
-            </form>
-        </ul>
-        <ul class="navbar-nav">
-            <form action="/language" method="get">
-                <button class = "btn-lg" id="right-panel-language">Language</button>
-            </form>
-        </ul>
-</nav>
-<div class = "container-fluid">
+        <div class = "topnav-right">
+            <div class ="row">
+                <ul class="navbar-nav nav-btn">
+                    <form action="/user-mainpage/<%=user._id%>" method="get">
+                        <button class = "btn" id="right-panel">Homepage</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn">
+                    <form action="/language" method="get">
+                        <button class = "btn" id="right-panel">Setting</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn">
+                    <form action="/api/logout" method="get">
+                        <button class = "btn" id="right-panel">Logout</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="row mt-3">
         <div class="col-lg-1">
             <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="">
         </div>
         <div class="col-lg-9 profile-margin">
-            <div>
+            <div class = "row ml-1">
                 <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" >Hi, I am <%=user.userName%></h3>
             </div>
-            <div>
-                <p style="color:rgba(246,225,184,1);"value="<%= user.email %>" id = user_email>Email: <%=user.email%></p>
+
+            <div class = "row ml-1">
+                <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_email>Email: <%=user.email%></p>
+                <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
             </div>
             <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
                 Contact <%=user.userName%>
@@ -192,12 +156,16 @@
                 <div class="modal-body">
                     <form onsubmit = "successfulalert()" action= "/user-eportfolio/<%= user._id %>?_method=PUT" method= "POST">
                         <div>
-                            <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Current Username: <%=user.userName%></p>
+                            <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Username: <%=user.userName%></p>
                             <input  class="editprofile" type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
                         </div>
                         <div>
-                            <p class="editprofile" value="<%= user.email %>" id = user_email>Current Email: <%=user.email%></p>
+                            <p class="editprofile" value="<%= user.email %>" id = user_email>Email: <%=user.email%></p>
                             <input  class="editprofile" type="email" id="useremail" name="useremail" placeholder="Enter new email" style="display:none;"><br>
+                        </div>
+                        <div>
+                            <p class="editprofile" value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+                            <input  class="editprofile" type="expertise" id="userexpertise" name="userexpertise" placeholder="Enter new expertise" style="display:none;"><br>
                         </div>
                         <button class ="btn mt-4 btn-viewproject" type = "button" onclick="toggle_visibility()" id = edit_button>Edit</button>
                         <button class ="btn mt-4 btn-viewproject" type= "submit" style="display:none;" id = "submit_button"> Submit </button>
@@ -249,9 +217,9 @@
         function toggle_visibility(){
             test_visibility(document.getElementById("username"));
             test_visibility(document.getElementById("useremail"));
+            test_visibility(document.getElementById("userexpertise"));
             test_visibility(document.getElementById("edit_button"));
             test_visibility(document.getElementById("submit_button"));
-
             function test_visibility(x){
                 if (x.style.display === "none") {
                     x.style.display = "block";
@@ -260,14 +228,11 @@
                 }
             }
         }
-
         function validate(form) {
             var validator = require("email-validator");
             var username = form.username.value;
             var email = form.useremail.value;
-
             return !(!validator.validate(email) || username.length < 5);
-
         }
     </script>
 
