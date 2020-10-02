@@ -40,7 +40,7 @@ const userInfoUpdate = async (req, res) => {
         if(useremail != ""){
             current_user["email"] = useremail;
         }
-        if(useremail != ""){
+        if(userexpertise != ""){
             current_user["expertise"] = userexpertise;
         }
 

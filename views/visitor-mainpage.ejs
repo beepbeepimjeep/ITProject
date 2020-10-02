@@ -35,6 +35,29 @@
             top: 460px;
             left:330px;
         }
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+
+        #right-panel {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 150px;
+            font-size: 150%;
+            border:none;
+        }
+        #right-panel:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
+        }
     </style>
     <script type = "text/javascript" >
         history.pushState(null, null, location.href);
@@ -47,11 +70,19 @@
 
 </head>
 <body class = "container-fluid">
-    <form action="/language" method="get">
-        <button class = "btn-lg" id="right-panel-language">
-            Language
-        </button> 
-    </form>
+<nav class="navbar nav">
+    <ul class="navbar-nav">
+    </ul>
+    <div class = "topnav-right">
+        <div class ="row">
+            <ul class="navbar-nav nav-btn">
+                <form action="/language" method="get">
+                    <button class = "btn" id="right-panel">Setting</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
     <div class="row" id="logo">
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
         <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
