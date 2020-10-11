@@ -122,7 +122,7 @@
                             <%= file.filename%>
                         <% } %>
                         <p>desc</p>
-                        <form method="POST" action="/file/delete/<%= file._id %>?_method=DELETE">
+                        <form method="POST" action="/file/delete/<%= file._id %>/<%= userid %>?_method=DELETE">
                             <button class="btn btn-colordelete btn-block mt-4">Delete</button>
                         </form>
                     </div>
