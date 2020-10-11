@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
     email: String,
     expertise: String,
     occupation: String,
-    fileName: [String],
+    fileInfo: [{
+        fileId: mongoose.Schema.Types.ObjectId,
+        fileName: String,
+        fileDesc: String,
+    }],
     projects: [
         {
             type: mongoose.Schema.Types.ObjectId,
