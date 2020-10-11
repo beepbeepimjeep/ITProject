@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
         fileId: mongoose.Schema.Types.ObjectId,
         fileName: String,
         fileDesc: String,
+        fileType: String,
     }],
     projects: [
         {

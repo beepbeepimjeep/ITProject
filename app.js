@@ -69,6 +69,7 @@ const storage = new GridFsStorage({
         return new Promise((resolve, reject) => {
             const fileInfo = {
                 filename: file.originalname,
+                userid: 123,
                 bucketName: 'upload'
             };
             resolve(fileInfo);
@@ -155,7 +156,7 @@ app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
                     err: 'No File Exist'
                 })
             }else{
-                const bindFile = user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{fileInfo: {"fileId":file._id,"fileName":file.filename}}},(err,user)=>{
+                const bindFile = user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{fileInfo: {"fileId":file._id,"fileName":file.filename,"fileType":file.contentType,"fileDesc": "none"}}},(err,user)=>{
                     console.log(user.fileInfo[0])
                 });
                 console.log("line 161")
@@ -176,7 +177,7 @@ function postData (req, res){
 }*/
 
 app.post('/file/delete/:fileid/:userid',fileRouter)
-
+app.get('file/edit/:userid',fileRouter)
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
 });
