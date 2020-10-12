@@ -59,6 +59,13 @@ const displayAll = async (req,res)=>{
 }
 
 const deleteOne = (req,res)=>{
+    var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.params.fileid}]}
+    var query = { $pull: {fileInfo:{fileId:req.params.fileid}}}
+    user.updateOne(condition,query,function(err,res){
+        if (err) throw err;
+        console.log("file deleted");
+        user.close;
+    })
     gfs.remove({_id: req.params.fileid, root: 'upload'},(err)=>{
         if(err){
             return res.status(404).json({error: err})
