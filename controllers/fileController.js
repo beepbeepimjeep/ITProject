@@ -81,8 +81,8 @@ const uploadFile = (req,res)=>{
 
 const editFileDesc = (req,res)=>{
     var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.query.fileId}]}
-    var updateFileDesc = {$set:{"fileInfo.$.fileDesc":req.query.fileDesc}}
-    user.updateOne(condition, updateFileDesc, function (err, res){
+    var query = {$set:{"fileInfo.$.fileDesc":req.query.fileDesc}}
+    user.updateOne(condition, query, function (err, res){
         if (err) throw err;
         console.log("file desc updated to "+res)
         user.close

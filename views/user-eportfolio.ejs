@@ -174,7 +174,30 @@
             </div>
         </div>
     </div>
-
+    <div class="projectBody">
+        <% if(user){ %>
+            <% for(var i=0; i<user.project.length;i++){%>
+                <div class="card-columns mt-5">
+                    <div class="card">
+                        <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
+                        <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
+                        <form action="" method="get">
+                            <button class = "btn btn-block mt-4 btn-viewproject" >
+                                View
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <%}%>
+        <%}%>
+        <div>
+            <form action="/user-eportfolio/<%=user._id%>/addNewProject" method="get">
+                <input type="text" name="projectName" placeholder="new project name"></br>
+                <input type="text" name="projectDesc" placeholder="project desc"></br>
+                <button type="submit">add</button>
+            </form>
+        </div>
+    </div>
     <div class="card-columns mt-5">
         <div class="card">
             <h5 class="card-text editprofile">Testing Project 1</h5>

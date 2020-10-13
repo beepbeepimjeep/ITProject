@@ -14,10 +14,11 @@ const userSchema = new mongoose.Schema({
         fileDesc: String,
         fileType: String,
     }],
-    projects: [
+    project: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "projects"
+            projectId: mongoose.Schema.Types.ObjectId,
+            projectName: String,
+            projectDesc: String,
         }
     ],
 });

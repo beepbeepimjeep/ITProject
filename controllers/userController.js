@@ -54,9 +54,24 @@ const userInfoUpdate = async (req, res) => {
         return res.send("Database query failed2");
     }
 };
+const addNewProject = async (req,res)=>{
+    var newProjName = req.query.projectName;
+    var newProjDesc = req.query.projectDesc;
+    var condition = {_id:req.params.userid};
+    var query = {$push:{project:{"projectName":newProjName,"projectDesc":newProjDesc}}}
+    User.findOneAndUpdate(condition,query,function (err,res){
+        if (err) throw err;
+        console.log("create new project, project name: "+newProjName+" project desc: "+newProjDesc)
+        User.close;
+    })
 
+    console.log("line 61 new project name is "+ newProjName)
+
+    res.redirect("back")
+}
 module.exports = {
     getCurrentUser,
     userUploadFile,
-    userInfoUpdate
+    userInfoUpdate,
+    addNewProject
 };

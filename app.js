@@ -134,7 +134,7 @@ app.use('/user-eportfolio', userRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
-
+app.get('/user-eportfolio/:userid/addNewProject', userRouter)
 //search
 const searchRouter = require('./routes/searchRouter')
 app.use('/searchresult', searchRouter);
