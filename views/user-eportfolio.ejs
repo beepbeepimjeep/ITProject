@@ -68,7 +68,7 @@
         <div class = "topnav-right">
             <div class ="row">
                 <ul class="navbar-nav nav-btn">
-                    <form action="/user-mainpage/<%=user._id%>" method="get">
+                    <form action="/user-mainpage" method="get">
                         <button class = "btn" id="right-panel">Homepage</button>
                     </form>
                 </ul>
@@ -154,7 +154,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form onsubmit = "successfulalert()" action= "/user-eportfolio/<%= user._id %>?_method=PUT" method= "POST">
+                    <form onsubmit = "successfulalert()" action= "/user-eportfolio/?_method=PUT" method= "POST">
                         <div>
                             <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Username: <%=user.userName%></p>
                             <input  class="editprofile" type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
@@ -181,7 +181,7 @@
                     <div class="card">
                         <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
                         <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
-                        <form method="get" action="/user-eportfolio/<%= user._id%>/<%=user.project[i]._id%>/deleteProject">
+                        <form method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
                             <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
                         </form>
                         <form action="" method="get">
@@ -194,7 +194,7 @@
             <%}%>
         <%}%>
         <div>
-            <form action="/user-eportfolio/<%=user._id%>/addNewProject" method="get">
+            <form action="/user-eportfolio/addNewProject" method="get">
                 <input type="text" name="projectName" placeholder="new project name"></br>
                 <input type="text" name="projectDesc" placeholder="project desc"></br>
                 <button type="submit">add</button>

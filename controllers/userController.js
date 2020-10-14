@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 
 
-const getCurrentUser = async (req, res) => {
+const getCurrentUser = async (req, res, next) => {
     try {
-        const current_user = await User.findById({_id: req.params.user_id})
+        const current_user = await req.user;
         res.render('user-mainpage', {user: current_user})
     } catch (err){
         res.status(400);
@@ -13,9 +13,9 @@ const getCurrentUser = async (req, res) => {
     }
 };
 
-const userUploadFile = async (req, res) => {
+const userUploadFile = async (req, res, next) => {
     try {
-        const current_user = await User.findById({_id: req.params.user_id})
+        const current_user = await req.user;
         res.render('user-eportfolio', {user: current_user})
     } catch (err){
         res.status(400);
@@ -23,9 +23,9 @@ const userUploadFile = async (req, res) => {
     }
 };
 
-const userInfoUpdate = async (req, res) => {
+const userInfoUpdate = async (req, res, next) => {
     try {
-        const current_user = await User.findById({_id: req.params.user_id});
+        const current_user = await req.user;
 
         //get the change
         //to be implemented: at least one field edited
@@ -54,10 +54,11 @@ const userInfoUpdate = async (req, res) => {
         return res.send("Database query failed2");
     }
 };
-const addNewProject = async (req,res)=>{
+const addNewProject = async (req,res,next)=>{
     var newProjName = req.query.projectName;
     var newProjDesc = req.query.projectDesc;
-    var condition = {_id:req.params.userid};
+    var condition = {_id:req.user._id};
+    console.log(req.user)
     var query = {$push:{project:{"projectName":newProjName,"projectDesc":newProjDesc}}}
     User.findOneAndUpdate(condition,query,function (err,res){
         if (err) throw err;
@@ -70,8 +71,8 @@ const addNewProject = async (req,res)=>{
     res.redirect("back")
 }
 
-const deleteProject =async (req,res)=>{
-    var condition = {$and:[{_id:req.params.userid}, {"project._id":req.params.projectId}]}
+const deleteProject =async (req,res,next)=>{
+    var condition = {$and:[{_id:req.user._id}, {"project._id":req.params.projectId}]}
     var query = {$pull: {project:{_id:req.params.projectId}}}
     User.updateOne(condition,query,function (err, user){
         if (err) throw err;

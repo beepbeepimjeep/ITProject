@@ -46,10 +46,10 @@ const displayImage = (req,res)=>{
     })
 }
 
-const displayAll = async (req,res)=>{
-    console.log("line 50 "+ req.params.id)
+const displayAll = async (req,res,next)=>{
+    console.log("line 50 "+ req.user._id)
     try{
-        const User = await user.findById({_id:req.params.id})
+        const User = await user.findById({_id:req.user._id})
         console.log("line 53 length "+User.fileInfo.length)
         res.render('main',{user:User})
     }catch (e) {
@@ -58,8 +58,8 @@ const displayAll = async (req,res)=>{
 
 }
 
-const deleteOne = (req,res)=>{
-    var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.params.fileid}]}
+const deleteOne = (req,res,next)=>{
+    var condition = {$and:[{_id:req.user._id}, {"fileInfo.fileId":req.params.fileid}]}
     var query = { $pull: {fileInfo:{fileId:req.params.fileid}}}
     user.updateOne(condition,query,function(err,res){
         if (err) throw err;
@@ -70,17 +70,17 @@ const deleteOne = (req,res)=>{
         if(err){
             return res.status(404).json({error: err})
         }
-        res.redirect(`/file/main/${req.params.userid}`);
+        res.redirect('/file/main');
     })
 }
 
-const uploadFile = (req,res)=>{
-    var userid = req.params.id;
-    res.redirect(`/file/main/${userid}`)
+const uploadFile = (req,res,next)=>{
+    var userid = req.user._id;
+    res.redirect('/file/main')
 }
 
-const editFileDesc = (req,res)=>{
-    var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.query.fileId}]}
+const editFileDesc = (req,res,next)=>{
+    var condition = {$and:[{_id:req.user._id}, {"fileInfo.fileId":req.query.fileId}]}
     var query = {$set:{"fileInfo.$.fileDesc":req.query.fileDesc}}
     user.updateOne(condition, query, function (err, res){
         if (err) throw err;
