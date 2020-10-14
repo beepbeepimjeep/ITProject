@@ -69,9 +69,21 @@ const addNewProject = async (req,res)=>{
 
     res.redirect("back")
 }
+
+const deleteProject =async (req,res)=>{
+    var condition = {$and:[{_id:req.params.userid}, {"project._id":req.params.projectId}]}
+    var query = {$pull: {project:{_id:req.params.projectId}}}
+    User.updateOne(condition,query,function (err, user){
+        if (err) throw err;
+        console.log("project deleted")
+        res.redirect("back")
+        User.close;
+    })
+}
 module.exports = {
     getCurrentUser,
     userUploadFile,
     userInfoUpdate,
-    addNewProject
+    addNewProject,
+    deleteProject
 };

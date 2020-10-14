@@ -181,6 +181,9 @@
                     <div class="card">
                         <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
                         <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
+                        <form method="get" action="/user-eportfolio/<%= user._id%>/<%=user.project[i]._id%>/deleteProject">
+                            <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
+                        </form>
                         <form action="" method="get">
                             <button class = "btn btn-block mt-4 btn-viewproject" >
                                 View
