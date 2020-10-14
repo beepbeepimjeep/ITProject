@@ -14,7 +14,7 @@ const passport = require('passport');
 const keys = require('./config/keys')
 const formidable = require('formidable')
 
-
+const requireLogin = require('./middleware/requireLogin');
 
 require('./models/User');
 require('./models/Project');
@@ -113,7 +113,7 @@ app.get('/', (req, res) => {
     res.render('visitor-mainpage');
 });
 
-app.get('/file/main/:id',fileRouter)
+app.get('/file/main',fileRouter)
 
 app.get('/visitor-mainpage', (req, res) => {
     res.render('visitor-mainpage');
@@ -123,8 +123,8 @@ app.get('/visitor-mainpage', (req, res) => {
 
 //user
 app.use('/user-mainpage', userRouter);
-app.get('/user-mainpage/:user_id', userRouter)
-app.get('/user-eportfolio/:user_id', userRouter)
+app.get('/user-mainpage', userRouter)
+app.get('/user-eportfolio', userRouter)
 app.use('/user-eportfolio', userRouter);
 
 //check url
@@ -134,7 +134,8 @@ app.use('/user-eportfolio', userRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
-app.get('/user-eportfolio/:userid/addNewProject', userRouter)
+app.get('/user-eportfolio/addNewProject', userRouter)
+
 //search
 const searchRouter = require('./routes/searchRouter')
 app.use('/searchresult', searchRouter);
@@ -145,8 +146,8 @@ app.use('/searchresult', searchRouter);
     res.redirect('/file/main');
 });*/
 
-app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
-    console.log("userid = " + req.params.userid)
+app.post('/file/upload', upload.single('file'), requireLogin, async (req,res, next)=>{
+    console.log("userid = " + req.user._id)
     console.log("filename = " + req.file.filename)
     var ObjectId = require('mongodb').ObjectID;
     try{
@@ -156,7 +157,7 @@ app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
                     err: 'No File Exist'
                 })
             }else{
-                const bindFile = user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{fileInfo: {"fileId":file._id,"fileName":file.filename,"fileType":file.contentType,"fileDesc": "none"}}},(err,user)=>{
+                const bindFile = user.findOneAndUpdate({_id: ObjectId(req.user._id)},{$push:{fileInfo: {"fileId":file._id,"fileName":file.filename,"fileType":file.contentType,"fileDesc": "none"}}},(err,user)=>{
                     console.log(user.fileInfo[0])
                 });
                 console.log("line 161")
@@ -168,7 +169,7 @@ app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
         console.error(e)
     }
 
-    res.redirect(`/file/main/${req.params.userid}`)
+    res.redirect('/file/main')
 });
 /*app.post('/file/upload/:userid',postData);
 function postData (req, res){
@@ -177,7 +178,7 @@ function postData (req, res){
 }*/
 
 app.post('/file/delete/:fileid/:userid',fileRouter)
-app.get('/user-eportfolio/:userid/:projectId/deleteProject',userRouter)
+app.get('/user-eportfolio/:projectId/deleteProject',userRouter)
 app.get('file/edit/:userid',fileRouter)
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
