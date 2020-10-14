@@ -1,7 +1,7 @@
 const mongoose  = require("mongoose");
 
 const files = mongoose.model("file")
-
+const user = mongoose.model("users")
 
 require('dotenv').config()
 const Grid = require('gridfs-stream')
@@ -46,25 +46,26 @@ const displayImage = (req,res)=>{
     })
 }
 
-const displayAll = (req,res)=>{
-    gfs.files.find().toArray((err, files)=>{
-        if(!files||files.length==0){
-            res.render('main',{files: false});
-        }else{
-            files.map(file=>{
-                if(file.contentType == 'image/jpeg'||file.contentType == 'image/png'){
-                    file.isImage=true;
-                }else{
-                    file.isImage=false;
-                }
-            })
+const displayAll = async (req,res)=>{
+    console.log("line 50 "+ req.params.id)
+    try{
+        const User = await user.findById({_id:req.params.id})
+        console.log("line 53 length "+User.fileInfo.length)
+        res.render('main',{user:User})
+    }catch (e) {
 
-            res.render('main',{files:files, userid:req.params.id})
-        }
-    })
+    }
+
 }
 
 const deleteOne = (req,res)=>{
+    var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.params.fileid}]}
+    var query = { $pull: {fileInfo:{fileId:req.params.fileid}}}
+    user.updateOne(condition,query,function(err,res){
+        if (err) throw err;
+        console.log("file deleted");
+        user.close;
+    })
     gfs.remove({_id: req.params.fileid, root: 'upload'},(err)=>{
         if(err){
             return res.status(404).json({error: err})
@@ -77,10 +78,22 @@ const uploadFile = (req,res)=>{
     var userid = req.params.id;
     res.redirect(`/file/main/${userid}`)
 }
+
+const editFileDesc = (req,res)=>{
+    var condition = {$and:[{_id:req.params.userid}, {"fileInfo.fileId":req.query.fileId}]}
+    var query = {$set:{"fileInfo.$.fileDesc":req.query.fileDesc}}
+    user.updateOne(condition, query, function (err, res){
+        if (err) throw err;
+        console.log("file desc updated to "+res)
+        user.close
+    })
+    res.redirect("back")
+}
 module.exports = {
     displayImage,
     displayAll,
     deleteOne,
-    uploadFile
+    uploadFile,
+    editFileDesc
 }
 

@@ -24,6 +24,7 @@ require('./models/index')
 require('./models/file')
 
 const user = mongoose.model('users')
+const files = mongoose.model("file")
 
 const app = express();
 
@@ -68,6 +69,7 @@ const storage = new GridFsStorage({
         return new Promise((resolve, reject) => {
             const fileInfo = {
                 filename: file.originalname,
+                userid: 123,
                 bucketName: 'upload'
             };
             resolve(fileInfo);
@@ -132,7 +134,7 @@ app.use('/user-eportfolio', userRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
-
+app.get('/user-eportfolio/:userid/addNewProject', userRouter)
 //search
 const searchRouter = require('./routes/searchRouter')
 app.use('/searchresult', searchRouter);
@@ -148,10 +150,19 @@ app.post('/file/upload/:userid', upload.single('file'), async (req,res)=>{
     console.log("filename = " + req.file.filename)
     var ObjectId = require('mongodb').ObjectID;
     try{
-        const bindFile = await user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{'fileName': req.file.filename}},(err,user)=>{
-            console.log(user.fileName[0])
-        });
-        console.log("line 137")
+        const fileId = await files.findOne({filename:req.file.filename},(err,file)=>{
+            if(!file||file.length==0){
+                return res.status(404).json({
+                    err: 'No File Exist'
+                })
+            }else{
+                const bindFile = user.findOneAndUpdate({_id: ObjectId(req.params.userid)},{$push:{fileInfo: {"fileId":file._id,"fileName":file.filename,"fileType":file.contentType,"fileDesc": "none"}}},(err,user)=>{
+                    console.log(user.fileInfo[0])
+                });
+                console.log("line 161")
+            }
+        })
+
     }
     catch (e) {
         console.error(e)
@@ -166,7 +177,8 @@ function postData (req, res){
 }*/
 
 app.post('/file/delete/:fileid/:userid',fileRouter)
-
+app.get('/user-eportfolio/:userid/:projectId/deleteProject',userRouter)
+app.get('file/edit/:userid',fileRouter)
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
 });

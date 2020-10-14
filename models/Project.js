@@ -9,6 +9,14 @@ const commentSchema = new mongoose.Schema({
 const projectSchema = new mongoose.Schema({
     project_id: mongoose.Schema.Types.ObjectId,
     projectName: String,
+    projectDesc: String,
+    projectTheme: Number,
+    fileInfo: [{
+        fileId: mongoose.Schema.Types.ObjectId,
+        fileName: String,
+        fileDesc: String,
+        fileType: String,
+    }],
     comments: [commentSchema],
 });
 
