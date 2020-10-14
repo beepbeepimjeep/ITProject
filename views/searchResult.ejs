@@ -8,6 +8,27 @@
     <link href="/css/user-mainpage.css" rel="stylesheet" />
     <style type="text/css">
         body { background:rgba(26,38,57,1) !important; }
+        #right-panel {
+            background-color:rgba(194,77,44,1);
+            color:rgba(246,225,184,1);
+            width: 150px;
+            font-size: 150%;
+            border:none;
+        }
+        #right-panel:hover{
+            color: rgba(194,77,44,1);
+            background-color: rgba(246,225,184,1);
+        }
+        #query{
+            width: 300px;
+            font-size: 140%;
+        }
+        .search-btn{
+            background-color:lightgoldenrodyellow;
+            width: 100px;
+            font-size: 150%;
+            border:none;
+        }
         .nav-btn {
             margin-left: 30px;
         }
@@ -48,6 +69,14 @@
             <div class = "topnav-right">
                 <div class ="row">
                     <ul class="navbar-nav nav-btn">
+                        <form class="form-check-inline active-purple-4" method="get" action="/searchresult">
+                            <input class="form-control" id="query" name="q" type="text" placeholder="Search...">
+                            <button type="submit" class="btn search-btn" >
+                                <span class="glyphicon glyphicon-search"></span> Search
+                            </button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
                         <form action="/language" method="get">
                             <button class = "btn" id="right-panel">Setting</button>
                         </form>
@@ -55,13 +84,6 @@
                 </div>
             </div>
         </nav>
-        <form class="form-check-inline active-purple-4" method="get" action="/searchresult">
-            <input class="form-control" id="query" name="q" type="text" placeholder="Search...">
-            <button type="submit" class="btn">
-                <span class="glyphicon glyphicon-search"></span> Search
-            </button>
-        </form>
-
 
     <% if(noMatch !== null) { %>
         <h3 style="color:#f8fff1" ;><%= noMatch %></h3>
@@ -86,7 +108,7 @@
                     </li>
                     <li class="list-group-item" style="background-color: rgba(26,38,57,1);border-style: none; margin-left: -20px">
                         <form action="/user-eportfolio/<%=user._id%>" method="get">
-                            <button type="submit" class = "btn btn-viewproject" >E-Portfolio</button>
+                            <button type="submit" class = "btn btn-viewproject" >Go to E-Portfolio</button>
                         </form>
                     </li>
                 </ul>
