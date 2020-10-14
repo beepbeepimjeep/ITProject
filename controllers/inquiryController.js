@@ -32,7 +32,7 @@ const getInquiry = function (req,res) {
             console.log(err);
             res.json({message: "message not sent: an error occured; check the server's console log"});
         } else {
-            res.json({message: `message sent!`});
+            res.redirect("back");
         }
     });
 
