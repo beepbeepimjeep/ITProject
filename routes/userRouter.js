@@ -3,10 +3,11 @@ const express = require('express');
 const userRouter = express.Router();
 
 const userController = require('../controllers/userController.js');
+const requireLogin = require('../middleware/requireLogin');
 
-userRouter.get('/:user_id', userController.getCurrentUser);
-userRouter.get('/user-eportfolio/:user_id', userController.userUploadFile);
-userRouter.put('/:user_id', userController.userInfoUpdate);
-userRouter.get('/user-eportfolio/:userid/addNewProject', userController.addNewProject);
-userRouter.get('/user-eportfolio/:userid/:projectId/deleteProject', userController.deleteProject)
+userRouter.get('/', requireLogin,userController.getCurrentUser);
+userRouter.get('/user-eportfolio/', requireLogin,userController.userUploadFile);
+userRouter.put('/', requireLogin,userController.userInfoUpdate);
+userRouter.get('/user-eportfolio/addNewProject', requireLogin,userController.addNewProject);
+userRouter.get('/user-eportfolio/:projectId/deleteProject', requireLogin,userController.deleteProject)
 module.exports = userRouter;
