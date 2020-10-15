@@ -118,6 +118,8 @@
                     <div class="card">
                         <% if(user.fileInfo[i].fileType=="image/jpeg"){%>
                             <img class="card-img-top" src="/file/main/image/<%= user.fileInfo[i].fileName%>" alt="">
+                        <% }else if(user.fileInfo[i].fileType=="application/pdf"){ %>
+                            <p>Open a PDF file <a href="/file/main/image/<%= user.fileInfo[i].fileName%>"><%=user.fileInfo[i].fileName%></a>.</p>
                         <% } %>
                         <p><%= user.fileInfo[i].fileName%> : <%= user.fileInfo[i].fileDesc%></p>
                         <button class="btn btn-colordelete btn-block mt-4" id="<%= user.fileInfo[i].fileId%>" type="button" onclick="edit(this)" style="margin-bottom: -20px">Edit file desc</button>
