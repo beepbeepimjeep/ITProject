@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script href="/js/bootstrap.js"></script>
+    <title>user-project</title>
+    <style>
+        body {
+            background:rgba(26,38,57,1);
+            min-height: 100vh;
+        }
+
+        hr {
+            color: #ffffff;
+            position: absolute;
+        }
+
+        /*- not sure what the margins are, I made them up, pls change in the future -*/
+        #top_hr {
+            top: 80px;
+            height:1px;
+            width:100%;
+        }
+
+        #bottom_hr {
+            bottom:80px;
+            height:1px;
+            width:100%;
+        }
+
+        #left_hr {
+            left: 80px;
+            width:1px;
+            height:100%;
+        }
+
+        #right_hr {
+            right: 80px;
+            width:1px;
+            height:100%;
+        }
+
+        .popup {
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            min-height: 150px;
+            min-width: 300px;
+            max-height: 300px;
+            max-width: 600px;
+        }
+
+        /*Draggable div*/
+
+        .popup {
+            position: absolute;
+            /*resize: both; !*enable this to css resize*! */
+            overflow: auto;
+        }
+
+        .popup-header {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: #2196f3;
+            color: #fff;
+        }
+
+        /*Resizeable*/
+
+        .popup .resizer-right {
+            width: 5px;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: e-resize;
+        }
+
+        .popup .resizer-bottom {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: n-resize;
+        }
+
+        .popup .resizer-both {
+            width: 5px;
+            height: 5px;
+            background: transparent;
+            z-index: 10;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: nw-resize;
+        }
+
+        /*NOSELECT*/
+
+        .popup * {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+        }
+
+
+    </style>
+</head>
+<body>
+<hr id="top_hr">
+<hr id = "left_hr">
+
+<!-- Draggable DIV -->
+<div class="popup" id = "popup">
+    <div class="popup-header noselect">Click here to move</div>
+
+    <form action="/user-eportfolio/user-project/editproject/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
+        <div>
+            <label for="entercomment" class="col-form-label" >Comments</label>
+            <input type="text" id="entertext" name="text" class="form-control"required>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary">Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<hr id = "right_hr">
+<hr id="bottom_hr">
+</body>
+</html>
+<script>
+    function saveEdit (form) {
+        textbox = document.getElementById("popup");
+        $.ajax({
+            url:"/user-eportfolio/user-project/editproject/<%=project._id%>",
+            method:"POST",
+            //save position and text value to mongodb
+            data: {top: textbox.style.top, left: textbox.style.left, text: form.text.value},
+            success: function(res){
+                alert(res);
+            }
+        });
+        return false;
+    }
+</script>
+<script>
+    //draggable div script
+    window.onload = function() {
+        initDragElement();
+        initResizeElement();
+    };
+
+    function initDragElement() {
+        var pos1 = 0,
+            pos2 = 0,
+            pos3 = 0,
+            pos4 = 0;
+        var popups = document.getElementsByClassName("popup");
+        var elmnt = null;
+        var currentZIndex = 100; //TODO reset z index when a threshold is passed
+
+        for (var i = 0; i < popups.length; i++) {
+            var popup = popups[i];
+            var header = getHeader(popup);
+
+            popup.onmousedown = function() {
+                this.style.zIndex = "" + ++currentZIndex;
+            };
+
+            if (header) {
+                header.parentPopup = popup;
+                header.onmousedown = dragMouseDown;
+            }
+        }
+
+        function dragMouseDown(e) {
+            elmnt = this.parentPopup;
+            elmnt.style.zIndex = "" + ++currentZIndex;
+
+            e = e || window.event;
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            if (!elmnt) {
+                return;
+            }
+
+            e = e || window.event;
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+            elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+
+        function getHeader(element) {
+            var headerItems = element.getElementsByClassName("popup-header");
+
+            if (headerItems.length === 1) {
+                return headerItems[0];
+            }
+
+            return null;
+        }
+    }
+
+    function initResizeElement() {
+        var popups = document.getElementsByClassName("popup");
+        var element = null;
+        var startX, startY, startWidth, startHeight;
+
+        for (var i = 0; i < popups.length; i++) {
+            var p = popups[i];
+
+            var right = document.createElement("div");
+            right.className = "resizer-right";
+            p.appendChild(right);
+            right.addEventListener("mousedown", initDrag, false);
+            right.parentPopup = p;
+
+            var bottom = document.createElement("div");
+            bottom.className = "resizer-bottom";
+            p.appendChild(bottom);
+            bottom.addEventListener("mousedown", initDrag, false);
+            bottom.parentPopup = p;
+
+            var both = document.createElement("div");
+            both.className = "resizer-both";
+            p.appendChild(both);
+            both.addEventListener("mousedown", initDrag, false);
+            both.parentPopup = p;
+        }
+
+        function initDrag(e) {
+            element = this.parentPopup;
+
+            startX = e.clientX;
+            startY = e.clientY;
+            startWidth = parseInt(
+                document.defaultView.getComputedStyle(element).width,
+                10
+            );
+            startHeight = parseInt(
+                document.defaultView.getComputedStyle(element).height,
+                10
+            );
+            document.documentElement.addEventListener("mousemove", doDrag, false);
+            document.documentElement.addEventListener("mouseup", stopDrag, false);
+        }
+
+        function doDrag(e) {
+            element.style.width = startWidth + e.clientX - startX + "px";
+            element.style.height = startHeight + e.clientY - startY + "px";
+        }
+
+        function stopDrag() {
+            document.documentElement.removeEventListener("mousemove", doDrag, false);
+            document.documentElement.removeEventListener("mouseup", stopDrag, false);
+        }
+    }
+
+</script>
