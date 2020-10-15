@@ -6,20 +6,23 @@ const User = mongoose.model("users");
 const getCurrentUser = async (req, res, next) => {
     try {
         const current_user = await req.user;
-        res.render('user-mainpage', {user: current_user})
+        const isLoggedIn = await req.login
+        res.render('user-mainpage', {user: current_user, isUser: isLoggedIn })
     } catch (err){
         res.status(400);
-        return res.send("Database query failed")
+        return res.send("Database query failed on getting the current user")
     }
 };
 
 const userUploadFile = async (req, res, next) => {
     try {
         const current_user = await req.user;
-        res.render('user-eportfolio', {user: current_user})
+        const isLoggedIn = await req.login
+        console.log(isLoggedIn)
+        res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
     } catch (err){
         res.status(400);
-        return res.send("Database query failed")
+        return res.send("Database query failed on uploading file to user")
     }
 };
 

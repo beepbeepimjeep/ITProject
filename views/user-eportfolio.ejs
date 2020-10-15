@@ -54,9 +54,13 @@
     </style>
 </head>
 
-
 <body>
 <div class = "container-fluid">
+    <%if (isUser == undefined) { %>
+        <H1 style="color: #f8fff1">I am not logged in</H1>
+    <% } else { %>
+            <H1 style="color: #f8fff1">I am logged in</H1>
+        <% } %>
     <nav class="navbar nav">
         <ul class="navbar-nav">
             <div >
