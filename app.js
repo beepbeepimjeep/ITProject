@@ -43,7 +43,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '/public')));
 
-
+app.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated();
+    next();
+});
 
 // body parser middleware
 app.use(express.json());
@@ -94,7 +97,7 @@ const fileRouter = require('./routes/fileRouter')
 const inquiryRouter = require('./routes/inquiryRouter')
 const userRouter = require('./routes/userRouter')
 const projectRouter = require('./routes/projectRouter')
-
+const visitorRouter = require('./routes/visitorRouter')
 
 app.use('/user',usertestRouter);
 
@@ -126,6 +129,9 @@ app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage', userRouter)
 app.get('/user-eportfolio', userRouter)
 app.use('/user-eportfolio', userRouter);
+
+//visitor
+app.use('/user-eportfoliopage', visitorRouter);
 
 //check url
 //app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
