@@ -43,6 +43,16 @@
             height:100%;
         }
 
+        html, body {
+            height: 100%;
+        }
+
+        .project-body {
+            height: 100%;
+        }
+
+        /*Draggable div*/
+        
         .popup {
             z-index: 9;
             background-color: #f1f1f1;
@@ -53,8 +63,6 @@
             max-height: 300px;
             max-width: 600px;
         }
-
-        /*Draggable div*/
 
         .popup {
             position: absolute;
@@ -126,9 +134,9 @@
 <div class="popup" id = "popup">
     <div class="popup-header noselect">Click here to move</div>
 
-    <form action="/user-eportfolio/user-project/editproject/<%=project._id%>" class="contact-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
+    <form action="/user-eportfolio/user-project/edit-project/<%=project._id%>" class="text-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
         <div>
-            <label for="entercomment" class="col-form-label" >Comments</label>
+            <label for="entertext" class="col-form-label" >Comments</label>
             <input type="text" id="entertext" name="text" class="form-control"required>
         </div>
         <div class="modal-footer">
@@ -136,6 +144,20 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
     </form>
+</div>
+
+<!-- textboxs -->
+
+<div class = "project-body">
+    <% if(project){ %>
+        <% for(var i=0; i<project.textboxs.length;i++){%>
+            <div class="card-columns mt-5" style = "top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;position:absolute">
+                <div class="textbox_i">
+                    <h5 ><%= project.textboxs[i].text%></h5>
+                </div>
+            </div>
+        <%}%>
+    <%}%>
 </div>
 
 <hr id = "right_hr">
@@ -146,7 +168,7 @@
     function saveEdit (form) {
         textbox = document.getElementById("popup");
         $.ajax({
-            url:"/user-eportfolio/user-project/editproject/<%=project._id%>",
+            url:"/user-eportfolio/user-project/edit-project/<%=project._id%>",
             method:"POST",
             //save position and text value to mongodb
             data: {top: textbox.style.top, left: textbox.style.left, text: form.text.value},
