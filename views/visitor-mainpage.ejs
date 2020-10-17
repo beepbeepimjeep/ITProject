@@ -3,72 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="./css/visitor-mainpage.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css" rel="stylesheet" title="main">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>visitor-mainpage</title>
     <style>
-        body { background:rgba(26,38,57,1) !important;}
-        #right-panel-language {
-            float: right;
-            margin-top: 20px;
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
-        }
-        #right-panel-language:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
         #logo {
             margin-top: 8%;
             margin-left: 32%;
         }
         #logo1 {
             font-size: 525%;
+            font-family: "Times New Roman", Times, serif;
         }
         #loginwith {
-            position: absolute;
-            color: #C24D2C;
-            font-size: 400%;
-            top: 460px;
-            left:330px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 200%;
+            margin-top: 2%;
         }
         .nav-btn {
             margin-left: 30px;
         }
 
         #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
             width: 150px;
             font-size: 150%;
             border:none;
         }
-        #right-panel:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
-        }
         .nav {
-            background-color:rgba(26,38,57,1);
-            padding-left: unset;
+            font-family: "Times New Roman", Times, serif;
         }
         #searchBar {
+            font-family: "Times New Roman", Times, serif;
             font-size: 50px;
             border-radius: 10px;
-            background: rgba(38,53,77,1);
+            border-color: rgba(26,38,57,1);
             height: 80px;
-            border: none;
         }
         #searchBar:hover{
-            background: #293952;
+            border-color: #293952;
         }
         #Bar{
+            border: rgba(26,38,57,1);
             margin-top: 0%;
             height: 80px;
         }
+        .dropdown:hover .dropdown-menu {display: block;}
 
     </style>
     <script type = "text/javascript" >
@@ -82,22 +63,61 @@
 
 </head>
 <body class = "container-fluid">
-<nav class="navbar nav">
+<div class="container">
+<nav class="nav navbar-expand-lg navbar-dark">
     <div class = "ml-auto">
-        <div class ="row">
-            <ul class="navbar-nav nav-btn">
-                <form action="/language" method="get">
-                    <button class = "btn" id="right-panel">Setting</button>
-                </form>
+        <li id="theme-button" class="nav-item dropdown">
+            <a href="#"  class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false"style="font-family: Times New Roman, Times, serif;font-size: 150%;">Change Theme <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/" style="font-family: Times New Roman, Times, serif;font-size: 150%;"
+                    class="dropdown-item" name="superhero">Dark</a></li>
+                <li><a href="/" style="font-family: Times New Roman, Times, serif;font-size: 150%;"
+                    class="dropdown-item" name="flatly">Light</a></li>
             </ul>
-        </div>
+        </li>
     </div>
 </nav>
-    
+</div>
+    <script type="text/javascript">
+        jQuery(function($) {
+            $('#theme-button ul a').click(function() {
+                if ($(this).attr('name') != 'default') {
+                    var theme_name = $(this).attr('name');
+                    var theme = "https://maxcdn.bootstrapcdn.com/bootswatch/4.5.2/" + theme_name + "/bootstrap.min.css";
+                    set_theme(theme);
+                }
+            });
+        });
+        function set_theme(theme) {
+            $('link[title="main"]').attr('href', theme);
+        }
+        function supports_html5_storage() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        }
+        var supports_storage = supports_html5_storage();
+        function set_theme(theme) {
+            $('link[title="main"]').attr('href', theme);
+            if (supports_storage) {
+                localStorage.theme = theme;
+            }
+        }
+        if (supports_storage) {
+            var theme = localStorage.theme;
+            if (theme) {
+                set_theme(theme);
+            }
+        } else {
+            $('#theme-dropdown').hide();
+        }
+    </script>
 
     <div class="row" id="logo">
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
-        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+        <h1 class="my-3" id="logo1">E</h1>
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
 
@@ -106,17 +126,19 @@
             <input class="form-control" type="search" id="searchBar" name="q" placeholder="Search"></input>
             <div class="col-sm-2 col-md-offset-1">
                 <input type = "image" src = "/images/search.svg" 
-                style="filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);"></input>
+                style="filter: invert(32%) sepia(72%) saturate(986%) hue-rotate(337deg) brightness(97%) contrast(91%);"></input>
             </div>
         </form>
     </div>
 
-    <div class="text" id="loginwith">Login with</div>
-    <form action="/auth/google" method="get">
-        <input type = "image" src = "images/google.svg" class = google_icon></input> 
+    <row id="loginwith">
+        <div class="col-md-9 offset-md-3" id="loginwith">Login with</div>
+    </row>
+    <form style="margin-top: -6%;" action="/auth/google" method="get" id="loginIcon1">
+        <input type = "image" src = "images/google.svg" class = "col-md-1 offset-md-6 google_icon"></input> 
     </form>
-    <form action="/auth/linkedin" method="get">
-        <input type = "image" src = "images/linkedin.svg" class = linkedin_icon></input> 
+    <form style="margin-top: -7%;" action="/auth/linkedin" method="get" id="loginIcon2">
+        <input type = "image" src = "images/linkedin.svg" class = "col-md-1 offset-md-8 linkedin_icon"></input> 
     </form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

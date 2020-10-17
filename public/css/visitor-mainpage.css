@@ -15,24 +15,16 @@
 .google_icon {
   height: 100px;
   width: auto;
-  opacity: 1;
-  position: absolute;
   cursor: pointer;
-  top: 460px;
-  left:800px;
 }
 .google_icon:hover {
   animation: bounce 3s infinite alternate;
 }
 
 .linkedin_icon {
-  height: 110px;
+  height: 105px;
   width: auto;
-  opacity: 1;
-  position: absolute;
   cursor: pointer;
-  top: 460px;
-  left:1000px;
 }
 .linkedin_icon:hover {
   animation: bounce 3s infinite alternate;
