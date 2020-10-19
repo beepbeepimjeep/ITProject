@@ -38,7 +38,9 @@ const createNewTextbox = async (req, res) => {
                     textboxs:{
                         "top": req.body.top,
                         "left": req.body.left,
-                        "text": req.body.text}}}).exec();
+                        "text": req.body.text,
+                        "width": req.body.width,
+                        "height": req.body.height}}}).exec();
     } catch (err){
         res.status(400);
         return res.send("Cannot add new textbox")

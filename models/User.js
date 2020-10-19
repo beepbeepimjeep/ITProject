@@ -6,6 +6,15 @@ const commentSchema = new mongoose.Schema({
     comment: String
 });
 
+const textboxSchema = new mongoose.Schema({
+    textbox_id: mongoose.Schema.Types.ObjectId,
+    top: String,
+    left: String,
+    height: String,
+    width: String,
+    text: String
+});
+
 const projectSchema = new mongoose.Schema({
     project_id: mongoose.Schema.Types.ObjectId,
     projectName: String,
@@ -18,6 +27,7 @@ const projectSchema = new mongoose.Schema({
         fileType: String,
     }],
     comments: [commentSchema],
+    textboxs: [textboxSchema],
 });
 
 const userSchema = new mongoose.Schema({

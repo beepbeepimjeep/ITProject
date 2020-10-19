@@ -52,6 +52,11 @@
             color: rgba(194,77,44,1);
             background-color: rgba(246,225,184,1);
         }
+
+        .textbox_i{
+            background-color: white;
+        }
+
         .nav {
             background-color:rgba(26,38,57,1);
             padding-left: unset;
@@ -105,10 +110,8 @@
     <div class = "project-body">
         <% if(project){ %>
             <% for(var i=0; i<project.textboxs.length;i++){%>
-                <div class="card-columns mt-5" style = "top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;position:absolute">
-                    <div class="textbox_i">
-                        <h5 ><%= project.textboxs[i].text%></h5>
-                    </div>
+                <div class="card-columns mt-5"  style = "border:3px solid red; top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;height:<%= project.textboxs[i].height%>;width:<%= project.textboxs[i].width%>;position:absolute">
+                    <h5 style = "color:white"><%=project.textboxs[i].text%></h5>
                 </div>
             <%}%>
         <%}%>
@@ -192,6 +195,8 @@
             return false;
         }
     </script>
+<%=project.%%>>
+
 
 </body>
 </html>

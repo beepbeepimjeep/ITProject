@@ -10,6 +10,8 @@ const textboxSchema = new mongoose.Schema({
     textbox_id: mongoose.Schema.Types.ObjectId,
     top: String,
     left: String,
+    height: String,
+    width: String,
     text: String
 });
 
