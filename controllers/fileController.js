@@ -35,7 +35,7 @@ const displayImage = (req,res)=>{
                 err: 'No File Exist'
             })
         }
-        if(file.contentType == 'image/jpeg'||file.contentType == 'img/png'){
+        if(file){
             const readStream = gfs.createReadStream(file.filename);
             readStream.pipe(res)
         }else{

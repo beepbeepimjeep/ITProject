@@ -31,7 +31,7 @@
 
         .card {
             width: 400px;
-            hight: 400px;
+            height: 400px;
         }
         .nav-btn {
             margin-left: 30px;
@@ -81,7 +81,7 @@
             <div >
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
                 <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                <span  class = 'logo_text' style="color:rgb(194,77,44);">Portfolio</span>
             </div>
         </ul>
         <div class ="topnav-right">
@@ -89,11 +89,6 @@
                 <ul class="navbar-nav nav-btn">
                     <form action="/user-eportfolio" method="get">
                         <button class = "btn" id="right-panel">E-Portfolio</button>
-                    </form>
-                </ul>
-                <ul class="navbar-nav nav-btn" style = "padding-left: 50px">
-                    <form action="/user-mainpage" method="get">
-                        <button class = "btn" id="right-panel">Homepage</button>
                     </form>
                 </ul>
                 <ul class="navbar-nav nav-btn">
@@ -127,6 +122,12 @@
                     <div class="card">
                         <% if(user.fileInfo[i].fileType=="image/jpeg"){%>
                             <img class="card-img-top" src="/file/main/image/<%= user.fileInfo[i].fileName%>" alt="">
+                        <% }else if(user.fileInfo[i].fileType=="application/pdf"){ %>
+                            <p>Open a PDF file <a href="/file/main/image/<%= user.fileInfo[i].fileName%>"><%=user.fileInfo[i].fileName%></a>.</p>
+                        <% }else if(user.fileInfo[i].fileType=="video/mp4"){ %>
+                                <video width="320" height="240" controls>
+                                    <source src="/file/main/image/<%= user.fileInfo[i].fileName%>" type="video/mp4">
+                                </video>
                         <% } %>
                         <p><%= user.fileInfo[i].fileName%> : <%= user.fileInfo[i].fileDesc%></p>
                         <button class="btn btn-colordelete btn-block mt-4" id="<%= user.fileInfo[i].fileId%>" type="button" onclick="edit(this)" style="margin-bottom: -20px">Edit file desc</button>

@@ -6,21 +6,6 @@
     <title>visitor-mainpage</title>
     <style>
         body { background:rgba(26,38,57,1) !important;}
-        #logo {
-            position: absolute;
-            top: 170px;
-            left: 500px;
-        }
-        #logo1 {
-            font-size: 525%;
-        }
-        #loginwith {
-            position: absolute;
-            color: #C24D2C;
-            font-size: 400%;
-            top: 460px;
-            left:330px;
-        }
         .nav-btn {
             margin-left: 30px;
         }
@@ -46,6 +31,14 @@
             font-size: 250%;
             margin-left: unset;
         }
+        #logo {
+            margin-top: 8%;
+            margin-left: 32%;
+        }
+        #logo1 {
+            font-size: 525%;
+            font-family: "Times New Roman", Times, serif;
+        }
         #right-panel:hover{
             color: rgba(246,225,184,1);
         }
@@ -57,6 +50,21 @@
             height: 60px;
             background-color: rgba(194,77,44,1);
             color: rgba(26,38,57,1);
+        }
+        #searchBar {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 50px;
+            border-radius: 10px;
+            border-color: rgba(26,38,57,1);
+            height: 80px;
+        }
+        #searchBar:hover{
+            border-color: #293952;
+        }
+        #Bar{
+            border: rgba(26,38,57,1);
+            margin-top: 0%;
+            height: 80px;
         }
     </style>
     <script type = "text/javascript" >
@@ -75,7 +83,7 @@
         <ul class="navbar-nav">
             <div >
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                <span  class = 'logo_text' style="color:rgb(246,225,184);">E</span>
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
             </div>
         </ul>
@@ -99,16 +107,23 @@
             </div>
         </div>
     </nav>
-        <div class="row" id="logo">
-            <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
-            <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
-            <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
-        </div>
-        <form id="search_container" method="GET" action="/searchresult">
-            <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
-            aria-label="Search through site content"/>
-            <input type = "image" src = "/images/search.svg" class = search_icon></input>
+
+    <div class="row" id="logo">
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
+        <h1 class="my-3" id="logo1" style="color:rgb(246,225,184);">E</h1>
+        <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
+    </div>
+
+    <div class="col-md-9 offset-md-2">
+        <form class="input-group" method="GET" id="Bar" action="/searchresult">
+            <input class="form-control" type="search" id="searchBar" name="q" placeholder="Search"></input>
+            <div class="col-sm-2 col-md-offset-1">
+                <input type = "image" src = "/images/search.svg"
+                       style="filter: invert(32%) sepia(72%) saturate(986%) hue-rotate(337deg) brightness(97%) contrast(91%);"></input>
+            </div>
         </form>
+    </div>
+
     <div class="footer">
         <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
     </div>

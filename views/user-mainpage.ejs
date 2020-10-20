@@ -12,21 +12,14 @@
 
         }
         #logo {
-            position: absolute;
-            width: 500px;
-            height: auto;
-            top: 170px;
-            left: 500px;
+            margin-top: 8%;
+            margin-left: 32%;
         }
         #logo1 {
             font-size: 525%;
         }
         .nav-btn {
             margin-left: 30px;
-        }
-        /* Right-aligned section inside the top navigation */
-        .topnav-right {
-            float: right;
         }
 
         #right-panel {
@@ -45,9 +38,25 @@
             background-color:rgba(26,38,57,1);
             padding-left: unset;
         }
+<<<<<<< HEAD
         .logo_text {
             font-size: 250%;
             margin-left: unset;
+=======
+        #searchBar {
+            font-size: 50px;
+            border-radius: 10px;
+            background: rgba(38,53,77,1);
+            height: 80px;
+            border: none;
+        }
+        #searchBar:hover{
+            background: #293952;
+        }
+        #Bar{
+            margin-top: 0%;
+            height: 80px;
+>>>>>>> 7fee9c0b5958a76eaaf5522c7ccc1c40b33dc5a7
         }
     </style>
     <script type="text/javascript">
@@ -79,6 +88,7 @@
 <% } %>
     <div class = "container-fluid">
         <nav class="navbar nav">
+<<<<<<< HEAD
             <ul class="navbar-nav">
                 <div >
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
@@ -87,6 +97,9 @@
                 </div>
             </ul>
             <div class = "topnav-right">
+=======
+            <div class= "ml-auto">
+>>>>>>> 7fee9c0b5958a76eaaf5522c7ccc1c40b33dc5a7
                 <div class ="row">
                     <ul class="navbar-nav nav-btn">
                         <form action="/file/main" method="get">
@@ -116,11 +129,17 @@
             <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
             <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
         </div>
-        <form id="search_container" method="GET" action="/searchresult">
-            <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
-                   aria-label="Search through site content"/>
-            <input type = "image" src = "/images/search.svg" class = search_icon></input>
-        </form>
+    
+        <div class="col-md-9 offset-md-2"> 
+            <form class="input-group" method="GET" id="Bar" action="/searchresult">
+                <input class="form-control" type="search" id="searchBar" name="q" placeholder="Search"></input>
+                <div class="col-sm-2 col-md-offset-1">
+                    <input type = "image" src = "/images/search.svg" 
+                    style="filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);"></input>
+                </div>
+            </form>
+        </div>
+    
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
