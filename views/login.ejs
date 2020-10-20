@@ -5,20 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style type="text/css">
-        body { background:rgba(26,38,57,1) !important; } 
+        body { background:rgba(26,38,57,1) !important; }
+        .welcome_text {
+            font-size: 400%;
+            margin-left: unset;
+        }
+        * {box-sizing: border-box}
+
+        .icon{
+            height: 60px;
+            width: 60px;
+            padding-right: 10px;
+        }
+
+        /* style inputs and link buttons */
+        input,
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            opacity: 0.85;
+            display: inline-block;
+            font-size: 25px;
+            line-height: 20px;
+            text-decoration: none; /* remove underline from anchors */
+        }
+
+        input:hover,
+        .btn:hover {
+            opacity: 1;
+        }
+
+
+        .linkedin {
+            background-color: #55ACEE;
+            color: white;
+            height: 80px;
+        }
+
+        .google {
+            background-color: white;
+            color: #dd4b39;
+            height: 80px;
+        }
+
+        /* style the submit button */
+        input[type=submit] {
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Two-column layout */
+        .col {
+            float: left;
+            width: 50%;
+            margin: auto;
+            padding: 0 50px;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .login-container {
+            width: 100%;
+        }
+        #outer { width: 50%; margin-top: 150px;}
+        #inner { width: 80%; margin: 0 auto; }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
+            padding-top: 50px;
+        }
+        #right-panel {
+            background-color:transparent;
+            color:rgba(194,77,44,1);
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+
+        }
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+        #right-panel:hover{
+            color: rgba(246,225,184,1);
+        }
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
+        }
      </style>
     <title>Login Page</title>
 </head>
 
 <body>
-    <div class="form">
-        <form action="/auth/google" method="get">
-            <input type = "image" src = "images/google.svg" class = "google_icon"></input> 
-        </form>
-        <form action="/auth/linkedin" method="get">
-            <input type = "image" src = "images/linkedin.svg" class = "linkedin_icon"></input> 
-        </form>
+<div class = "container-fluid" >
+    <nav class="navbar nav">
+        <ul class="navbar-nav">
+            <div >
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+            </div>
+        </ul>
+        <div class = "topnav-right">
+            <div class ="row">
+                <ul class="navbar-nav nav-btn">
+                    <form action="/visitor-mainpage" method="get">
+                        <button class = "btn" id="right-panel">Homepage</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn" style = "padding-left: 15px">
+                    <form action="/language" method="get">
+                        <button class = "btn" id="right-panel">Setting</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn">
+                    <form action="/login" method="get">
+                        <button class = "btn" id="right-panel">Login</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class = "container" id ="outer">
+            <div class = "row" >
+                <div>
+                    <span class = "welcome_text" style = "color: rgba(246,225,184,1); padding-right: 10px;">Welcome to </span>
+                </div>
+                <div style = "display: inline-block" >
+                    <span  class = 'welcome_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'welcome_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'welcome_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </div>
+        <div class="login-container" id = inner>
+            <div class="row">
+                <div class="col">
+                    <h4 style="text-align:center; color:rgba(246,225,184,1);">Sign up/Login with Your Social Account</h4>
+                    <form action="/auth/google" method="get">
+                        <a href="/auth/google" class="google btn">
+                            <img  src = "images/google.svg" class = "icon"></img>Login with Google+
+                        </a>
+                    </form>
+                    <form action="/auth/linkedin" method="get">
+                        <a href="/auth/linkedin" class="linkedin btn">
+                            <img src = "images/linkedin.svg" class = "icon"></img> Login with LinkedIn
+                        </a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
+    <div class="footer">
+        <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
+    </div>
+</div>
+
 
 
 
