@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>User Project</title>
+    <style>
+        #container {
+            width: 100vw;
+            height: 1300px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            touch-action: none;
+        }
+        .item {
+            touch-action: none;
+            user-select: none;
+            position: relative;
+            width: 200px;
+        }
+
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
+        .btn-colordelete {
+            background-color: #C24D2C;
+            color: #f8fff1;
+        }
+        .card {
+            width: 400px;
+            border-style: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <button class="btn btn-colordelete btn-block mt-4" type="button" onclick="edit(this)">edit file to project</button>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add File to Project</h5>
+                <span class="close">x</span>
+            </div>
+            <div class="modal-body">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Current File Name</th>
+                            <th scope="col">Current File type</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% if (user) {%>
+                        <% for(var j=0; j<user.project.length;j++){%>
+                            <% if(user.project[j]._id==projectId){ %>
+                                <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
+                                <tr>
+                                    <th scope="row"><%=user.project[j].fileInfo[i].fileId%></th>
+                                    <td><%=user.project[j].fileInfo[i].fileName%></td>
+                                    <td><%=user.project[j].fileInfo[i].fileType%></td>
+                                    <td>
+                                        <form method="POST" action="">
+                                            <button class="btn btn-colordelete">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+
+                    </tbody>
+                </table>
+                <p>Select from uploaded files</p>
+                <form action="/user-eportfolio/addFiletoProject" method="post">
+                    <% if (user) {%>
+                        <% for(var i=0; i < user.fileInfo.length; i++){ %>
+                            <input type="radio" name="fileId" value="<%=user.fileInfo[i].fileName%>">
+                            <label><%=user.fileInfo[i].fileName%></label><br>
+                        <% } %>
+                    <% } %>
+                        <input type="text" name="projectId" value="<%=projectId%>" style="display: none"></br>
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                    <% if (user) {%>
+                        <% for(var j=0; j<user.project.length;j++){%>
+                            <% if(user.project[j]._id==projectId){ %>
+                                <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
+                                    <form action="/user-eportfolio/savePosition" method="post">
+                                        <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>">
+                                        <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>">
+                                        <input type="text" name="project" value="<%=projectId%>">
+                                        <button type="submit" class="button">Save Position</button></br>
+                                    </form>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100vw">
+        <% if (user) { %>
+            <% for(var j=0; j<user.project.length;j++){%>
+                <% if(user.project[j]._id==projectId){ %>
+                    <div id="container">
+                        <% for (var i = 0; i < user.project[j].fileInfo.length; i++) { %>
+                            <div class="item" >
+                                <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
+                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"  src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>">
+                                <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
+                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"><%=user.project[j].fileInfo[i].fileName%></a>
+                                <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
+                                    <video class="item" width="320" height="240" controls>
+                                        <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
+                                    </video>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+
+        <% } else { %>
+            <p> No Files to show</p>
+        <% } %>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script>
+    var container = document.querySelector("#container");
+    var activeItem = null;
+
+    var active = false;
+
+    container.addEventListener("touchstart", dragStart, false);
+    container.addEventListener("touchend", dragEnd, false);
+    container.addEventListener("touchmove", drag, false);
+
+    container.addEventListener("mousedown", dragStart, false);
+    container.addEventListener("mouseup", dragEnd, false);
+    container.addEventListener("mousemove", drag, false);
+
+    function dragStart(e) {
+
+        if (e.target !== e.currentTarget) {
+            active = true;
+
+            // this is the item we are interacting with
+            activeItem = e.target;
+
+            if (activeItem !== null) {
+                if (!activeItem.xOffset) {
+                    activeItem.xOffset = 0;
+                }
+
+                if (!activeItem.yOffset) {
+                    activeItem.yOffset = 0;
+                }
+
+                if (e.type === "touchstart") {
+                    activeItem.initialX = e.touches[0].clientX - activeItem.xOffset;
+                    activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
+                } else {
+                    console.log("doing something!");
+                    activeItem.initialX = e.clientX - activeItem.xOffset;
+                    activeItem.initialY = e.clientY - activeItem.yOffset;
+                }
+            }
+        }
+    }
+
+    function dragEnd(e) {
+        if (activeItem !== null) {
+            activeItem.initialX = activeItem.currentX;
+            activeItem.initialY = activeItem.currentY;
+        }
+        document.getElementById(activeItem.name).setAttribute("value","transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
+        console.log("transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
+        console.log("line 181"+activeItem.name)
+        active = false;
+        activeItem = null;
+        console.log("line 111 drag end")
+
+    }
+
+    function drag(e) {
+        if (active) {
+            e.preventDefault();
+            if (e.type === "touchmove") {
+                activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
+                activeItem.currentY = e.touches[0].clientY - activeItem.initialY;
+            } else {
+                activeItem.currentX = e.clientX - activeItem.initialX;
+                activeItem.currentY = e.clientY - activeItem.initialY;
+            }
+
+            activeItem.xOffset = activeItem.currentX;
+            activeItem.yOffset = activeItem.currentY;
+
+            setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
+        }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+        el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+
+    function edit(value){
+        modal.style.display= "block";
+    }
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function (){
+        modal.style.display= "none";
+    }
+
+</script>
+</body>
+
+</html>

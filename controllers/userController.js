@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
-
+const files = mongoose.model("file")
 
 const getCurrentUser = async (req, res, next) => {
     try {
@@ -84,10 +84,63 @@ const deleteProject =async (req,res,next)=>{
         User.close;
     })
 }
+
+const displayProject = async (req,res,next)=>{
+    try{
+        const currentUser = await req.user;
+        res.render('userProject',{user:currentUser,projectId:req.params.projectId})
+    }catch (e){}
+}
+
+const editProjectFile = async (req, res, next)=>{
+    const fileId = req.body.fileId
+    try{
+        const user = await req.user;
+        var condition = {$and:[{_id:user._id}, {"project._id":req.body.projectId}]}
+        var query = {filename:fileId}
+        const file = await files.findOne(query,{_id:1,"filename":1,"contentType":1}).limit(1)
+        console.log("line 102 "+file['_id'])
+        var userQuery = {$push:{"project.$.fileInfo":{"fileId":file['_id'],"fileName":file['filename'],"fileType":file['contentType'],"fileStyle":"none"}}}
+        const user1 = await User.updateOne(condition,userQuery)
+        res.redirect('back')
+    }catch (err){
+
+    }
+}
+
+const savePosition = async (req,res,next)=>{
+    console.log("filename is "+req.body.fileName)
+    console.log("position is "+req.body.position)
+    var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
+    var queryf = {filename:req.body.fileName}
+    const file = await files.findOne(queryf,{_id:1,"filename":1,"contentType":1}).limit(1);
+    console.log("line 116 "+file)
+    var query = {$pull:{project:{"fileInfo.fileName":req.body.fileName}}}
+    try{
+        await User.updateOne(query,function (err,res){
+            if(err)throw err;
+            console.log("delete line 121")
+            User.close
+        })
+    }catch (e) {
+
+    }
+    let userQuery = {$push:{"project.$.fileInfo":{"fileId":file['_id'],"fileName":file['filename'],"fileType":file['contentType'],"fileStyle":req.body.position}}}
+    User.updateOne(condition, userQuery, function(err,res){
+    if (err) throw err;
+    console.log("file style updated to "+res)
+    User.close
+    })
+    res.send ("ok")
+}
+
 module.exports = {
     getCurrentUser,
     userUploadFile,
     userInfoUpdate,
     addNewProject,
-    deleteProject
+    deleteProject,
+    displayProject,
+    editProjectFile,
+    savePosition
 };
