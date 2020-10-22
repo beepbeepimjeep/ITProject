@@ -119,13 +119,15 @@
                 <% if(user.project[j]._id==projectId){ %>
                     <div id="container">
                         <% for (var i = 0; i < user.project[j].fileInfo.length; i++) { %>
-                            <div class="item" >
+                            <div class="item" style="<%=user.project[j].fileInfo[i].fileStyle%>">
                                 <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
-                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"  src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>">
+                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"
+                                         src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>">
                                 <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
-                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"><%=user.project[j].fileInfo[i].fileName%></a>
+                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"
+                                       style="<%=user.project[j].fileInfo[i].fileStyle%>"><%=user.project[j].fileInfo[i].fileName%></a>
                                 <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
-                                    <video class="item" width="320" height="240" controls>
+                                    <video class="item" width="320" height="240" style="<%=user.project[j].fileInfo[i].fileStyle%>" controls>
                                         <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
                                     </video>
                                 <% } %>
@@ -191,7 +193,10 @@
             activeItem.initialX = activeItem.currentX;
             activeItem.initialY = activeItem.currentY;
         }
-        document.getElementById(activeItem.name).setAttribute("value","transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
+        var rect = activeItem.getBoundingClientRect();
+        document.getElementById(activeItem.name).setAttribute("value","Position: absolute; left: "+rect.left+"px; top: "+rect.top+"px;")
+
+        console.log("left:"+rect.left+" top: "+rect.top+" width: "+rect.width+" height: "+rect.height)
         console.log("transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
         console.log("line 181"+activeItem.name)
         active = false;

@@ -111,27 +111,46 @@ const editProjectFile = async (req, res, next)=>{
 const savePosition = async (req,res,next)=>{
     console.log("filename is "+req.body.fileName)
     console.log("position is "+req.body.position)
-    var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
+
     var queryf = {filename:req.body.fileName}
     const file = await files.findOne(queryf,{_id:1,"filename":1,"contentType":1}).limit(1);
     console.log("line 116 "+file)
     var query = {$pull:{project:{"fileInfo.fileName":req.body.fileName}}}
-    try{
-        await User.updateOne(query,function (err,res){
-            if(err)throw err;
-            console.log("delete line 121")
-            User.close
-        })
-    }catch (e) {
+    //var index = User.aggregate([{"$project":{"matchedIndex":{"$indexOfArray":["$project._id",req.body.project]}}}])
+    //console.log("line 120 index = "+index)
 
+    var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
+    console.log("line 123"+ projectArray)
+    var index;
+    for(let i=0; i<projectArray.project.length; i++){
+        var obj = projectArray.project[i];
+        if(obj._id==req.body.project){
+            console.log("index = "+i)
+            index = i;
+            break;
+        }
     }
-    let userQuery = {$push:{"project.$.fileInfo":{"fileId":file['_id'],"fileName":file['filename'],"fileType":file['contentType'],"fileStyle":req.body.position}}}
-    User.updateOne(condition, userQuery, function(err,res){
-    if (err) throw err;
-    console.log("file style updated to "+res)
-    User.close
+    const indexString = ["project.",index,".fileInfo.$.fileStyle"]
+    var indexS = indexString.join('');
+    console.log(indexS)
+
+
+    var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
+    var testQuery = {$set:{[indexS]:req.body.position}}
+    await User.updateOne(condition,testQuery,function (err, res){
+        if(err){
+            console.log(err)
+        }
+        User.close;
     })
-    res.send ("ok")
+
+/*
+    var match = {$match:{"project.$._id":req.body.project}}
+    var testQueryPlus = {$set:{"fileInfo.$.fileStyle":req.body.position}}
+    User.aggregate([match,testQueryPlus])
+*/
+
+    res.redirect('back')
 }
 
 module.exports = {
