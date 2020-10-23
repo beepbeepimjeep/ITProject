@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -21,9 +23,8 @@
             background-color: rgba(246,225,184,1);
         }
         #logo {
-            position: absolute;
-            top: 170px;
-            left: 500px;
+            margin-top: 8%;
+            margin-left: 32%;
         }
         #logo1 {
             font-size: 525%;
@@ -37,10 +38,6 @@
         }
         .nav-btn {
             margin-left: 30px;
-        }
-        /* Right-aligned section inside the top navigation */
-        .topnav-right {
-            float: right;
         }
 
         #right-panel {
@@ -58,6 +55,21 @@
             background-color:rgba(26,38,57,1);
             padding-left: unset;
         }
+        #searchBar {
+            font-size: 50px;
+            border-radius: 10px;
+            background: rgba(38,53,77,1);
+            height: 80px;
+            border: none;
+        }
+        #searchBar:hover{
+            background: #293952;
+        }
+        #Bar{
+            margin-top: 0%;
+            height: 80px;
+        }
+
     </style>
     <script type = "text/javascript" >
         history.pushState(null, null, location.href);
@@ -71,9 +83,7 @@
 </head>
 <body class = "container-fluid">
 <nav class="navbar nav">
-    <ul class="navbar-nav">
-    </ul>
-    <div class = "topnav-right">
+    <div class = "ml-auto">
         <div class ="row">
             <ul class="navbar-nav nav-btn">
                 <form action="/language" method="get">
@@ -83,16 +93,23 @@
         </div>
     </div>
 </nav>
+    
+
     <div class="row" id="logo">
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
         <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
-    <form id="search_container" method="GET" action="/searchresult">
-        <input class = "searchbar" type="search" id="query" name="q" placeholder="   Search..."
-        aria-label="Search through site content"/>
-        <input type = "image" src = "/images/search.svg" class = search_icon></input>
-    </form>
+
+    <div class="col-md-9 offset-md-2"> 
+        <form class="input-group" method="GET" id="Bar" action="/searchresult">
+            <input class="form-control" type="search" id="searchBar" name="q" placeholder="Search"></input>
+            <div class="col-sm-2 col-md-offset-1">
+                <input type = "image" src = "/images/search.svg" 
+                style="filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);"></input>
+            </div>
+        </form>
+    </div>
 
     <div class="text" id="loginwith">Login with</div>
     <form action="/auth/google" method="get">
@@ -102,7 +119,8 @@
         <input type = "image" src = "images/linkedin.svg" class = linkedin_icon></input> 
     </form>
 
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
