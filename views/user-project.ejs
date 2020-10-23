@@ -53,7 +53,7 @@
             background-color: rgba(246,225,184,1);
         }
 
-        .textbox_i{
+        .textbox{
             background-color: white;
         }
 
@@ -63,8 +63,8 @@
         }
     </style>
 </head>
-<body>
-<div class="container-fluid">
+<body onload = "str_to_html();">
+<div class="container-fluid" >
     <nav class="navbar nav">
         <ul class="navbar-nav">
             <div >
@@ -107,11 +107,11 @@
 </div>
     <!-- textboxs -->
 
-    <div class = "project-body">
+    <div class = "project-body" >
         <% if(project){ %>
             <% for(var i=0; i<project.textboxs.length;i++){%>
-                <div class="card-columns mt-5"  style = "border:3px solid red; top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;height:<%= project.textboxs[i].height%>;width:<%= project.textboxs[i].width%>;position:absolute">
-                    <h5 style = "color:white"><%=project.textboxs[i].text%></h5>
+                <div class="textbox" style = "border:3px solid red; top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;height:<%= project.textboxs[i].height%>;width:<%= project.textboxs[i].width%>;position:absolute">
+                    <%=project.textboxs[i].text%>
                 </div>
             <%}%>
         <%}%>
@@ -148,7 +148,7 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="comment">
+    <div class="container-fluid"  id="comment">
 
         <h2 style="color:#3D5476;">Comments</h2>
         <!-- Button trigger modal -->
@@ -195,7 +195,19 @@
             return false;
         }
     </script>
-<%=project.%%>>
+    <script>
+        function str_to_html(){
+            var textbox = document.getElementsByClassName("textbox");
+            var i;
+            for (i = 0; i < textbox.length; i++) {
+                console.log(textbox[i].innerText);
+                textbox[i].innerHTML = textbox[i].innerText;
+            }
+        }
+    </script>
+<script> function test(){
+    console.log("testing");
+    } </script>
 
 
 </body>
