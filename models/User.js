@@ -16,6 +16,7 @@ const projectSchema = new mongoose.Schema({
         fileName: String,
         fileDesc: String,
         fileType: String,
+        fileStyle: String,
     }],
     comments: [commentSchema],
 });

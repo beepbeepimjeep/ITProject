@@ -237,7 +237,6 @@
             </div>
         </div>
     </div>
-
         <%if (isUser == undefined) { %>
         <% } else { %>
             <div class="projectBody">
@@ -250,10 +249,10 @@
                                 <form method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
                                     <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
                                 </form>
-                                <form action="" method="get">
-                                    <button class = "btn btn-block mt-4 btn-viewproject" >
-                                        View
-                                    </button>
+                                <form action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
+                                  <button class = "btn btn-block mt-4 btn-viewproject" >
+                                    View
+                                  </button>
                                 </form>
                             </div>
                         </div>
@@ -265,10 +264,10 @@
                         <input type="text" name="projectDesc" placeholder="project desc"></br>
                         <button type="submit">add</button>
                     </form>
+
                 </div>
             </div>
         <% } %>
-
     <div class="card-columns mt-5">
         <div class="card">
             <h5 class="card-text editprofile">Testing Project 1</h5>
