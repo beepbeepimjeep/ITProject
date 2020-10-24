@@ -273,17 +273,6 @@
             });
             return false;
         }
-        function changeSuccess(form) {
-            $.ajax({
-                url:"/user-eportfolio/user-project/<%=project._id%>",
-                method:"PUT",
-                data: {projectTheme: form.theme.value},
-                success: function(res){
-                    alert(res);
-                }
-            });
-            return false;
-        }
     </script>
 
 </body>
