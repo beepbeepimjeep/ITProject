@@ -140,6 +140,7 @@ app.use('/user-eportfoliopage', visitorRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
+app.post('/user-eportfolio/user-project/editTheme/:project_id', projectRouter)
 app.get('/user-eportfolio/addNewProject', userRouter)
 
 //search

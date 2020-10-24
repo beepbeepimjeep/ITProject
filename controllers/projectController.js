@@ -31,10 +31,24 @@ const createNewComment = async (req, res) => {
 };
 
 
+const changeTheme = async (req, res) => {
+    try {
+        const current_project = await project.findOneAndUpdate(
+            {_id: req.params.project_id},
+            {$set:{"projectTheme": req.body.theme}}).exec();
+        res.redirect("back")
+    } catch (err){
+        res.status(400);
+        return res.send("Cannot change theme!")
+    }
+};
+
+
 
 module.exports = {
     getCurrentProject,
-    createNewComment
+    createNewComment,
+    changeTheme
 };
 
 

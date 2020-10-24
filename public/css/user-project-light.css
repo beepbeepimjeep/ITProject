@@ -1,0 +1,17 @@
+body { background:#fff}
+.comment-button {
+    color: lightgoldenrodyellow;
+    background-color: #1A2639;
+}
+#right-panel {
+    background-color:rgba(194,77,44,1);
+    color:rgba(246,225,184,1);
+}
+#right-panel:hover{
+    color: rgba(194,77,44,1);
+    background-color: rgba(246,225,184,1);
+}
+#comment_text {
+    background-color: rgba(246,225,184,1);
+    color: rgba(38,53,77,1);
+}
