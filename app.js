@@ -116,6 +116,10 @@ app.get('/', (req, res) => {
     res.render('visitor-mainpage');
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
 app.get('/file/main',fileRouter)
 
 app.get('/visitor-mainpage', (req, res) => {

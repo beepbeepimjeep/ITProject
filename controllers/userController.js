@@ -29,6 +29,8 @@ const userUploadFile = async (req, res, next) => {
 const userInfoUpdate = async (req, res, next) => {
     try {
         const current_user = await req.user;
+        const isLoggedIn = await req.login
+
 
         //get the change
         //to be implemented: at least one field edited
@@ -49,9 +51,10 @@ const userInfoUpdate = async (req, res, next) => {
 
 
 
+
         // save the updated user data in the database
         current_user.save();
-        res.render('user-eportfolio', {user: current_user})
+        res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
     } catch (err) {
         res.status(400);
         return res.send("Database query failed2");
