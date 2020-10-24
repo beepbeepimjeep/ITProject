@@ -53,10 +53,6 @@
             background-color: rgba(246,225,184,1);
         }
 
-        .textbox{
-            background-color: white;
-        }
-
         .nav {
             background-color:rgba(26,38,57,1);
             padding-left: unset;
@@ -105,12 +101,18 @@
     </form>
 
 </div>
-    <!-- textboxs -->
 
+    <!-- textboxs -->
     <div class = "project-body" >
         <% if(project){ %>
             <% for(var i=0; i<project.textboxs.length;i++){%>
-                <div class="textbox" style = "border:3px solid red; top:<%= project.textboxs[i].top%>;left:<%= project.textboxs[i].left%>;height:<%= project.textboxs[i].height%>;width:<%= project.textboxs[i].width%>;position:absolute">
+                <div class="textbox" style = "border:3px solid red;
+                        background: <%= project.textboxs[i].background%>;
+                        top:<%= project.textboxs[i].top%>;
+                        left:<%= project.textboxs[i].left%>;
+                        height:<%= project.textboxs[i].height%>;
+                        width:<%= project.textboxs[i].width%>;
+                        position:absolute">
                     <%=project.textboxs[i].text%>
                 </div>
             <%}%>
@@ -197,6 +199,7 @@
     </script>
     <script>
         function str_to_html(){
+            //turn html string to actual html
             var textbox = document.getElementsByClassName("textbox");
             var i;
             for (i = 0; i < textbox.length; i++) {

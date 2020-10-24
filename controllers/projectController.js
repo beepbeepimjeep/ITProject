@@ -32,6 +32,7 @@ const createNewComment = async (req, res) => {
 
 const createNewTextbox = async (req, res) => {
     try {
+        console.log(req.body.background);
         const current_project = await project.findOneAndUpdate(
             {_id: req.params.project_id},
             {$push:{
@@ -40,6 +41,8 @@ const createNewTextbox = async (req, res) => {
                         "left": req.body.left,
                         "text": req.body.text,
                         "width": req.body.width,
+                        "background": req.body.background,
+                        "border": req.body.border,
                         "height": req.body.height}}}).exec();
     } catch (err){
         res.status(400);
