@@ -31,10 +31,9 @@ const createNewComment = async (req, res) => {
 };
 
 
-
 module.exports = {
     getCurrentProject,
-    createNewComment
+    createNewComment,
 };
 
 

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -8,19 +6,30 @@
     <title>visitor-mainpage</title>
     <style>
         body { background:rgba(26,38,57,1) !important;}
-        #right-panel-language {
-            float: right;
-            margin-top: 20px;
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 160px;
-            height: 60px;
-            font-size: 175%;
-            border:none;
+        .nav-btn {
+            margin-left: 30px;
         }
-        #right-panel-language:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
+        }
+        #right-panel {
+            background-color:transparent;
+            color:rgba(194,77,44,1);
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+        }
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
         }
         #logo {
             margin-top: 8%;
@@ -28,48 +37,42 @@
         }
         #logo1 {
             font-size: 525%;
-        }
-        #loginwith {
-            position: absolute;
-            color: #C24D2C;
-            font-size: 400%;
-            top: 460px;
-            left:330px;
-        }
-        .nav-btn {
-            margin-left: 30px;
-        }
-
-        #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
-            width: 150px;
-            font-size: 150%;
-            border:none;
+            font-family: "Times New Roman", Times, serif;
         }
         #right-panel:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
+            color: rgba(246,225,184,1);
         }
-        .nav {
-            background-color:rgba(26,38,57,1);
-            padding-left: unset;
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
         }
         #searchBar {
+            font-family: "Times New Roman", Times, serif;
             font-size: 50px;
             border-radius: 10px;
-            background: rgba(38,53,77,1);
+            border-color: rgba(26,38,57,1);
             height: 80px;
-            border: none;
         }
         #searchBar:hover{
-            background: #293952;
+            border-color: #293952;
         }
         #Bar{
+            border: rgba(26,38,57,1);
             margin-top: 0%;
             height: 80px;
         }
-
+        #google_translate_element {
+            background-color:rgba(194,77,44,1);
+            color: #C24D2C;
+            border: none; left: 0;
+            bottom: 0;
+            padding: 10px
+        }
     </style>
     <script type = "text/javascript" >
         history.pushState(null, null, location.href);
@@ -81,46 +84,71 @@
     </script>
 
 </head>
-<body class = "container-fluid">
-<nav class="navbar nav">
-    <div class = "ml-auto">
-        <div class ="row">
-            <ul class="navbar-nav nav-btn">
-                <form action="/language" method="get">
-                    <button class = "btn" id="right-panel">Setting</button>
-                </form>
-            </ul>
+<body >
+<div class = "container-fluid">
+    <nav class="navbar nav">
+        <ul class="navbar-nav">
+            <div >
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                <span  class = 'logo_text' style="color:rgb(246,225,184);">E</span>
+                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+            </div>
+        </ul>
+        <div class = "topnav-right">
+            <div class ="row">
+                <ul class="navbar-nav nav-btn">
+                    <form action="/visitor-mainpage" method="get">
+                        <button class = "btn" id="right-panel">Homepage</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn" style = "padding-left: 15px" >
+                    <form action="/language" method="get">
+                        <button class = "btn" id="right-panel">Setting</button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav nav-btn">
+                    <form action="/login" method="get">
+                        <button class = "btn" id="right-panel">Login</button>
+                    </form>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-    
+    </nav>
 
     <div class="row" id="logo">
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
-        <h1 class="my-3" id="logo1" style="color:rgba(246,225,184,1);">E</h1>
+        <h1 class="my-3" id="logo1" style="color:rgb(246,225,184);">E</h1>
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">Portfolio</h1>
     </div>
 
-    <div class="col-md-9 offset-md-2"> 
+    <div class="col-md-9 offset-md-2">
         <form class="input-group" method="GET" id="Bar" action="/searchresult">
             <input class="form-control" type="search" id="searchBar" name="q" placeholder="Search"></input>
             <div class="col-sm-2 col-md-offset-1">
-                <input type = "image" src = "/images/search.svg" 
-                style="filter: invert(90%) sepia(28%) saturate(468%) hue-rotate(325deg) brightness(103%) contrast(93%);"></input>
+                <input type = "image" src = "/images/search.svg"
+                       style="filter: invert(32%) sepia(72%) saturate(986%) hue-rotate(337deg) brightness(97%) contrast(91%);"></input>
             </div>
         </form>
     </div>
 
-    <div class="text" id="loginwith">Login with</div>
-    <form action="/auth/google" method="get">
-        <input type = "image" src = "images/google.svg" class = google_icon></input> 
-    </form>
-    <form action="/auth/linkedin" method="get">
-        <input type = "image" src = "images/linkedin.svg" class = linkedin_icon></input> 
-    </form>
+    <div class="footer">
+        <div id="google_translate_element" ></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google
+                    .translate
+                    .TranslateElement({
+                            pageLanguage: 'en',
+                            includedLanguages: 'en,fr,es,ko,ja,hi,id,zh-CN'
+                        },
+                        'google_translate_element');
+            }
+        </script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
+    </div>
+</div>>
 </body>
 </html>
