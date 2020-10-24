@@ -116,6 +116,10 @@ app.get('/', (req, res) => {
     res.render('visitor-mainpage');
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
 app.get('/file/main',fileRouter)
 
 app.get('/visitor-mainpage', (req, res) => {
@@ -140,6 +144,7 @@ app.use('/user-eportfoliopage', visitorRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
+app.post('/user-eportfolio/user-project/editTheme/:project_id', projectRouter)
 app.get('/user-eportfolio/addNewProject', userRouter)
 
 //search
@@ -186,6 +191,9 @@ function postData (req, res){
 app.post('/file/delete/:fileid/:userid',fileRouter)
 app.get('/user-eportfolio/:projectId/deleteProject',userRouter)
 app.get('file/edit/:userid',fileRouter)
+app.get('/user-eportfolio/userProject/:projectId',userRouter)
+app.post('/user-eportfolio/addFiletoProject',userRouter)
+app.post('/user-eportfolio/savePosition',userRouter)
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
 });

@@ -50,6 +50,7 @@ const createNewTextbox = async (req, res) => {
     }
 };
 
+
 const editProject = async (req, res) => {
     try {
         const current_project = await project.findById({_id: req.params.project_id});
@@ -60,11 +61,25 @@ const editProject = async (req, res) => {
     }
 };
 
+const changeTheme = async (req, res) => {
+    try {
+        const current_project = await project.findOneAndUpdate(
+            {_id: req.params.project_id},
+            {$set:{"projectTheme": req.body.theme}}).exec();
+        res.redirect("back")
+    } catch (err){
+        res.status(400);
+        return res.send("Cannot change theme!")
+    }
+};
+
+
 module.exports = {
     getCurrentProject,
     createNewComment,
     editProject,
-    createNewTextbox
+    createNewTextbox,
+    changeTheme
 };
 
 

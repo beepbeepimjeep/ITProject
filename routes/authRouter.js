@@ -16,12 +16,12 @@ module.exports = app => {
     );
 
     app.get('/auth/google/callback', passport.authenticate('google'),(req, res) => {
-        res.redirect('/user-mainpage');});
+        res.redirect('/user-eportfolio');});
 
 
 
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin'),(req, res) => {
-        res.redirect('/user-mainpage');});
+        res.redirect('/user-eportfolio');});
 
 
     app.get('/api/logout',(req, res)=>{
