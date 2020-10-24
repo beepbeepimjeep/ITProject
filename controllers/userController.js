@@ -62,7 +62,7 @@ const addNewProject = async (req,res,next)=>{
     var newProjDesc = req.query.projectDesc;
     var condition = {_id:req.user._id};
     console.log(req.user)
-    var query = {$push:{project:{"projectName":newProjName,"projectDesc":newProjDesc}}}
+    var query = {$push:{project:{"projectName":newProjName,"projectDesc":newProjDesc,"projectTheme":1}}}
     User.findOneAndUpdate(condition,query,function (err,res){
         if (err) throw err;
         console.log("create new project, project name: "+newProjName+" project desc: "+newProjDesc)
@@ -89,7 +89,9 @@ const displayProject = async (req,res,next)=>{
     try{
         const currentUser = await req.user;
         res.render('userProject',{user:currentUser,projectId:req.params.projectId})
-    }catch (e){}
+    }catch (e){
+
+    }
 }
 
 const editProjectFile = async (req, res, next)=>{
@@ -120,17 +122,25 @@ const savePosition = async (req,res,next)=>{
     //console.log("line 120 index = "+index)
 
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
-    console.log("line 123"+ projectArray)
+    console.log("projectArray :"+ projectArray)
     var index;
+    var position;
     for(let i=0; i<projectArray.project.length; i++){
         var obj = projectArray.project[i];
         if(obj._id==req.body.project){
             console.log("index = "+i)
             index = i;
-            break;
         }
     }
-    const indexString = ["project.",index,".fileInfo.$.fileStyle"]
+    for(let i=0; i<projectArray.project[index].fileInfo.length;i++){
+        var obj = projectArray.project[index].fileInfo[i];
+        if(obj.fileName==req.body.fileName){
+            console.log("position in project.file array is :"+i)
+            position=i;
+        }
+    }
+
+    const indexString = ["project.",index,".fileInfo.",position,".fileStyle"]
     var indexS = indexString.join('');
     console.log(indexS)
 
