@@ -31,7 +31,6 @@
 
         .card {
             width: 400px;
-            height: 400px;
         }
         .nav-btn {
             margin-left: 30px;
@@ -42,15 +41,16 @@
         }
 
         #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
+            background-color:transparent;
+            color:rgba(194,77,44,1);
             width: 150px;
-            font-size: 150%;
+            font-size: 160%;
+            font-weight: normal;
             border:none;
+            text-align: right;
         }
         #right-panel:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
+            color: rgba(246,225,184,1);
         }
         .nav {
             background-color:rgba(26,38,57,1);
@@ -60,8 +60,22 @@
             font-size: 250%;
             margin-left: unset;
         }
-
-
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
+        }
+        #google_translate_element {
+            background-color:rgba(194,77,44,1);
+            color: #C24D2C;
+            border: none; left: 0;
+            bottom: 0;
+            padding: 10px
+        }
     </style>
 </head>
 
@@ -72,7 +86,7 @@
             <div >
                 <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
                 <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                <span  class = 'logo_text' style="color:rgb(194,77,44);">Portfolio</span>
             </div>
         </ul>
         <div class ="topnav-right">
@@ -83,18 +97,13 @@
                     </form>
                 </ul>
                 <ul class="navbar-nav nav-btn">
-                    <form action="/user-mainpage" method="get">
-                        <button class = "btn" id="right-panel">Homepage</button>
+                    <form action="/language" method="get">
+                        <button class = "btn" id="right-panel">Setting</button>
                     </form>
                 </ul>
                 <ul class="navbar-nav nav-btn">
                     <form action="/api/logout" method="get">
                         <button class = "btn" id="right-panel">Logout</button>
-                    </form>
-                </ul>
-                <ul class="navbar-nav nav-btn">
-                    <form action="/language" method="get">
-                        <button class = "btn" id="right-panel">Setting</button>
                     </form>
                 </ul>
             </div>
@@ -120,6 +129,10 @@
                             <img class="card-img-top" src="/file/main/image/<%= user.fileInfo[i].fileName%>" alt="">
                         <% }else if(user.fileInfo[i].fileType=="application/pdf"){ %>
                             <p>Open a PDF file <a href="/file/main/image/<%= user.fileInfo[i].fileName%>"><%=user.fileInfo[i].fileName%></a>.</p>
+                        <% }else if(user.fileInfo[i].fileType=="video/mp4"){ %>
+                                <video width="320" height="240" controls>
+                                    <source src="/file/main/image/<%= user.fileInfo[i].fileName%>" type="video/mp4">
+                                </video>
                         <% } %>
                         <p><%= user.fileInfo[i].fileName%> : <%= user.fileInfo[i].fileDesc%></p>
                         <button class="btn btn-colordelete btn-block mt-4" id="<%= user.fileInfo[i].fileId%>" type="button" onclick="edit(this)" style="margin-bottom: -20px">Edit file desc</button>
@@ -167,4 +180,22 @@
 
     </script>
 </body>
+<div class="footer">
+
+    <div id="google_translate_element" ></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google
+                .translate
+                .TranslateElement({
+                        pageLanguage: 'en',
+                        includedLanguages: 'en,fr,es,ko,ja,hi,id,zh-CN'
+                    },
+                    'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
+</div>
 </html>

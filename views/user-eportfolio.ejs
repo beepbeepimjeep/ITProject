@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>user-eportfolio</title>
+    <title><%=user.userName%>'s eportfolio</title>
     <style>
         body {
             background:rgba(26,38,57,1) !important;
@@ -17,15 +17,16 @@
             float: right;
         }
         #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
+            background-color:transparent;
+            color:rgba(194,77,44,1);
             width: 150px;
-            font-size: 150%;
+            font-size: 160%;
+            font-weight: normal;
             border:none;
+            text-align: right;
         }
         #right-panel:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
+            color: rgba(246,225,184,1);
         }
         .logo_text {
             font-size: 250%;
@@ -51,44 +52,92 @@
         .profile-text {
             margin-right:20px;
         }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
+        }
+        #google_translate_element {
+            background-color:rgba(194,77,44,1);
+            color: #C24D2C;
+            border: none; left: 0;
+            bottom: 0;
+            padding: 10px
+        }
+
     </style>
+    <style>
+    </style>
+
 </head>
 
 <body>
+
+
 <div class = "container-fluid">
     <%if (isUser == undefined) { %>
-        <H1 style="color: #f8fff1">I am not logged in</H1>
+        <nav class="navbar nav">
+            <ul class="navbar-nav">
+                <div >
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </ul>
+            <div class = "topnav-right">
+                <div class ="row">
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/visitor-mainpage" method="get">
+                            <button class = "btn" id="right-panel">Homepage</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/language" method="get">
+                            <button class = "btn" id="right-panel">Setting</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/login" method="get">
+                            <button class = "btn" id="right-panel">Login</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <% } else { %>
-            <H1 style="color: #f8fff1">I am logged in</H1>
-        <% } %>
-    <nav class="navbar nav">
-        <ul class="navbar-nav">
-            <div >
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
-            </div>
-        </ul>
-        <div class = "topnav-right">
-            <div class ="row">
-                <ul class="navbar-nav nav-btn">
-                    <form action="/user-mainpage" method="get">
-                        <button class = "btn" id="right-panel">Homepage</button>
-                    </form>
+            <nav class="navbar nav">
+                <ul class="navbar-nav">
+                    <div >
+                        <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                        <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                        <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                    </div>
                 </ul>
-                <ul class="navbar-nav nav-btn">
-                    <form action="/language" method="get">
-                        <button class = "btn" id="right-panel">Setting</button>
-                    </form>
-                </ul>
-                <ul class="navbar-nav nav-btn">
-                    <form action="/api/logout" method="get">
-                        <button class = "btn" id="right-panel">Logout</button>
-                    </form>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                <div class = "topnav-right">
+                    <div class ="row">
+                        <ul class="navbar-nav nav-btn">
+                            <form action="/file/main" method="get">
+                                <button class = "btn" id="right-panel">Cloud</button>
+                            </form>
+                        </ul>
+                        <ul class="navbar-nav nav-btn">
+                            <form action="/language" method="get">
+                                <button class = "btn" id="right-panel">Setting</button>
+                            </form>
+                        </ul>
+                        <ul class="navbar-nav nav-btn">
+                            <form action="/api/logout" method="get">
+                                <button class = "btn" id="right-panel">Logout</button>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    <% } %>
     <div class="row mt-3">
         <div class="col-lg-1">
             <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="">
@@ -106,9 +155,19 @@
                 Contact <%=user.userName%>
             </button>
 
-            <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#editProfile">
-                Edit Profile
-            </button>
+
+            <%if (isUser == undefined) { %>
+
+            <% } else { %>
+                <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#editProfile">
+                    Edit Profile
+                </button>
+                <a class = "btn  btn-viewproject" href="https://www.linkedin.com/sharing/share-offsite/?url=https://itproject-comp30022.herokuapp.com/user-eportfoliopage/<%= user._id %>"target="_blank" title="Share on LinkedIn">
+                    Share on LinkedIn
+                </a>
+
+            <% } %>
+
         </div>
     </div>
 
@@ -178,33 +237,37 @@
             </div>
         </div>
     </div>
-    <div class="projectBody">
-        <% if(user){ %>
-            <% for(var i=0; i<user.project.length;i++){%>
-                <div class="card-columns mt-5">
-                    <div class="card">
-                        <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
-                        <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
-                        <form method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
-                            <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
-                        </form>
-                        <form action="" method="get">
-                            <button class = "btn btn-block mt-4 btn-viewproject" >
-                                View
-                            </button>
-                        </form>
-                    </div>
+        <%if (isUser == undefined) { %>
+        <% } else { %>
+            <div class="projectBody">
+                <% if(user){ %>
+                    <% for(var i=0; i<user.project.length;i++){%>
+                        <div class="card-columns mt-5">
+                            <div class="card">
+                                <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
+                                <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
+                                <form method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
+                                    <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
+                                </form>
+                                <form action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
+                                  <button class = "btn btn-block mt-4 btn-viewproject" >
+                                    View
+                                  </button>
+                                </form>
+                            </div>
+                        </div>
+                    <%}%>
+                <%}%>
+                <div>
+                    <form action="/user-eportfolio/addNewProject" method="get">
+                        <input type="text" name="projectName" placeholder="new project name"></br>
+                        <input type="text" name="projectDesc" placeholder="project desc"></br>
+                        <button type="submit">add</button>
+                    </form>
+
                 </div>
-            <%}%>
-        <%}%>
-        <div>
-            <form action="/user-eportfolio/addNewProject" method="get">
-                <input type="text" name="projectName" placeholder="new project name"></br>
-                <input type="text" name="projectDesc" placeholder="project desc"></br>
-                <button type="submit">add</button>
-            </form>
-        </div>
-    </div>
+            </div>
+        <% } %>
     <div class="card-columns mt-5">
         <div class="card">
             <h5 class="card-text editprofile">Testing Project 1</h5>
@@ -265,6 +328,24 @@
             return !(!validator.validate(email) || username.length < 5);
         }
     </script>
+        <div class="footer">
+            <div id="google_translate_element" ></div>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google
+                        .translate
+                        .TranslateElement({
+                            pageLanguage: 'en',
+                            includedLanguages: 'en,fr,es,ko,ja,hi,id,zh-CN'
+                        },
+                            'google_translate_element');
+                }
+            </script>
+
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+            <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
+        </div>
 
 </div>
 </body>

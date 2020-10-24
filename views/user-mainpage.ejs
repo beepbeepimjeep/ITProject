@@ -22,20 +22,26 @@
         }
 
         #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
+            background-color:transparent;
+            color:rgba(194,77,44,1);
             width: 150px;
-            font-size: 150%;
+            font-size: 160%;
+            font-weight: normal;
             border:none;
+            text-align: right;
         }
         #right-panel:hover{
-            color: rgba(194,77,44,1);
-            background-color: rgba(246,225,184,1);
+            color: rgba(246,225,184,1);
         }
         .nav {
             background-color:rgba(26,38,57,1);
             padding-left: unset;
         }
+<<<<<<< HEAD
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+=======
         #searchBar {
             font-size: 50px;
             border-radius: 10px;
@@ -49,6 +55,7 @@
         #Bar{
             margin-top: 0%;
             height: 80px;
+>>>>>>> 7fee9c0b5958a76eaaf5522c7ccc1c40b33dc5a7
         }
     </style>
     <script type="text/javascript">
@@ -73,18 +80,34 @@
     </script>
 </head>
 <body>
+<%if (isUser == undefined) { %>
+    <H1 style="color: #f8fff1">I am not logged in</H1>
+<% } else { %>
+    <H1 style="color: #f8fff1">I am logged in</H1>
+<% } %>
     <div class = "container-fluid">
         <nav class="navbar nav">
+<<<<<<< HEAD
+            <ul class="navbar-nav">
+                <div >
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </ul>
+            <div class = "topnav-right">
+=======
             <div class= "ml-auto">
+>>>>>>> 7fee9c0b5958a76eaaf5522c7ccc1c40b33dc5a7
                 <div class ="row">
-                    <ul class="navbar-nav nav-btn">
-                        <form action="/user-eportfolio" method="get">
-                            <button class = "btn" id="right-panel">E-Portfolio</button>
-                        </form>
-                    </ul>
                     <ul class="navbar-nav nav-btn">
                         <form action="/file/main" method="get">
                             <button class = "btn" id="right-panel">Cloud</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn" style = "padding-left: 50px">
+                        <form action="/user-eportfolio" method="get">
+                            <button class = "btn" id="right-panel">E-Portfolio</button>
                         </form>
                     </ul>
                     <ul class="navbar-nav nav-btn">
