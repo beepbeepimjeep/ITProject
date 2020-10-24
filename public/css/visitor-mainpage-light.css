@@ -1,3 +1,34 @@
+body { background: #ffffff !important;}
+#right-panel-language {
+    background-color:rgba(194,77,44,1);
+    color:rgba(246,225,184,1);
+}
+#right-panel-language:hover{
+    color: rgba(194,77,44,1);
+    background-color: rgba(246,225,184,1);
+}
+#loginwith {
+    color: #C24D2C;
+}
+#right-panel {
+    background-color:rgba(194,77,44,1);
+    color:rgba(246,225,184,1);
+}
+#right-panel:hover{
+    color: rgba(194,77,44,1);
+    background-color: rgba(246,225,184,1);
+}
+.nav {
+    background-color:rgba(26,38,57,1);
+}
+#searchBar {
+    background: rgba(38,53,77,1);
+}
+#searchBar:hover{
+    background: #293952;
+}
+
+
 
 .bounce {
   animation-name: bounce;
@@ -15,25 +46,20 @@
 .google_icon {
   height: 100px;
   width: auto;
-  opacity: 1;
-  position: absolute;
   cursor: pointer;
-  top: 460px;
-  left:800px;
 }
 .google_icon:hover {
   animation: bounce 3s infinite alternate;
 }
 
 .linkedin_icon {
-  height: 110px;
+  height: 105px;
   width: auto;
-  opacity: 1;
-  position: absolute;
   cursor: pointer;
-  top: 460px;
-  left:1000px;
 }
 .linkedin_icon:hover {
   animation: bounce 3s infinite alternate;
 }
+
+
+

@@ -1,0 +1,63 @@
+
+body { background:rgba(26,38,57,1) !important;}
+#right-panel-language {
+    background-color:rgba(194,77,44,1);
+    color:rgba(246,225,184,1);
+}
+#right-panel-language:hover{
+    color: rgba(194,77,44,1);
+    background-color: rgba(246,225,184,1);
+}
+#loginwith {
+    color: #C24D2C;
+}
+#right-panel {
+    background-color:rgba(194,77,44,1);
+    color:rgba(246,225,184,1);
+}
+#right-panel:hover{
+    color: rgba(194,77,44,1);
+    background-color: rgba(246,225,184,1);
+}
+.nav {
+    background-color:rgba(26,38,57,1);
+}
+#searchBar {
+    background: rgba(38,53,77,1);
+}
+#searchBar:hover{
+    background: #293952;
+}
+
+
+
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: ease;
+}
+@keyframes bounce {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(30px); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(10px); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
+}
+.google_icon {
+  height: 100px;
+  width: auto;
+  cursor: pointer;
+}
+.google_icon:hover {
+  animation: bounce 3s infinite alternate;
+}
+
+.linkedin_icon {
+  height: 105px;
+  width: auto;
+  cursor: pointer;
+}
+.linkedin_icon:hover {
+  animation: bounce 3s infinite alternate;
+}
