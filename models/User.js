@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     expertise: String,
     occupation: String,
+    iconImage: String,
     fileInfo: [{
         fileId: mongoose.Schema.Types.ObjectId,
         fileName: String,

@@ -37,7 +37,7 @@ const userInfoUpdate = async (req, res, next) => {
         const username = req.body.username;
         const useremail = req.body.useremail;
         const userexpertise = req.body.userexpertise;
-
+        const iconImage = req.body.iconImage;
         if(username != "") {
             current_user["userName"] = username;
         }
@@ -48,7 +48,9 @@ const userInfoUpdate = async (req, res, next) => {
         if(userexpertise != ""){
             current_user["expertise"] = userexpertise;
         }
-
+        if(iconImage!=""){
+            current_user["iconImage"] = iconImage;
+        }
 
 
 
@@ -146,7 +148,6 @@ const savePosition = async (req,res,next)=>{
     const indexString = ["project.",index,".fileInfo.",position,".fileStyle"]
     var indexS = indexString.join('');
     console.log(indexS)
-
 
     var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
     var testQuery = {$set:{[indexS]:req.body.position}}
