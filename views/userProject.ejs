@@ -103,10 +103,6 @@
             height: 100%;
         }
 
-        .textbox{
-            background-color: white;
-        }
-
         .project-body {
             height: 100%;
         }
@@ -522,7 +518,14 @@
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
                 <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
-                    <div class="textbox" style = "border:3px solid whitesmoke; top:<%= user.project[j].textboxs[i].top%>;left:<%= user.project[j].textboxs[i].left%>;height:<%= user.project[j].textboxs[i].height%>;width:<%= user.project[j].textboxs[i].width%>;position:absolute">
+                    <div class="textbox" style = "
+                            border:3px solid whitesmoke;
+                            top:<%= user.project[j].textboxs[i].top%>;
+                            left:<%= user.project[j].textboxs[i].left%>;
+                            height:<%= user.project[j].textboxs[i].height%>;
+                            width:<%= user.project[j].textboxs[i].width%>;
+                            background-color: <%= user.project[j].textboxs[i].background%>;
+                            position:absolute">
                         <%=user.project[j].textboxs[i].text%>
                     </div>
                 <% } %>
