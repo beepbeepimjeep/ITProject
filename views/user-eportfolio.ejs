@@ -140,7 +140,11 @@
     <% } %>
     <div class="row mt-3">
         <div class="col-lg-1">
-            <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="">
+            <%if(user.iconImage){%>
+                <img class="circle-img rounded-circle" src="/file/main/image/<%=user.iconImage%>" alt="user.iconImage">
+            <%}else{%>
+                <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="piggy">
+            <%}%>
         </div>
         <div class="col-lg-9 profile-margin">
             <div class = "row ml-1">
@@ -218,6 +222,17 @@
                 </div>
                 <div class="modal-body">
                     <form onsubmit = "successfulalert()" action= "/user-eportfolio/?_method=PUT" method= "POST">
+                        <div>
+                            <p class="editprofile" value="<%= user.iconImage %>" id = "user_name" >Icon: <%=user.iconImage%></p>
+                                <% if (user) {%>
+                                    <% for(var i=0; i < user.fileInfo.length; i++){ %>
+                                        <%if(user.fileInfo[i].fileStyle==="image/jpeg"){%>
+                                            <input class="editprofile" type="radio" name="iconImage" value="<%=user.fileInfo[i].fileName%>">
+                                            <label><%=user.fileInfo[i].fileType%></label><br>
+                                        <%}%>
+                                    <% } %>
+                                <% } %>
+                        </div>
                         <div>
                             <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Username: <%=user.userName%></p>
                             <input  class="editprofile" type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>

@@ -19,6 +19,7 @@ const userUploadFile = async (req, res, next) => {
         const current_user = await req.user;
         const isLoggedIn = await req.login
         console.log(isLoggedIn)
+        console.log(current_user)
         res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
     } catch (err){
         res.status(400);
@@ -35,7 +36,7 @@ const userInfoUpdate = async (req, res, next) => {
         const username = req.body.username;
         const useremail = req.body.useremail;
         const userexpertise = req.body.userexpertise;
-
+        const iconImage = req.body.iconImage;
         if(username != "") {
             current_user["userName"] = username;
         }
@@ -46,6 +47,10 @@ const userInfoUpdate = async (req, res, next) => {
         if(userexpertise != ""){
             current_user["expertise"] = userexpertise;
         }
+        if(iconImage!=""){
+            current_user["iconImage"] = iconImage;
+        }
+
         // save the updated user data in the database
         current_user.save();
         res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
@@ -141,7 +146,6 @@ const savePosition = async (req,res,next)=>{
     const indexString = ["project.",index,".fileInfo.",position,".fileStyle"]
     var indexS = indexString.join('');
     console.log(indexS)
-
 
     var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
     var testQuery = {$set:{[indexS]:req.body.position}}

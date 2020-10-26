@@ -83,6 +83,7 @@
         function changetheme2() {
             set_theme("./css/visitor-mainpage-light.css");
         }
+
         function supports_html5_storage() {
             try {
                 return 'localStorage' in window && window['localStorage'] !== null;
@@ -91,6 +92,7 @@
             }
         }
         var supports_storage = supports_html5_storage();
+
         function set_theme(theme) {
             $("#main").attr('href', theme);
             if (supports_storage) {
