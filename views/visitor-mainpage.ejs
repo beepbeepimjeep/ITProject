@@ -1,10 +1,11 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="./css/visitor-mainpage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <link id="main" rel="stylesheet" href="./css/visitor-mainpage-default.css" type="text/css"/>
     <title>visitor-mainpage</title>
     <style>
+
         body { background:rgba(26,38,57,1) !important;}
         .nav-btn {
             margin-left: 30px;
@@ -27,10 +28,6 @@
             border:none;
             text-align: right;
         }
-        .logo_text {
-            font-size: 250%;
-            margin-left: unset;
-        }
         #logo {
             margin-top: 8%;
             margin-left: 32%;
@@ -51,10 +48,8 @@
             color: rgba(26,38,57,1);
         }
         #searchBar {
-            font-family: "Times New Roman", Times, serif;
             font-size: 50px;
             border-radius: 10px;
-            border-color: rgba(26,38,57,1);
             height: 80px;
         }
         #searchBar:hover{
@@ -81,7 +76,37 @@
             history.go(1);
         };
     </script>
-
+    <script type="text/javascript">
+        function changetheme1() {
+            set_theme("./css/visitor-mainpage-default.css");
+        }
+        function changetheme2() {
+            set_theme("./css/visitor-mainpage-light.css");
+        }
+        function supports_html5_storage() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        }
+        var supports_storage = supports_html5_storage();
+        function set_theme(theme) {
+            $("#main").attr('href', theme);
+            if (supports_storage) {
+                localStorage.theme = theme;
+            }
+        }
+        if (supports_storage) {
+            var theme = localStorage.theme;
+            if (theme) {
+                set_theme(theme);
+            }
+        } else {
+            $('#theme-dropdown').hide();
+        }
+    </script>
+    
 </head>
 <body >
 <div class = "container-fluid">
@@ -113,7 +138,6 @@
             </div>
         </div>
     </nav>
-
     <div class="row" id="logo">
         <h1 class="my-4" id="logo1" style="color:rgba(194,77,44,1);">My</h1>
         <h1 class="my-3" id="logo1" style="color:rgb(246,225,184);">E</h1>
@@ -148,6 +172,7 @@
 
         <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
     </div>
-</div>>
+</div>
 </body>
 </html>
+

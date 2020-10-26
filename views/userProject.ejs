@@ -4,6 +4,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <% if (user) {%>
+        <% for(var j=0; j<user.project.length;j++){%>
+            <% if(user.project[j]._id==projectId){ %>
+                <% if(user.project[j].projectTheme==2){ %>
+                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-light.css">
+                <% }else{ %>
+                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-default.css">
+            <% } %>
+        <% } %>
+    <% } %>
     <title>User Project</title>
     <style>
         #container {
@@ -36,14 +46,208 @@
             width: 400px;
             border-style: none;
         }
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+        #right-panel {
+            background-color:transparent;
+            color:rgba(194,77,44,1);
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+        }
+        #right-panel:hover{
+            color: rgba(246,225,184,1);
+        }
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+
+        .btn-viewproject {
+            background-color: lightgoldenrodyellow;
+        }
+        .editprofile {
+            margin: 10px;
+        }
+        .nav {
+            background-color:rgba(26,38,57,1);
+            padding-left: unset;
+        }
+        .profile-text {
+            margin-right:20px;
+        }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
+        }
+
+        hr {
+            color: #ffffff;
+            position: absolute;
+        }
+
+
+        html, body {
+            height: 100%;
+        }
+
+        .textbox{
+            background-color: white;
+        }
+
+        .project-body {
+            height: 100%;
+        }
+
+
+        .popup .resizer-right {
+            width: 5px;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: e-resize;
+        }
+
+        .popup .resizer-bottom {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: n-resize;
+        }
+
+        .popup .resizer-both {
+            width: 5px;
+            height: 5px;
+            background: transparent;
+            z-index: 10;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: nw-resize;
+        }
+
+        /*NOSELECT*/
+
+        .popup * {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+        }
     </style>
 </head>
 
-<body>
+<body onload = "onload();">
 
 <div class="container-fluid">
-    <div class="container-fluid">
-        <button class="btn btn-colordelete btn-block mt-4" type="button" onclick="edit(this)">edit file to project</button>
+    <%if (isUser == undefined) { %>
+        <nav class="navbar nav">
+            <ul class="navbar-nav">
+                <div >
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </ul>
+            <div class = "topnav-right">
+                <div class ="row">
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/visitor-mainpage" method="get">
+                            <button class = "btn" id="right-panel">Homepage</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/language" method="get">
+                            <button class = "btn" id="right-panel">Setting</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/login" method="get">
+                            <button class = "btn" id="right-panel">Login</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <% } else { %>
+        <nav class="navbar nav">
+            <ul class="navbar-nav">
+                <div >
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
+            </ul>
+            <div class = "topnav-right">
+                <div class ="row">
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/file/main" method="get">
+                            <button class = "btn" id="right-panel">Cloud</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <button type="button" class="btn btn-viewproject" id="right-panel" data-toggle="modal" data-target="#changeTheme">
+                            Setting
+                        </button>
+                    </ul>
+                    <ul class="navbar-nav nav-btn">
+                        <form action="/api/logout" method="get">
+                            <button class = "btn" id="right-panel">Logout</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Redirect to edit page -->
+        <form action= "/user-eportfolio/user-project/edit-project/<%=projectId%>" method="get">
+            <button class = "btn btn-colordelete mt-4" style="background-color: #f8fff1" id="right-panel">Edit project</button>
+        </form>
+    <% } %>
+        <div class="modal fade" id="changeTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Theme</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/user-eportfolio/user-project/editTheme/<%=projectId%>" class="theme" method="POST">
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Dark</input>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Light</input>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+        <button class="btn btn-colordelete mt-4" style="float: right" type="button" onclick="edit(this)">edit file to project</button>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -142,9 +346,81 @@
         <% } %>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="commentForm" tabindex="-1" role="dialog" aria-labelledby="commentFormLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Leave your comments here!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="/user-eportfolio/user-project/addComment/<%=projectId%>" class="contact-form" method="POST" >
+                    <div>
+                        <label for="visitor" class="col-form-label">Visitor Name</label>
+                        <input type="text" id="visitor" name="visitorName" placeholder="Type in your name" class="form-control" required />
+                    </div>
+                    <div>
+                        <label for="entercomment" class="col-form-label" >Comments</label>
+                        <textarea id="entercomment" name="comment" class="form-control" placeholder="Leave a message" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">Send</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid"  id="comment">
+
+    <h2 style="color:#3D5476;">Comments</h2>
+    <!-- Button trigger modal -->
+
+    <% if (user) { %>
+        <% for(var j=0; j<user.project.length;j++){%>
+            <% if(user.project[j]._id==projectId){ %>
+                <div id="container">
+                    <% user.project[j].comments.forEach( function (comment) { %>
+                        <div id="comment_text" class="card card-body mb-3">
+                            <h4 class="card-title"><%= comment.visitorName%> : </h4>
+                            <h5 class="card-text"><%= comment.comment%></h5>
+                        </div>
+                    <% })%>
+                </div>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <p> No Files to show</p>
+    <% } %>
+
+    <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
+        Add Your Comment
+    </button>
+</div>
+
+<br/>
+<div id="submitted">
+</div>
+<script language="JavaScript" type="text/javascript" src="/js/bootstrap.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        $('.carousel').carousel({
+            interval: 5000
+        })
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script>
+</script>
 <script>
     var container = document.querySelector("#container");
     var activeItem = null;
@@ -237,6 +513,40 @@
     }
 
 </script>
+
+
+
+<!-- textboxs -->
+<div class = "project-body" >
+    <% if (user) {%>
+        <% for(var j=0; j<user.project.length;j++){%>
+            <% if(user.project[j]._id==projectId){ %>
+                <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
+                    <div class="textbox" style = "border:3px solid whitesmoke; top:<%= user.project[j].textboxs[i].top%>;left:<%= user.project[j].textboxs[i].left%>;height:<%= user.project[j].textboxs[i].height%>;width:<%= user.project[j].textboxs[i].width%>;position:absolute">
+                        <%=user.project[j].textboxs[i].text%>
+                    </div>
+                <% } %>
+            <% } %>
+        <% } %>
+        <% } %>
+    <% } %>
+</div>
+
 </body>
+<script>
+    function onload(){
+        str_to_html();
+    }
+
+    function str_to_html(){
+        //turn html string to actual html
+        var textbox = document.getElementsByClassName("textbox");
+        var i;
+        for (i = 0; i < textbox.length; i++) {
+            console.log(textbox[i].innerText);
+            textbox[i].innerHTML = textbox[i].innerText;
+        }
+    }
+</script>
 
 </html>

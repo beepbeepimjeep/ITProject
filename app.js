@@ -133,6 +133,14 @@ app.use('/user-mainpage', userRouter);
 app.get('/user-mainpage', userRouter)
 app.get('/user-eportfolio', userRouter)
 app.use('/user-eportfolio', userRouter);
+app.post('/user-eportfolio/user-project/editTheme/:projectId', userRouter);
+
+app.get('/user-eportfolio/user-project/edit-project/:projectId', userRouter);
+app.post('/user-eportfolio/user-project/edit-project/:projectId', userRouter);
+
+app.post('/user-eportfolio/user-project/addComment/:projectId', userRouter);
+
+app.get('/user-eportfolio/addNewProject', userRouter);
 
 //visitor
 app.use('/user-eportfoliopage', visitorRouter);
@@ -144,7 +152,7 @@ app.use('/user-eportfoliopage', visitorRouter);
 app.use('/user-eportfolio/user-project', projectRouter)
 app.get('/user-eportfolio/user-project/:project_id', projectRouter)
 app.post('/user-eportfolio/user-project/:project_id', projectRouter)
-app.get('/user-eportfolio/addNewProject', userRouter)
+
 
 //search
 const searchRouter = require('./routes/searchRouter')
