@@ -7,7 +7,7 @@
     <title><%=user.userName%>'s eportfolio</title>
     <style>
         body {
-            background:rgba(26,38,57,1) !important;
+            background:rgba(26,38,57,1);
         }
         .nav-btn {
             margin-left: 30px;
@@ -38,6 +38,8 @@
         .circle-img {
             width: 120px;
             height: 120px;
+            border-style: solid;
+            border-color: lightgoldenrodyellow;
         }
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
@@ -68,7 +70,6 @@
             bottom: 0;
             padding: 10px
         }
-
     </style>
     <style>
     </style>
@@ -138,7 +139,7 @@
                 </div>
             </nav>
     <% } %>
-    <div class="row mt-3">
+    <div class="row mt-3" style="border-bottom: 2px solid; border-bottom-color: lightgoldenrodyellow; padding-bottom: 40px">
         <div class="col-lg-1">
             <%if(user.iconImage){%>
                 <img class="circle-img rounded-circle" src="/file/main/image/<%=user.iconImage%>" alt="user.iconImage">
@@ -260,58 +261,52 @@
                         <div class="card-columns mt-5">
                             <div class="card">
                                 <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
-                                <p class="card-text editprofile"><%= user.project[i].projectDesc%></p>
-                                <form method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
-                                    <button class="btn btn-block mt-4 btn-viewproject" >Delete</button>
-                                </form>
-                                <form action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
-                                  <button class = "btn btn-block mt-4 btn-viewproject" >
-                                    View
-                                  </button>
-                                </form>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Project Desciption : <%= user.project[i].projectDesc%></li>
+                                    <li class="list-group-item">Author : <%= user.userName%></li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item" style="border-style: none">
+                                        <form class="projectForm" method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
+                                            <button class="btn btn-primary" >DeleteProj</button>
+                                        </form>
+                                    </li>
+                                    <li class="list-group-item" style="border-style: none">
+                                        <form class="projectForm" action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
+                                            <button class = "btn btn-primary" >
+                                                ViewProject
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     <%}%>
                 <%}%>
-                <div>
-                    <form action="/user-eportfolio/addNewProject" method="get">
-                        <input type="text" name="projectName" placeholder="new project name"></br>
-                        <input type="text" name="projectDesc" placeholder="project desc"></br>
-                        <button type="submit">add</button>
-                    </form>
-
-                </div>
             </div>
         <% } %>
-    <div class="card-columns mt-5">
-        <div class="card">
-            <h5 class="card-text editprofile">Testing Project 1</h5>
-            <p class="card-text editprofile">Some description here</p>
-            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
-                <button class = "btn btn-block mt-4 btn-viewproject" >
-                    View
-                </button>
+
+        <div class="projectForm" style="padding-bottom: 100px; margin-top: 40px">
+            <form class="form-group col" action="/user-eportfolio/addNewProject" method="get" style="padding-left: 0px">
+                <div class="form-group">
+                    <div class="input-group col-sm-4" style="margin-left: -15px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">Project Name</span>
+                        </div>
+                        <input class="form-control" type="text" name="projectName" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-sm-4" style="margin-left: -15px">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">Project Descs</span>
+                        </div>
+                        <input class="form-control" type="text" name="projectDesc">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-light" style="margin-left: 0px">add</button>
             </form>
         </div>
-        <div class="card">
-            <h5 class="card-text editprofile">Testing Project 2</h5>
-            <p class="card-text editprofile">Some description here</p>
-            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
-                <button class = "btn btn-block mt-4 btn-viewproject" >
-                    View
-                </button>
-            </form>
-        </div>
-        <div class="card">
-            <h5 class="card-text editprofile">Testing Project 3</h5>
-            <p class="card-text editprofile">Some description here</p>
-            <form action="/user-eportfolio/user-project/5f6df2e920bc233fba785765" method="get">
-                <button class = "btn btn-block mt-4 btn-viewproject" >
-                    View
-                </button>
-            </form>
-        </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -319,8 +314,6 @@
         function successfulalert() {
             alert("Update completed.");
         }
-    </script>
-    <script>
         // shows edit info form onclick
         function toggle_visibility(){
             test_visibility(document.getElementById("username"));
@@ -343,7 +336,7 @@
             return !(!validator.validate(email) || username.length < 5);
         }
     </script>
-        <div class="footer">
+        <div class="footer" >
             <div id="google_translate_element" ></div>
             <script type="text/javascript">
                 function googleTranslateElementInit() {
