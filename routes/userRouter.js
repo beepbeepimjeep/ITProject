@@ -13,4 +13,12 @@ userRouter.get('/user-eportfolio/:projectId/deleteProject', requireLogin,userCon
 userRouter.get('/user-eportfolio/userProject/:projectId', requireLogin,userController.displayProject)
 userRouter.post('/user-eportfolio/addFiletoProject', requireLogin, userController.editProjectFile)
 userRouter.post('/user-eportfolio/savePosition',requireLogin,userController.savePosition)
+userRouter.post('/user-eportfolio/user-project/editTheme/:projectId', requireLogin,userController.changeTheme);
+
+userRouter.get('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.editProject);
+userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextbox);
+
+
+userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);
+
 module.exports = userRouter;

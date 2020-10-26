@@ -30,8 +30,6 @@ const userInfoUpdate = async (req, res, next) => {
     try {
         const current_user = await req.user;
         const isLoggedIn = await req.login
-
-
         //get the change
         //to be implemented: at least one field edited
         const username = req.body.username;
@@ -48,10 +46,6 @@ const userInfoUpdate = async (req, res, next) => {
         if(userexpertise != ""){
             current_user["expertise"] = userexpertise;
         }
-
-
-
-
         // save the updated user data in the database
         current_user.save();
         res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
@@ -91,7 +85,8 @@ const deleteProject =async (req,res,next)=>{
 const displayProject = async (req,res,next)=>{
     try{
         const currentUser = await req.user;
-        res.render('userProject',{user:currentUser,projectId:req.params.projectId})
+        const isLoggedIn = await req.login
+        res.render('userProject',{user:currentUser,projectId:req.params.projectId, isUser: isLoggedIn})
     }catch (e){
 
     }
@@ -166,6 +161,92 @@ const savePosition = async (req,res,next)=>{
     res.redirect('back')
 }
 
+const changeTheme = async (req, res, next) => {
+    try {
+    var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+    var query = {$set:{"project.$.projectTheme":req.body.theme}}
+    await User.findOneAndUpdate (condition, query, function ( err, res ) {
+    if (err) throw err;
+            console.log("Theme changed")
+            User.close;
+    })
+    } catch (err){
+        res.status(400);
+        return res.send("Cannot change theme!")
+    }
+        res.redirect("back")
+
+};
+
+
+const createNewTextbox = async (req, res) => {
+    try {
+        console.log(req.body.background);
+        var text_top = req.body.top;
+        var text_left = req.body.left;
+        var text_text = req.body.text;
+        var text_width = req.body.width;
+        var text_background = req.body.background;
+        var text_border = req.body.border;
+        var text_height = req.body.height;
+        var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+        var query = {$push:{ "project.$.textboxs":{
+        "top": text_top,
+        "left": text_left,
+        "text": text_text,
+        "width": text_width,
+        "background": text_background,
+        "border": text_border,
+        "height": text_height}}}
+    await User.findOneAndUpdate (condition, query, function ( err, res ) {
+    if (err) throw err;
+    User.close;
+    })
+    } catch (err){
+        res.status(400);
+        return res.send("Cannot add new textbox")
+    }
+    res.redirect("back")
+};
+
+
+const editProject = async (req, res) => {
+    try {
+            const current_user = await req.user;
+            const current_projectId = await req.params.projectId
+            const isLoggedIn = await req.login
+            res.render('user-editproject', {user: current_user, projectId:current_projectId, isUser: isLoggedIn})
+
+    /*try {
+        const current_project = await project.findById({_id: req.params.projectId});
+        res.render('user-editproject', {project: current_project})*/
+    } catch (err){
+        res.status(400);
+        return res.send("Database query failed")
+    }
+};
+
+const createNewComment = async (req, res) => {
+    try {
+    var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+    var query = {$addToSet:{ "project.$.comments":{
+            "comment": req.body.comment,
+            "visitorName": req.body.visitorName
+            }}}
+    console.log(query +"line236 see this query")
+    console.log(req.body.visitorName, req.body.comment)
+    await User.findOneAndUpdate (condition, query, function ( err, res ) {
+    if (err) throw err;
+    User.close;
+    })
+    } catch (err){
+        res.status(400);
+        return res.send("Cannot add new comment")
+    }
+    res.redirect("back")
+};
+
+
 module.exports = {
     getCurrentUser,
     userUploadFile,
@@ -174,5 +255,9 @@ module.exports = {
     deleteProject,
     displayProject,
     editProjectFile,
-    savePosition
+    savePosition,
+    changeTheme,
+    editProject,
+    createNewTextbox,
+    createNewComment
 };
