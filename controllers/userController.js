@@ -19,6 +19,7 @@ const userUploadFile = async (req, res, next) => {
         const current_user = await req.user;
         const isLoggedIn = await req.login
         console.log(isLoggedIn)
+        console.log(current_user)
         res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
     } catch (err){
         res.status(400);
