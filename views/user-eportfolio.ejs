@@ -226,9 +226,9 @@
                             <p class="editprofile" value="<%= user.iconImage %>" id = "user_name" >Icon: <%=user.iconImage%></p>
                                 <% if (user) {%>
                                     <% for(var i=0; i < user.fileInfo.length; i++){ %>
-                                        <%if(user.fileInfo[i].fileStyle==="image/jpeg"){%>
+                                        <%if(user.fileInfo[i].fileType=="image/jpeg"){%>
                                             <input class="editprofile" type="radio" name="iconImage" value="<%=user.fileInfo[i].fileName%>">
-                                            <label><%=user.fileInfo[i].fileType%></label><br>
+                                            <label><%=user.fileInfo[i].fileName%></label><br>
                                         <%}%>
                                     <% } %>
                                 <% } %>
