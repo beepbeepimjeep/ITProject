@@ -83,27 +83,29 @@
         function changetheme2() {
             set_theme("./css/visitor-mainpage-light.css");
         }
-        function supports_html5_storage(){
-            try{
-                return 'localStorage' in window && window['localStorage']!==null;
-            }catch(e){
+
+        function supports_html5_storage() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
                 return false;
             }
         }
         var supports_storage = supports_html5_storage();
-        function set_theme(theme){
-            $("#main").attr('href',theme);
-            if(supports_storage){
-            localStorage.theme=theme;
+
+        function set_theme(theme) {
+            $("#main").attr('href', theme);
+            if (supports_storage) {
+                localStorage.theme = theme;
             }
         }
-        if(supports_storage) {
+        if (supports_storage) {
             var theme = localStorage.theme;
             if (theme) {
                 set_theme(theme);
-            } else {
-                $('#theme-dropdown').hide();
             }
+        } else {
+            $('#theme-dropdown').hide();
         }
     </script>
     
@@ -172,7 +174,7 @@
 
         <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
     </div>
-</div>>
+</div>
 </body>
 </html>
 
