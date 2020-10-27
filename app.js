@@ -202,6 +202,7 @@ app.get('file/edit/:userid',fileRouter)
 app.get('/user-eportfolio/userProject/:projectId',userRouter)
 app.post('/user-eportfolio/addFiletoProject',userRouter)
 app.post('/user-eportfolio/savePosition',userRouter)
+app.post('/user-eportfolio/deleteProjectFile',userRouter)
 app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
 });

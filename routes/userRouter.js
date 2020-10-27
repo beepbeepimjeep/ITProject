@@ -20,5 +20,5 @@ userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', require
 
 
 userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);
-
+userRouter.post('/user-eportfolio/deleteProjectFile',requireLogin,userController.deleteProjectFile);
 module.exports = userRouter;
