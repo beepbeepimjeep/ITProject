@@ -291,7 +291,9 @@
                                     <td><%=user.project[j].fileInfo[i].fileName%></td>
                                     <td><%=user.project[j].fileInfo[i].fileType%></td>
                                     <td>
-                                        <form method="POST" action="/user-eportfolio/user-project/deleteProjectFile/<%=user.project[j].fileInfo[i].fileId%>">
+                                        <form action="/user-eportfolio/deleteProjectFile" method="post" >
+                                            <input type="text" name="fileId" value="<%=user.project[j].fileInfo[i].fileId%>" style="visibility: hidden">
+                                            <input type="text" name="projectId" value="<%=projectId%>" style="visibility: hidden">
                                             <button class="btn btn-colordelete">Delete</button>
                                         </form>
                                     </td>
