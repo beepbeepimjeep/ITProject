@@ -194,7 +194,7 @@ const createNewTextbox = async (req, res) => {
         var text_border = req.body.border;
         var text_height = req.body.height;
         var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
-        var query = {$push:{ "project.$.textboxs":{
+        var query = {$addToSet:{ "project.$.textboxs":{
         "top": text_top,
         "left": text_left,
         "text": text_text,
