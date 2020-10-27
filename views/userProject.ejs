@@ -403,7 +403,7 @@
     <% if (user) { %>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
-                <div id="container">
+                <div class="container-fluid">
                     <% user.project[j].comments.forEach( function (comment) { %>
                         <div id="comment_text" class="card card-body mb-3">
                             <h4 class="card-title"><%= comment.visitorName%> : </h4>
