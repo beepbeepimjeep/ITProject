@@ -36,6 +36,7 @@ const userInfoUpdate = async (req, res, next) => {
         const username = req.body.username;
         const useremail = req.body.useremail;
         const userexpertise = req.body.userexpertise;
+        const userdescription = req.body.userdescription;
         const iconImage = req.body.iconImage;
         if(username != "") {
             current_user["userName"] = username;
@@ -47,6 +48,9 @@ const userInfoUpdate = async (req, res, next) => {
         if(userexpertise != ""){
             current_user["expertise"] = userexpertise;
         }
+        if(userdescription != ""){
+                    current_user["description"] = userdescription;
+                }
         if(iconImage!=""){
             current_user["iconImage"] = iconImage;
         }

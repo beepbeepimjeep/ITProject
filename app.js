@@ -143,7 +143,8 @@ app.post('/user-eportfolio/user-project/addComment/:projectId', userRouter);
 app.get('/user-eportfolio/addNewProject', userRouter);
 
 //visitor
-app.use('/user-eportfoliopage', visitorRouter);
+app.use('/eportfolio', visitorRouter);
+app.get('/eportfolio/:user_id/project/:project_id', visitorRouter)
 
 //check url
 //app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
