@@ -44,6 +44,9 @@
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
         }
+        .btn-deleteproject {
+            background-color: rgba(194,77,44,1);
+        }
         .editprofile {
             margin: 10px;
         }
@@ -97,11 +100,6 @@
                         </form>
                     </ul>
                     <ul class="navbar-nav nav-btn">
-                        <form action="/language" method="get">
-                            <button class = "btn" id="right-panel">Setting</button>
-                        </form>
-                    </ul>
-                    <ul class="navbar-nav nav-btn">
                         <form action="/login" method="get">
                             <button class = "btn" id="right-panel">Login</button>
                         </form>
@@ -126,11 +124,6 @@
                             </form>
                         </ul>
                         <ul class="navbar-nav nav-btn">
-                            <form action="/language" method="get">
-                                <button class = "btn" id="right-panel">Setting</button>
-                            </form>
-                        </ul>
-                        <ul class="navbar-nav nav-btn">
                             <form action="/api/logout" method="get">
                                 <button class = "btn" id="right-panel">Logout</button>
                             </form>
@@ -139,7 +132,7 @@
                 </div>
             </nav>
     <% } %>
-    <div class="row mt-3" style="border-bottom: 2px solid; border-bottom-color: lightgoldenrodyellow; padding-bottom: 40px">
+    <div class="row mt-3" style="border-bottom: 2px solid; border-bottom-color: lightgoldenrodyellow; padding-bottom: 40px; margin-bottom:50px ">
         <div class="col-lg-1">
             <%if(user.iconImage){%>
                 <img class="circle-img rounded-circle" src="/file/main/image/<%=user.iconImage%>" alt="user.iconImage">
@@ -153,8 +146,10 @@
             </div>
 
             <div class = "row ml-1">
-                <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_email>Email: <%=user.email%></p>
                 <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+            </div>
+            <div class = "row ml-1">
+                <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_description><%=user.description%></p>
             </div>
             <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
                 Contact <%=user.userName%>
@@ -224,7 +219,7 @@
                 <div class="modal-body">
                     <form onsubmit = "successfulalert()" action= "/user-eportfolio/?_method=PUT" method= "POST">
                         <div>
-                            <p class="editprofile" value="<%= user.iconImage %>" id = "user_name" >Icon: <%=user.iconImage%></p>
+                            <p class="editprofile" value="<%= user.iconImage %>" id = "user_name" >Current profile image: <%=user.iconImage%></p>
                                 <% if (user) {%>
                                     <% for(var i=0; i < user.fileInfo.length; i++){ %>
                                         <%if(user.fileInfo[i].fileType=="image/jpeg"){%>
@@ -235,16 +230,20 @@
                                 <% } %>
                         </div>
                         <div>
-                            <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Username: <%=user.userName%></p>
+                            <p class="editprofile" value="<%= user.userName %>" id = "user_name" >Current username: <%=user.userName%></p>
                             <input  class="editprofile" type="text" id="username" name="username" minlength="5" placeholder="Enter new username" style="display:none;"><br>
                         </div>
                         <div>
-                            <p class="editprofile" value="<%= user.email %>" id = user_email>Email: <%=user.email%></p>
+                            <p class="editprofile" value="<%= user.email %>" id = user_email>Current email: <%=user.email%></p>
                             <input  class="editprofile" type="email" id="useremail" name="useremail" placeholder="Enter new email" style="display:none;"><br>
                         </div>
                         <div>
-                            <p class="editprofile" value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+                            <p class="editprofile" value="<%= user.expertise %>" id = user_expertise>Current expertise: <%=user.expertise%></p>
                             <input  class="editprofile" type="expertise" id="userexpertise" name="userexpertise" placeholder="Enter new expertise" style="display:none;"><br>
+                        </div>
+                        <div>
+                            <p class="editprofile" value="<%= user.description %>" id = user_expertise>Current description: <%=user.description%></p>
+                            <input  class="editprofile" type="description" id="userdescription" name="userdescription" placeholder="Enter new description" style="display:none;"><br>
                         </div>
                         <button class ="btn mt-4 btn-viewproject" type = "button" onclick="toggle_visibility()" id = edit_button>Edit</button>
                         <button class ="btn mt-4 btn-viewproject" type= "submit" style="display:none;" id = "submit_button"> Submit </button>
@@ -253,12 +252,13 @@
             </div>
         </div>
     </div>
+
+        <!--display projects and add -->
         <%if (isUser == undefined) { %>
-        <% } else { %>
-            <div class="projectBody">
+            <div class="projectBody ">
                 <% if(user){ %>
                     <% for(var i=0; i<user.project.length;i++){%>
-                        <div class="card-columns mt-5">
+                        <div class="card-columns" style = "margin-bottom: 50px; margin-top: 0px">
                             <div class="card">
                                 <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
                                 <ul class="list-group list-group-flush">
@@ -267,14 +267,9 @@
                                 </ul>
                                 <ul class="list-group list-group-horizontal">
                                     <li class="list-group-item" style="border-style: none">
-                                        <form class="projectForm" method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
-                                            <button class="btn btn-primary" >DeleteProj</button>
-                                        </form>
-                                    </li>
-                                    <li class="list-group-item" style="border-style: none">
-                                        <form class="projectForm" action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
-                                            <button class = "btn btn-primary" >
-                                                ViewProject
+                                        <form class="projectForm" action="/eportfolio/<%=user._id%>/project/<%=user.project[i]._id%>" method="get">
+                                            <button class = "btn  btn-viewproject" style = "width: 180px" >
+                                                View
                                             </button>
                                         </form>
                                     </li>
@@ -284,29 +279,69 @@
                     <%}%>
                 <%}%>
             </div>
+
+        <% } else { %>
+
+            <div class="projectBody ">
+                <% if(user){ %>
+                    <% for(var i=0; i<user.project.length;i++){%>
+                        <div class="card-columns" style = "margin-bottom: 50px; margin-top: 0px">
+                            <div class="card">
+                                <h5 class="card-text editprofile"><%= user.project[i].projectName%></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Project Desciption : <%= user.project[i].projectDesc%></li>
+                                    <li class="list-group-item">Author : <%= user.userName%></li>
+                                </ul>
+                                <ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item" style="border-style: none">
+                                        <form class="projectForm" action="/user-eportfolio/userProject/<%=user.project[i]._id%>" method="get">
+                                            <button class = "btn  btn-viewproject" style = "width: 180px" >
+                                                View
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li class="list-group-item" style="border-style: none">
+                                        <form class="projectForm" method="get" action="/user-eportfolio/<%=user.project[i]._id%>/deleteProject">
+                                            <button class="btn  btn-deleteproject" style = "width: 180px">Delete</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <%}%>
+                <%}%>
+            </div>
+
+            <form action="/user-eportfolio/addNewProject" method="get" style="padding-bottom: 80px; margin-top: 100px">
+                <div class="form-row align-items-center">
+                    <div class="col-sm-3 my-1">
+                        <label class="sr-only" for="inlineFormInputGroupUsername"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend" >
+                                <div class="input-group-text" style = "background-color: lightgoldenrodyellow">Project Name</div>
+                            </div>
+                            <input type="text" class="form-control"   name="projectName"  placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 my-1">
+                        <label class="sr-only" for="inlineFormInputGroupUsername"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style = "background-color: lightgoldenrodyellow">Description</div>
+                            </div>
+                            <input type="text" class="form-control" name="projectDesc" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="submit" class="btn btn-deleteproject">Add a new project</button>
+                    </div>
+                </div>
+            </form>
         <% } %>
 
-        <div class="projectForm" style="padding-bottom: 100px; margin-top: 40px">
-            <form class="form-group col" action="/user-eportfolio/addNewProject" method="get" style="padding-left: 0px">
-                <div class="form-group">
-                    <div class="input-group col-sm-4" style="margin-left: -15px">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="">Project Name</span>
-                        </div>
-                        <input class="form-control" type="text" name="projectName" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group col-sm-4" style="margin-left: -15px">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="">Project Descs</span>
-                        </div>
-                        <input class="form-control" type="text" name="projectDesc">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-light" style="margin-left: 0px">add</button>
-            </form>
-        </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -319,6 +354,7 @@
             test_visibility(document.getElementById("username"));
             test_visibility(document.getElementById("useremail"));
             test_visibility(document.getElementById("userexpertise"));
+            test_visibility(document.getElementById("userdescription"));
             test_visibility(document.getElementById("edit_button"));
             test_visibility(document.getElementById("submit_button"));
             function test_visibility(x){
@@ -336,7 +372,7 @@
             return !(!validator.validate(email) || username.length < 5);
         }
     </script>
-        <div class="footer" >
+        <div class="footer" style = "margin-top: 300px">
             <div id="google_translate_element" ></div>
             <script type="text/javascript">
                 function googleTranslateElementInit() {
