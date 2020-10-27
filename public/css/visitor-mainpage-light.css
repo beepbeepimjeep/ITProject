@@ -19,7 +19,8 @@ body { background: #ffffff !important;}
     background-color: rgba(246,225,184,1);
 }
 .nav {
-    background-color:rgba(26,38,57,1);
+    background-color: #ffffff;
+    padding-left: unset;
 }
 #searchBar {
     background: rgba(38,53,77,1);

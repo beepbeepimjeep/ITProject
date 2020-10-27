@@ -1,26 +1,28 @@
 
 body { background:rgba(26,38,57,1) !important;}
-#right-panel-language {
-    background-color:rgba(194,77,44,1);
-    color:rgba(246,225,184,1);
-}
-#right-panel-language:hover{
-    color: rgba(194,77,44,1);
-    background-color: rgba(246,225,184,1);
-}
-#loginwith {
-    color: #C24D2C;
-}
 #right-panel {
-    background-color:rgba(194,77,44,1);
-    color:rgba(246,225,184,1);
+    background-color:transparent;
+    color:rgba(194,77,44,1);
+    width: 150px;
+    font-size: 160%;
+    font-weight: normal;
+    border:none;
+    text-align: right;
+}
+#logo {
+    margin-top: 8%;
+    margin-left: 32%;
+}
+#logo1 {
+    font-size: 525%;
 }
 #right-panel:hover{
-    color: rgba(194,77,44,1);
-    background-color: rgba(246,225,184,1);
+    color: rgba(246,225,184,1);
 }
+
 .nav {
     background-color:rgba(26,38,57,1);
+    padding-left: unset;
 }
 #searchBar {
     background: rgba(38,53,77,1);

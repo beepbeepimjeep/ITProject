@@ -76,10 +76,7 @@
         .editprofile {
             margin: 10px;
         }
-        .nav {
-            background-color:rgba(26,38,57,1);
-            padding-left: unset;
-        }
+
         .profile-text {
             margin-right:20px;
         }
@@ -199,11 +196,6 @@
                         <form action="/file/main" method="get">
                             <button class = "btn" id="right-panel">Cloud</button>
                         </form>
-                    </ul>
-                    <ul class="navbar-nav nav-btn">
-                        <button type="button" class="btn btn-viewproject" id="right-panel" data-toggle="modal" data-target="#changeTheme">
-                            Setting
-                        </button>
                     </ul>
                     <ul class="navbar-nav nav-btn">
                         <form action="/api/logout" method="get">
@@ -528,6 +520,7 @@
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
                 <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
+
                     <div class="textbox" style = "top:<%= user.project[j].textboxs[i].top%>;
                             left:<%= user.project[j].textboxs[i].left%>;
                             height:<%= user.project[j].textboxs[i].height%>;
