@@ -194,7 +194,7 @@ const createNewTextbox = async (req, res) => {
         var text_border = req.body.border;
         var text_height = req.body.height;
         var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
-        var query = {$push:{ "project.$.textboxs":{
+        var query = {$addToSet:{ "project.$.textboxs":{
         "top": text_top,
         "left": text_left,
         "text": text_text,
@@ -250,6 +250,34 @@ const createNewComment = async (req, res) => {
     res.redirect("back")
 };
 
+const deleteProjectFile = async (req,res,next)=>{
+    console.log("line 254 delete");
+    console.log("line 255 : "+ req.body.fileId);
+    var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
+    var index;
+    var position;
+    for(let i=0; i<projectArray.project.length; i++){
+        var obj = projectArray.project[i];
+        if(obj._id==req.body.projectId){
+            console.log("index = "+i)
+            index = i;
+        }
+    }
+    for(let i=0; i<projectArray.project[index].fileInfo.length;i++){
+        var obj = projectArray.project[index].fileInfo[i];
+        if(obj.fileName==req.body.fileName){
+            console.log("position in project.file array is :"+i)
+            position=i;
+        }
+    }
+    const indexString = ["project.",index,"fileInfo",position]
+    var indexS = indexString.join('');
+    const indexString1 = ["project.",index,"fileInfo"]
+    var indexS1 = indexString1.join('')
+    await User.findOneAndUpdate({_id:req.user._id},{$unset:{[indexS]:1}})
+    await User.findOneAndUpdate({_id:req.user._id},{$pull:{[indexS1]:null}})
+    res.redirect("back")
+}
 
 module.exports = {
     getCurrentUser,
@@ -263,5 +291,6 @@ module.exports = {
     changeTheme,
     editProject,
     createNewTextbox,
-    createNewComment
+    createNewComment,
+    deleteProjectFile
 };
