@@ -186,7 +186,6 @@ const changeTheme = async (req, res, next) => {
 
 };
 
-
 const createNewTextbox = async (req, res) => {
     try {
         console.log(req.body.background);
@@ -217,6 +216,16 @@ const createNewTextbox = async (req, res) => {
     res.redirect("back")
 };
 
+const deleteTextbox =async (req,res,next)=>{
+    var condition = {$and:[{_id:req.user._id}, {"project._id":req.params.projectId}, {"textbox_id":req.body.id}]}
+    var query = {$pull: {textboxs:{_id:req.body.id}}}
+    User.updateOne(condition,query,function (err, user){
+        if (err) throw err;
+        console.log("Textbox deleted")
+        res.redirect("back")
+        User.close;
+    })
+}
 
 const editProject = async (req, res) => {
     try {
@@ -295,6 +304,7 @@ module.exports = {
     changeTheme,
     editProject,
     createNewTextbox,
-    createNewComment,
-    deleteProjectFile
+    deleteProjectFile,
+    deleteTextbox,
+    createNewComment
 };
