@@ -1,4 +1,4 @@
-d<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -134,6 +134,9 @@ d<!DOCTYPE html>
 <hr id="top_hr">
 <hr id = "left_hr">
 
+<form action="/user-eportfolio/userProject/<%=projectId%>">
+    <input type="submit" value="Back">
+</form>
 
 <div>
     <button onclick="execCmd('bold');"><i class="fa fa-bold"></i></button>
@@ -215,7 +218,9 @@ d<!DOCTYPE html>
                                     width:<%= user.project[j].textboxs[i].width%>;">
                                 <%=user.project[j].textboxs[i].text%>
                             </div>
-                            <button onclick="delete_tb(<%= user.project[j].textboxs[i]._id %>)" style = "position:static">Delete</button>
+                            <form action="user-eportfolio/user-project/edit-project/detele-tb/<%=projectId%>/<%=user.project[j].textboxs[i]._id %>)" method="POST" style = "position:static">
+                                <button type = "submit"> Delete </button>
+                            </form>
                         </div>
                     <% } %>
                 <% } %>
@@ -242,7 +247,7 @@ d<!DOCTYPE html>
                 border: textbox_cont.style.border,
                 text: value},
             success: function(res){
-
+                location.reload();
             }
         });
         return false;
@@ -431,6 +436,7 @@ d<!DOCTYPE html>
         document.getElementsByClassName("popup")[0].style.border = color;
     }
 
+    /*
     //delete textbox
     function delete_tb(id){
         console.log("in");
@@ -444,6 +450,7 @@ d<!DOCTYPE html>
         });
         return false;
     }
+    */
 </script>
 
 <script>

@@ -217,7 +217,7 @@ const createNewTextbox = async (req, res) => {
 };
 
 const deleteTextbox =async (req,res,next)=>{
-    var condition = {$and:[{_id:req.user._id}, {"project._id":req.params.projectId}, {"textbox_id":req.body.id}]}
+    var condition = {$and:[{_id:req.user._id}, {"project._id":req.params.projectId}, {"textbox_id":req.params.textboxId}]}
     var query = {$pull: {textboxs:{_id:req.body.id}}}
     User.updateOne(condition,query,function (err, user){
         if (err) throw err;
