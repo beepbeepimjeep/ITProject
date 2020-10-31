@@ -7,6 +7,7 @@
     <% if (user) {%>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
+            <%if (isUser == undefined) { %>
                 <% if(user.project[j].projectTheme==2){ %>
                     <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-light.css">
                 <% }else{ %>
@@ -399,12 +400,15 @@
                             <h4 class="card-title"><%= comment.visitorName%> : </h4>
                             <h5 class="card-text"><%= comment.comment%></h5>
                         </div>
+                        <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
+                            <button class="btn" style = "width: 180px">Delete</button>
+                        </form>
                     <% })%>
                 </div>
             <% } %>
         <% } %>
     <% } else { %>
-        <p> No Files to show</p>
+        <p> No Comments to show </p>
     <% } %>
 
     <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
@@ -533,7 +537,7 @@
             <% } %>
         <% } %>
         <% } %>
-    <% } %>
+    <% }} %>
 </div>
 
 </body>

@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema({
     linkedinId: String,
     email: String,
     expertise: String,
+    description: String,
     occupation: String,
     iconImage: String,
     fileInfo: [{

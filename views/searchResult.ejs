@@ -9,11 +9,13 @@
     <style type="text/css">
         body { background:rgba(26,38,57,1) !important; }
         #right-panel {
-            background-color:rgba(194,77,44,1);
-            color:rgba(246,225,184,1);
+            background-color:transparent;
+            color:rgba(194,77,44,1);
             width: 150px;
-            font-size: 150%;
+            font-size: 160%;
+            font-weight: normal;
             border:none;
+            text-align: right;
         }
         #right-panel:hover{
             color: rgba(194,77,44,1);
@@ -44,6 +46,16 @@
         }
         .profile-text {
             margin-right:20px;
+        }
+        .circle-img {
+            width: 120px;
+            height: 120px;
+            border-style: solid;
+            border-color: lightgoldenrodyellow;
+        }
+        .btn-viewproject {
+            background-color: lightgoldenrodyellow;
+            color: rgba(26,38,57,1);
         }
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
@@ -84,6 +96,9 @@
             border: none; left: 0;
             bottom: 0;
             padding: 10px
+        }
+        .profile-margin {
+            margin-left: 30px;
         }
      </style>
     <title>User Files</title>
@@ -128,29 +143,31 @@
     <%}else{%>
     <h4 style="color: lightgoldenrodyellow; padding-top: 20px"> There are <%= users.length%> results</h4>
     <% users.forEach(function(user){ %>
-        <div class="row mt-3">
-            <div class="col-lg-3" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px;">
-                <div class = "row ml-1">
-                    <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" ><%=user.userName%></h3>
-                </div>
+        <div class="col-11" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px; margin-top: 30px; padding-top: 20px; padding-bottom:20px; ">
 
                 <div class = "row ml-1">
-                    <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_email>Email: <%=user.email%></p>
-                    <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+                    <%if(user.iconImage){%>
+                    <img class="circle-img rounded-circle" src="/file/main/image/<%=user.iconImage%>" alt="user.iconImage">
+                    <%}else{%>
+                        <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="piggy">
+                    <%}%>
+                    <div class="col-lg-9 profile-margin">
+                        <div class = "row ml-1">
+                            <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" ><%=user.userName%></h3>
+                        </div>
+                        <div class = "row ml-1">
+                            <p class = "profile-text" style="color:rgba(246,225,184,1); font-size: 130%; "value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
+                        </div>
+                        <div class = "row ml-1">
+                            <button type="button" class="btn  btn-viewproject" style="margin-right: 10px" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
+                                Contact <%=user.userName%>
+                            </button>
+                            <form action="/eportfolio/<%=user._id%>" method="get">
+                                <button type="submit" class = "btn btn-viewproject" >Go to E-Portfolio</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <ul class="list-group" style="list-style-type: none; border-style: none">
-                    <li class="list-group-item" style="background-color: rgba(26,38,57,1);border-style: none; margin-left: -20px">
-                        <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
-                            Contact <%=user.userName%>
-                        </button>
-                    </li>
-                    <li class="list-group-item" style="background-color: rgba(26,38,57,1);border-style: none; margin-left: -20px">
-                        <form action="/eportfolio/<%=user._id%>" method="get">
-                            <button type="submit" class = "btn btn-viewproject" >Go to E-Portfolio</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
         </div>
     <% })}; %>
     </div>
