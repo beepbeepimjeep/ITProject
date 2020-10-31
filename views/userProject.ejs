@@ -7,9 +7,12 @@
     <% if (user) {%>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
+                <% if(user.project[j].projectTheme==3){ %>
+                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-forest.css">
+                <% }%>
                 <% if(user.project[j].projectTheme==2){ %>
-                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-light.css">
-                <% }else{ %>
+                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-sc.css">
+                <% }if(user.project[j].projectTheme==1){ %>
                     <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-default.css">
             <% } %>
         <% } %>
@@ -55,15 +58,11 @@
         }
         #right-panel {
             background-color:transparent;
-            color:rgba(194,77,44,1);
             width: 150px;
             font-size: 160%;
             font-weight: normal;
             border:none;
             text-align: right;
-        }
-        #right-panel:hover{
-            color: rgba(246,225,184,1);
         }
         .logo_text {
             font-size: 250%;
@@ -147,10 +146,6 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
         }
-        .dropdown-toggle{
-            background: rgba(26,38,57,1);
-            color: lightgoldenrodyellow;
-        }
     </style>
 </head>
 
@@ -162,7 +157,7 @@
             <ul class="navbar-nav">
                 <div >
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' id = "logo-e">E</span>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
                 </div>
             </ul>
@@ -186,7 +181,7 @@
             <ul class="navbar-nav">
                 <div >
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                    <span  class = 'logo_text' style="color:rgba(246,225,184,1);">E</span>
+                    <span  class = 'logo_text' id = "logo-e">E</span>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
                 </div>
             </ul>
@@ -238,8 +233,11 @@
                     </div>
                     <div class="modal-body">
                         <form action="/user-eportfolio/user-project/editTheme/<%=projectId%>" class="theme" method="POST">
-                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Dark</input>
-                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Light</input>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Default</input>
+                            <br>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Strawberry Chocolate</input>
+                            <br>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=3>Forest</input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
@@ -387,7 +385,7 @@
 
 <div class="container-fluid"  id="comment">
 
-    <h2 style="color:#3D5476;">Comments</h2>
+    <h2 id="comment-colour">Comments</h2>
     <!-- Button trigger modal -->
 
     <% if (user) { %>
@@ -396,8 +394,7 @@
                 <div class="container-fluid">
                     <% user.project[j].comments.forEach( function (comment) { %>
                         <div id="comment_text" class="card card-body mb-3">
-                            <h4 class="card-title"><%= comment.visitorName%> : </h4>
-                            <h5 class="card-text"><%= comment.comment%></h5>
+                            <h4 class="card-title"><%= comment.visitorName%> : <%= comment.comment%></h4>
                         </div>
                     <% })%>
                 </div>
