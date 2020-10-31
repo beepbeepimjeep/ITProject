@@ -268,7 +268,6 @@ const deleteComment = async (req,res,next)=> {
 };
 
 const deleteProjectFile = async (req,res,next)=>{
-    console.log("line 254 delete");
     console.log("line 255 : "+ req.body.fileId);
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
     var index;
@@ -282,15 +281,17 @@ const deleteProjectFile = async (req,res,next)=>{
     }
     for(let i=0; i<projectArray.project[index].fileInfo.length;i++){
         var obj = projectArray.project[index].fileInfo[i];
-        if(obj.fileName==req.body.fileName){
+        if(obj.fileId==req.body.fileId){
             console.log("position in project.file array is :"+i)
             position=i;
         }
     }
-    const indexString = ["project.",index,"fileInfo",position]
+    const indexString = ["project.",index,".fileInfo.",position]
     var indexS = indexString.join('');
-    const indexString1 = ["project.",index,"fileInfo"]
+    console.log(indexS)
+    const indexString1 = ["project.",index,".fileInfo"]
     var indexS1 = indexString1.join('')
+    console.log(indexS1)
     await User.findOneAndUpdate({_id:req.user._id},{$unset:{[indexS]:1}})
     await User.findOneAndUpdate({_id:req.user._id},{$pull:{[indexS1]:null}})
     res.redirect("back")

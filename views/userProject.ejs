@@ -7,13 +7,14 @@
     <% if (user) {%>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
-                <% if(user.project[j].projectTheme==3){ %>
-                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-forest.css">
-                <% }%>
-                <% if(user.project[j].projectTheme==2){ %>
-                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-sc.css">
-                <% }if(user.project[j].projectTheme==1){ %>
-                    <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-default.css">
+                <% if(user.project[j].projectTheme == 3){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-forest.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 2){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-sc.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 1){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-default.css">
                 <% } %>
             <% } %>
         <% } %>
@@ -76,82 +77,69 @@
         .editprofile {
             margin: 10px;
         }
-
-        .profile-text {
-            margin-right:20px;
-        }
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            background-color: rgba(194,77,44,1);
-            color: rgba(26,38,57,1);
-        }
-
-        hr {
-            color: #ffffff;
-            position: absolute;
-        }
-
-
-        html, body {
-            height: 100%;
-        }
-
-        .project-body {
-            height: 100%;
-        }
-
-
-        .popup .resizer-right {
-            width: 5px;
-            height: 100%;
-            background: transparent;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            cursor: e-resize;
-        }
-
-        .popup .resizer-bottom {
-            width: 100%;
-            height: 5px;
-            background: transparent;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            cursor: n-resize;
-        }
-
-        .popup .resizer-both {
-            width: 5px;
-            height: 5px;
-            background: transparent;
-            z-index: 10;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            cursor: nw-resize;
-        }
-
-        /*NOSELECT*/
-
-        .popup * {
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+                .profile-text {
+                    margin-right:20px;
+                }
+                .footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 60px;
+                    background-color: rgba(194,77,44,1);
+                    color: rgba(26,38,57,1);
+                }
+                hr {
+                    color: #ffffff;
+                    position: absolute;
+                }
+                html, body {
+                    height: 100%;
+                }
+                .project-body {
+                    height: 100%;
+                }
+                .popup .resizer-right {
+                    width: 5px;
+                    height: 100%;
+                    background: transparent;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    cursor: e-resize;
+                }
+                .popup .resizer-bottom {
+                    width: 100%;
+                    height: 5px;
+                    background: transparent;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    cursor: n-resize;
+                }
+                .popup .resizer-both {
+                    width: 5px;
+                    height: 5px;
+                    background: transparent;
+                    z-index: 10;
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    cursor: nw-resize;
+                }
+                /*NOSELECT*/
+                .popup * {
+                    -webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none; /* Safari */
+                    -khtml-user-select: none; /* Konqueror HTML */
+                    -moz-user-select: none; /* Firefox */
+                    -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
         }
     </style>
 </head>
-
 <body onload = "onload();">
-
 <div class="container-fluid">
     <%if (isUser == undefined) { %>
         <nav class="navbar nav">
@@ -180,48 +168,47 @@
     <% } else { %>
         <nav class="navbar nav">
             <ul class="navbar-nav">
-                <div >
+                <div>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
                     <span  class = 'logo_text' id = "logo-e">E</span>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
                 </div>
-            </ul>
-            <div class = "topnav-right">
-                <div class ="row">
-                    <ul class="navbar-nav nav-btn">
-                        <form action="/file/main" method="get">
-                            <button class = "btn" id="right-panel">Cloud</button>
-                        </form>
-                    </ul>
-                    <ul class="navbar-nav nav-btn">
-                        <form action="/api/logout" method="get">
-                            <button class = "btn" id="right-panel">Logout</button>
-                        </form>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Redirect to edit page -->
-        <div class="btn-group">
-            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                Setting <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#changeTheme">
-                        Theme
-                    </button>
-                </li>
-                <li>
-                    <form action= "/user-eportfolio/user-project/edit-project/<%=projectId%>" method="get">
-                        <button class = "dropdown-item" >Edit Text</button>
+        </ul>
+        <div class = "topnav-right">
+            <div class ="row">
+                <ul class="navbar-nav nav-btn">
+                    <form action="/file/main" method="get">
+                        <button class = "btn" id="right-panel">Cloud</button>
                     </form>
-                </li>
-                <li>
-                    <button class="dropdown-item" type="button" onclick="edit(this)">Edit File</button>
-                </li>
-            </ul>
+                </ul>
+                <ul class="navbar-nav nav-btn">
+                    <form action="/api/logout" method="get">
+                        <button class = "btn" id="right-panel">Logout</button>
+                    </form>
+                </ul>
+            </div>
         </div>
-
+    </nav>
+    <!-- Redirect to edit page -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+            Setting <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#changeTheme">
+                    Theme
+                </button>
+            </li>
+            <li>
+                <form action= "/user-eportfolio/user-project/edit-project/<%=projectId%>" method="get">
+                    <button class = "dropdown-item" >Edit Text</button>
+                </form>
+            </li>
+            <li>
+                <button class="dropdown-item" type="button" onclick="edit(this)">Edit File</button>
+            </li>
+        </ul>
+    </div>
     <% } %>
         <div class="modal fade" id="changeTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -248,9 +235,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="container-fluid">
-
+    <div class="container-fluid">
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -261,12 +246,12 @@
             <div class="modal-body">
                 <table class="table table-dark">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Current File Name</th>
-                            <th scope="col">Current File type</th>
-                            <th scope="col">Handle</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Current File Name</th>
+                        <th scope="col">Current File type</th>
+                        <th scope="col">Handle</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <% if (user) {%>
@@ -289,36 +274,35 @@
                             <% } %>
                         <% } %>
                     <% } %>
-
                     </tbody>
                 </table>
                 <p>Select from uploaded files</p>
                 <form action="/user-eportfolio/addFiletoProject" method="post">
                     <% if (user) {%>
                         <% for(var i=0; i < user.fileInfo.length; i++){ %>
-                            <input type="radio" name="fileId" value="<%=user.fileInfo[i].fileName%>">
-                            <label><%=user.fileInfo[i].fileName%></label><br>
+                        <input type="radio" name="fileId" value="<%=user.fileInfo[i].fileName%>">
+                        <label><%=user.fileInfo[i].fileName%></label><br>
                         <% } %>
                     <% } %>
-                        <input type="text" name="projectId" value="<%=projectId%>" style="display: none"></br>
+                    <input type="text" name="projectId" value="<%=projectId%>" style="display: none"></br>
                     <button type="submit" class="button">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">
-                    <% if (user) {%>
-                        <% for(var j=0; j<user.project.length;j++){%>
-                            <% if(user.project[j]._id==projectId){ %>
-                                <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
-                                    <form action="/user-eportfolio/savePosition" method="post">
-                                        <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>">
-                                        <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>">
-                                        <input type="text" name="project" value="<%=projectId%>">
-                                        <button type="submit" class="button">Save Position</button></br>
-                                    </form>
-                                <% } %>
+                <% if (user) {%>
+                    <% for(var j=0; j<user.project.length;j++){%>
+                        <% if(user.project[j]._id==projectId){ %>
+                            <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
+                            <form action="/user-eportfolio/savePosition" method="post">
+                                <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>">
+                                <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>">
+                                <input type="text" name="project" value="<%=projectId%>">
+                                <button type="submit" class="button">Save Position</button></br>
+                            </form>
                             <% } %>
                         <% } %>
                     <% } %>
+                <% } %>
             </div>
         </div>
     </div>
@@ -328,26 +312,25 @@
                 <% if(user.project[j]._id==projectId){ %>
                     <div id="container">
                         <% for (var i = 0; i < user.project[j].fileInfo.length; i++) { %>
-                            <div class="item" style="<%=user.project[j].fileInfo[i].fileStyle%>">
-                                <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
-                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"
-                                         src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>"
-                                         style="width: 400px; height: auto"
-                                    >
-                                <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
-                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"
-                                       style="<%=user.project[j].fileInfo[i].fileStyle%>"><%=user.project[j].fileInfo[i].fileName%></a>
-                                <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
-                                    <video class="item" width="320" height="240" style="<%=user.project[j].fileInfo[i].fileStyle%>" controls>
-                                        <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
-                                    </video>
-                                <% } %>
-                            </div>
+                        <div class="item" style="<%=user.project[j].fileInfo[i].fileStyle%>">
+                            <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
+                                <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"
+                                     src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>"
+                                     style="width: 400px; height: auto"
+                                >
+                            <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
+                                <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"
+                                   style="<%=user.project[j].fileInfo[i].fileStyle%>"><%=user.project[j].fileInfo[i].fileName%></a>
+                            <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
+                            <video class="item" width="320" height="240" style="<%=user.project[j].fileInfo[i].fileStyle%>" controls>
+                                <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
+                            </video>
+                            <% } %>
+                        </div>
                         <% } %>
                     </div>
                 <% } %>
             <% } %>
-
         <% } else { %>
             <p> No Files to show</p>
         <% } %>
@@ -363,7 +346,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
                 <form action="/user-eportfolio/user-project/addComment/<%=projectId%>" class="contact-form" method="POST" >
                     <div>
@@ -383,12 +365,9 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid"  id="comment">
-
     <h2 id="comment-colour">Comments</h2>
     <!-- Button trigger modal -->
-
     <% if (user) { %>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
@@ -407,50 +386,37 @@
     <% } else { %>
         <p> No Comments to show </p>
     <% } %>
-
     <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
         Add Your Comment
     </button>
 </div>
-
 <br/>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script>
-</script>
+
 <script>
     var container = document.querySelector("#container");
     var activeItem = null;
-
     var active = false;
-
     container.addEventListener("touchstart", dragStart, false);
     container.addEventListener("touchend", dragEnd, false);
     container.addEventListener("touchmove", drag, false);
-
     container.addEventListener("mousedown", dragStart, false);
     container.addEventListener("mouseup", dragEnd, false);
     container.addEventListener("mousemove", drag, false);
-
     function dragStart(e) {
-
         if (e.target !== e.currentTarget) {
             active = true;
-
             // this is the item we are interacting with
             activeItem = e.target;
-
             if (activeItem !== null) {
                 if (!activeItem.xOffset) {
                     activeItem.xOffset = 0;
                 }
-
                 if (!activeItem.yOffset) {
                     activeItem.yOffset = 0;
                 }
-
                 if (e.type === "touchstart") {
                     activeItem.initialX = e.touches[0].clientX - activeItem.xOffset;
                     activeItem.initialY = e.touches[0].clientY - activeItem.yOffset;
@@ -462,7 +428,6 @@
             }
         }
     }
-
     function dragEnd(e) {
         if (activeItem !== null) {
             activeItem.initialX = activeItem.currentX;
@@ -470,16 +435,13 @@
         }
         var rect = activeItem.getBoundingClientRect();
         document.getElementById(activeItem.name).setAttribute("value","Position: absolute; left: "+rect.left+"px; top: "+rect.top+"px;")
-
         console.log("left:"+rect.left+" top: "+rect.top+" width: "+rect.width+" height: "+rect.height)
         console.log("transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
         console.log("line 181"+activeItem.name)
         active = false;
         activeItem = null;
         console.log("line 111 drag end")
-
     }
-
     function drag(e) {
         if (active) {
             e.preventDefault();
@@ -490,18 +452,14 @@
                 activeItem.currentX = e.clientX - activeItem.initialX;
                 activeItem.currentY = e.clientY - activeItem.initialY;
             }
-
             activeItem.xOffset = activeItem.currentX;
             activeItem.yOffset = activeItem.currentY;
-
             setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
         }
     }
-
     function setTranslate(xPos, yPos, el) {
         el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
-
     function edit(value){
         modal.style.display= "block";
     }
@@ -510,18 +468,14 @@
     span.onclick = function (){
         modal.style.display= "none";
     }
-
 </script>
-
-
-
 <!-- textboxs -->
 <div class = "project-body" >
-    <% if (user) {%>
-        <% for(var j=0; j<user.project.length;j++){%>
+    <% if (user) { %>
+
+        <% for(var j=0; j<user.project.length;j++){ %>
             <% if(user.project[j]._id==projectId){ %>
                 <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
-
                     <div class="textbox" style = "top:<%= user.project[j].textboxs[i].top%>;
                             left:<%= user.project[j].textboxs[i].left%>;
                             height:<%= user.project[j].textboxs[i].height%>;
@@ -541,7 +495,6 @@
     function onload(){
         str_to_html();
     }
-
     function str_to_html(){
         //turn html string to actual html
         var textbox = document.getElementsByClassName("textbox");
