@@ -12,8 +12,8 @@ const textboxSchema = new mongoose.Schema({
     left: String,
     height: String,
     width: String,
-    text: String,
-    background: String
+    background: String,
+    text: String
 });
 
 const projectSchema = new mongoose.Schema({
