@@ -14,6 +14,7 @@
                     <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-sc.css">
                 <% }if(user.project[j].projectTheme==1){ %>
                     <link rel="stylesheet" id="main" type="text/css" href="../../css/user-project-default.css">
+                <% } %>
             <% } %>
         <% } %>
     <% } %>
@@ -396,12 +397,15 @@
                         <div id="comment_text" class="card card-body mb-3">
                             <h4 class="card-title"><%= comment.visitorName%> : <%= comment.comment%></h4>
                         </div>
+                        <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
+                            <button class="btn" style = "width: 180px">Delete</button>
+                        </form>
                     <% })%>
                 </div>
             <% } %>
         <% } %>
     <% } else { %>
-        <p> No Files to show</p>
+        <p> No Comments to show </p>
     <% } %>
 
     <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
@@ -528,7 +532,6 @@
                     </div>
                 <% } %>
             <% } %>
-        <% } %>
         <% } %>
     <% } %>
 </div>
