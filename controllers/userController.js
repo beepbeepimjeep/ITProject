@@ -265,6 +265,7 @@ const deleteComment = async (req,res,next)=> {
             return res.send("Fail to delete this comment")
         }
     res.redirect("back")
+};
 
 const deleteProjectFile = async (req,res,next)=>{
     console.log("line 255 : "+ req.body.fileId);
@@ -297,7 +298,7 @@ const deleteProjectFile = async (req,res,next)=>{
 }
 
 
- };
+
 module.exports = {
     getCurrentUser,
     userUploadFile,
