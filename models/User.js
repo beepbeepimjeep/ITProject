@@ -42,6 +42,7 @@ const userSchema = new mongoose.Schema({
     description: String,
     occupation: String,
     iconImage: String,
+    description: String,
     fileInfo: [{
         fileId: mongoose.Schema.Types.ObjectId,
         fileName: String,

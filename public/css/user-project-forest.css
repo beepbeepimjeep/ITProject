@@ -1,0 +1,36 @@
+body { background:#d8ebb5 !important;}
+.card-body {
+    background-color:#d9bf77;
+    color: rgba(26,38,57,1);
+}
+#t{
+    background-color:lightgoldenrodyellow;
+    color: rgba(26,38,57,1);
+}
+#logo-e{
+    color: #639a67;
+}
+#right-panel {
+    color:#2b580c;
+}
+#right-panel:hover{
+    color: #d9bf77;
+}
+.comment-button {
+    background: #2b580c;
+    color: #d9bf77;
+}
+.nav {
+    background-color:#d8ebb5;
+}
+#comment_text {
+    color: #fcf7bb;
+    background-color: #639a67;
+}
+.dropdown-toggle{
+    background: #2b580c;
+    color: #d6d2c4;
+}
+#comment-colour{
+    color: #2b580c;;
+}

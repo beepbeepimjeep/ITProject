@@ -7,17 +7,18 @@ body { background:rgba(26,38,57,1) !important;}
     background-color:rgba(26,38,57,1);
     color: lightgoldenrodyellow;
 }
+#logo-e{
+    color: rgba(246,225,184,1);
+}
 .comment-button {
     background-color: lightgoldenrodyellow;
     color: #1A2639;
 }
 #right-panel {
-    background-color:rgba(194,77,44,1);
-    color:rgba(246,225,184,1);
+    color:rgba(194,77,44,1);
 }
 #right-panel:hover{
-    color: rgba(194,77,44,1);
-    background-color: rgba(246,225,184,1);
+    color: rgba(246,225,184,1);
 }
 .nav {
     background-color:rgba(26,38,57,1);
@@ -25,4 +26,11 @@ body { background:rgba(26,38,57,1) !important;}
 #comment_text {
     color: rgba(246,225,184,1);
     background-color: rgba(38,53,77,1);
+}
+.dropdown-toggle{
+    background: rgba(26,38,57,1);
+    color: lightgoldenrodyellow;
+}
+#comment-colour{
+    color: rgba(26,38,57,1);
 }
