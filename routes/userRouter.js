@@ -20,5 +20,6 @@ userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', require
 
 
 userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);
+userRouter.post("/user-eportfolio/user-project/:projectId/deleteComment/:commentId", requireLogin,userController.deleteComment);
 
 module.exports = userRouter;

@@ -139,6 +139,7 @@ app.get('/user-eportfolio/user-project/edit-project/:projectId', userRouter);
 app.post('/user-eportfolio/user-project/edit-project/:projectId', userRouter);
 
 app.post('/user-eportfolio/user-project/addComment/:projectId', userRouter);
+app.post('/user-eportfolio/user-project/:projectId/deleteComment/:commentId', userRouter);
 
 app.get('/user-eportfolio/addNewProject', userRouter);
 
