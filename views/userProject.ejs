@@ -19,66 +19,64 @@
             <% } %>
         <% } %>
     <% } %>
+    <title>User Project</title>
+    <style>
+        #container {
+            width: 100vw;
+            height: 1300px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            touch-action: none;
+        }
+        .item {
+            touch-action: none;
+            user-select: none;
+            position: relative;
+            width: 200px;
+        }
 
-            <title>User Project</title>
-            <style>
-                #container {
-                    width: 100vw;
-                    height: 1300px;
-                    display: flex;
-                    justify-content: center;
-                    overflow: hidden;
-                    touch-action: none;
-                }
-                .item {
-                    touch-action: none;
-                    user-select: none;
-                    position: relative;
-                    width: 200px;
-                }
-                .item:active {
-                    opacity: .75;
-                }
-                .item:hover {
-                    cursor: pointer;
-                }
-                .btn-colordelete {
-                    background-color: #C24D2C;
-                    color: #f8fff1;
-                }
-                .card {
-                    width: 400px;
-                    border-style: none;
-                }
-                .nav-btn {
-                    margin-left: 30px;
-                }
-                /* Right-aligned section inside the top navigation */
-                .topnav-right {
-                    float: right;
-                }
-                #right-panel {
-                    background-color:transparent;
-                    color:rgba(194,77,44,1);
-                    width: 150px;
-                    font-size: 160%;
-                    font-weight: normal;
-                    border:none;
-                    text-align: right;
-                }
-                #right-panel:hover{
-                    color: rgba(246,225,184,1);
-                }
-                .logo_text {
-                    font-size: 250%;
-                    margin-left: unset;
-                }
-                .btn-viewproject {
-                    background-color: lightgoldenrodyellow;
-                }
-                .editprofile {
-                    margin: 10px;
-                }
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
+        .btn-colordelete {
+            background-color: #C24D2C;
+            color: #f8fff1;
+        }
+        .card {
+            width: 400px;
+            border-style: none;
+        }
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+        #right-panel {
+            background-color:transparent;
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+        }
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+
+        .btn-viewproject {
+            background-color: lightgoldenrodyellow;
+        }
+        .editprofile {
+            margin: 10px;
+        }
                 .profile-text {
                     margin-right:20px;
                 }
@@ -138,12 +136,8 @@
                     -ms-user-select: none; /* Internet Explorer/Edge */
                     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
-                }
-                .dropdown-toggle{
-                    background: rgba(26,38,57,1);
-                    color: lightgoldenrodyellow;
-                }
-            </style>
+        }
+    </style>
 </head>
 <body onload = "onload();">
 <div class="container-fluid">
@@ -152,7 +146,7 @@
             <ul class="navbar-nav">
                 <div >
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                    <span  class = 'logo_text' id="logo-e">E</span>
+                    <span  class = 'logo_text' id = "logo-e">E</span>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
                 </div>
             </ul>
@@ -172,13 +166,13 @@
             </div>
         </nav>
     <% } else { %>
-    <nav class="navbar nav">
-        <ul class="navbar-nav">
-            <div >
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
-                <span  class = 'logo_text' id="logo-e">E</span>
-                <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
-            </div>
+        <nav class="navbar nav">
+            <ul class="navbar-nav">
+                <div>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+                    <span  class = 'logo_text' id = "logo-e">E</span>
+                    <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+                </div>
         </ul>
         <div class = "topnav-right">
             <div class ="row">
@@ -216,29 +210,31 @@
         </ul>
     </div>
     <% } %>
-    <div class="modal fade" id="changeTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change Theme</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/user-eportfolio/user-project/editTheme/<%=projectId%>" class="theme" method="POST">
-                        <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Default</input>
-                        <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>SC</input>
-                        <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=3>Forest</input>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+        <div class="modal fade" id="changeTheme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Theme</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/user-eportfolio/user-project/editTheme/<%=projectId%>" class="theme" method="POST">
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Default</input>
+                            <br>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Strawberry Chocolate</input>
+                            <br>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=3>Forest</input>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <div class="container-fluid">
     </div>
     <div id="myModal" class="modal">
@@ -370,7 +366,7 @@
     </div>
 </div>
 <div class="container-fluid"  id="comment">
-    <h2 style="color:#3D5476;">Comments</h2>
+    <h2 id="comment-colour">Comments</h2>
     <!-- Button trigger modal -->
     <% if (user) { %>
         <% for(var j=0; j<user.project.length;j++){%>
@@ -378,8 +374,7 @@
                 <div class="container-fluid">
                     <% user.project[j].comments.forEach( function (comment) { %>
                         <div id="comment_text" class="card card-body mb-3">
-                            <h4 class="card-title"><%= comment.visitorName%> : </h4>
-                            <h5 class="card-text"><%= comment.comment%></h5>
+                            <h4 class="card-title"><%= comment.visitorName%> : <%= comment.comment%></h4>
                         </div>
                         <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
                             <button class="btn" style = "width: 180px">Delete</button>
