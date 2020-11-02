@@ -47,6 +47,11 @@
         .btn-deleteproject {
             background-color: rgba(194,77,44,1);
         }
+        .project-body {
+            margin-top: 50px;
+            margin-bottom: 100px;
+            margin-left: 30px;
+        }
         .editprofile {
             margin: 10px;
         }
@@ -140,7 +145,7 @@
                 <img class="circle-img rounded-circle" src="https://www.pig333.com/3tres3_common/usuaris/107241.jpg?t=20180704031757" alt="piggy">
             <%}%>
         </div>
-        <div class="col-lg-9 profile-margin">
+        <div class="col-9 profile-margin">
             <div class = "row ml-1">
                 <h3 style="color:rgba(246,225,184,1);"value="<%= user.userName %>" id = "user_name" >Hi, I am <%=user.userName%></h3>
             </div>
@@ -155,7 +160,6 @@
                 Contact <%=user.userName%>
             </button>
 
-        </div>
             <%if (isUser == undefined) { %>
 
             <% } else { %>
@@ -165,9 +169,8 @@
                 <a class = "btn  btn-viewproject" href="https://www.linkedin.com/sharing/share-offsite/?url=https://itproject-comp30022.herokuapp.com/user-eportfoliopage/<%= user._id %>"target="_blank" title="Share on LinkedIn">
                     Share on LinkedIn
                 </a>
-
             <% } %>
-
+        </div>
 
     </div>
 
@@ -255,7 +258,7 @@
 
         <!--display projects and add -->
         <%if (isUser == undefined) { %>
-            <div class="projectBody ">
+            <div class="project-body" >
                 <% if(user){ %>
                     <% for(var i=0; i<user.project.length;i++){%>
                         <div class="card-columns" style = "margin-bottom: 50px; margin-top: 0px">
@@ -282,7 +285,7 @@
 
         <% } else { %>
 
-            <div class="projectBody ">
+            <div class="project-body ">
                 <% if(user){ %>
                     <% for(var i=0; i<user.project.length;i++){%>
                         <div class="card-columns" style = "margin-bottom: 50px; margin-top: 0px">

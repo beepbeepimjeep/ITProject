@@ -8,13 +8,13 @@
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
                 <% if(user.project[j].projectTheme == 3){ %>
-                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-forest.css">
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-forest.css">
                 <% } %>
                 <% if(user.project[j].projectTheme == 2){ %>
-                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-sc.css">
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-sc.css">
                 <% } %>
                 <% if(user.project[j].projectTheme == 1){ %>
-                    <link rel= "stylesheet" id="main" type="text/css"href="../../css/user-project-default.css">
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-default.css">
                 <% } %>
             <% } %>
         <% } %>
@@ -45,11 +45,13 @@
         }
         .btn-colordelete {
             background-color: #C24D2C;
-            color: #f8fff1;
+            color: lightgoldenrodyellow
         }
         .card {
-            width: 400px;
             border-style: none;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom:5px;
         }
         .nav-btn {
             margin-left: 30px;
@@ -70,6 +72,11 @@
             font-size: 250%;
             margin-left: unset;
         }
+        .btn-deleteComment {
+            background-color: rgba(194,77,44,1);
+            float: right;
+            color: midnightblue;
+        }
 
         .btn-viewproject {
             background-color: lightgoldenrodyellow;
@@ -80,69 +87,78 @@
                 .profile-text {
                     margin-right:20px;
                 }
-                .footer {
-                    position: fixed;
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    height: 60px;
-                    background-color: rgba(194,77,44,1);
-                    color: rgba(26,38,57,1);
-                }
-                hr {
-                    color: #ffffff;
-                    position: absolute;
-                }
-                html, body {
-                    height: 100%;
-                }
-                .project-body {
-                    height: 100%;
-                }
-                .popup .resizer-right {
-                    width: 5px;
-                    height: 100%;
-                    background: transparent;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    cursor: e-resize;
-                }
-                .popup .resizer-bottom {
-                    width: 100%;
-                    height: 5px;
-                    background: transparent;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    cursor: n-resize;
-                }
-                .popup .resizer-both {
-                    width: 5px;
-                    height: 5px;
-                    background: transparent;
-                    z-index: 10;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    cursor: nw-resize;
-                }
-                /*NOSELECT*/
-                .popup * {
-                    -webkit-touch-callout: none; /* iOS Safari */
-                    -webkit-user-select: none; /* Safari */
-                    -khtml-user-select: none; /* Konqueror HTML */
-                    -moz-user-select: none; /* Firefox */
-                    -ms-user-select: none; /* Internet Explorer/Edge */
-                    user-select: none; /* Non-prefixed version, currently
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(194,77,44,1);
+            color: rgba(26,38,57,1);
+        }
+        hr {
+            color: #ffffff;
+            position: absolute;
+        }
+        html, body {
+            height: 100%;
+        }
+        .project-body {
+            height: 100%;
+        }
+        .popup .resizer-right {
+            width: 5px;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: e-resize;
+        }
+        .popup .resizer-bottom {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: n-resize;
+        }
+        .popup .resizer-both {
+            width: 5px;
+            height: 5px;
+            background: transparent;
+            z-index: 10;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: nw-resize;
+        }
+        /*NOSELECT*/
+        .popup * {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+        }
+        #google_translate_element {
+            background-color:rgba(194,77,44,1);
+            color: #C24D2C;
+            border: none; left: 0;
+            bottom: 0;
+            padding: 10px
         }
     </style>
 </head>
+
+
 <body onload = "onload();">
 <div class="container-fluid">
     <%if (isUser == undefined) { %>
-        <nav class="navbar nav">
+        <nav class="navbar nav" style = "padding-left: 0px">
             <ul class="navbar-nav">
                 <div >
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
@@ -166,7 +182,7 @@
             </div>
         </nav>
     <% } else { %>
-        <nav class="navbar nav">
+        <nav class="navbar nav" style = "padding-left: 0px">
             <ul class="navbar-nav">
                 <div>
                     <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
@@ -192,7 +208,7 @@
     <!-- Redirect to edit page -->
     <div class="btn-group">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-            Setting <span class="caret"></span></button>
+            Edit Project  <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
             <li>
                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#changeTheme">
@@ -201,11 +217,11 @@
             </li>
             <li>
                 <form action= "/user-eportfolio/user-project/edit-project/<%=projectId%>" method="get">
-                    <button class = "dropdown-item" >Edit Text</button>
+                    <button class = "dropdown-item" >Text</button>
                 </form>
             </li>
             <li>
-                <button class="dropdown-item" type="button" onclick="edit(this)">Edit File</button>
+                <button class="dropdown-item" type="button" onclick="edit(this)">File</button>
             </li>
         </ul>
     </div>
@@ -221,11 +237,11 @@
                     </div>
                     <div class="modal-body">
                         <form action="/user-eportfolio/user-project/editTheme/<%=projectId%>" class="theme" method="POST">
-                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>Default</input>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=1>System default</input>
                             <br>
-                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Strawberry Chocolate</input>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=2>Warm</input>
                             <br>
-                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=3>Forest</input>
+                            <input type="radio" id="theme" class="btn btn-secondary" name="theme" value=3>Calm</input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
@@ -240,20 +256,20 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add File to Project</h5>
+                <h5 class="modal-title" style="rgba(26,38,57,1)">Add File to Project</h5>
                 <span class="close">x</span>
             </div>
             <div class="modal-body">
-                <table class="table table-dark">
+                <table class="table " style = "background-color: rgba(26,38,57,1); color: lightgoldenrodyellow">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Current File ID</th>
                         <th scope="col">Current File Name</th>
                         <th scope="col">Current File type</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Current Handle</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                     <% if (user) {%>
                         <% for(var j=0; j<user.project.length;j++){%>
                             <% if(user.project[j]._id==projectId){ %>
@@ -276,8 +292,8 @@
                     <% } %>
                     </tbody>
                 </table>
-                <p>Select from uploaded files</p>
-                <form action="/user-eportfolio/addFiletoProject" method="post">
+                <h5 style = "padding-top: 20px">Select from uploaded files</h5>
+                <form action="/user-eportfolio/addFiletoProject" method="post" >
                     <% if (user) {%>
                         <% for(var i=0; i < user.fileInfo.length; i++){ %>
                         <input type="radio" name="fileId" value="<%=user.fileInfo[i].fileName%>">
@@ -285,7 +301,7 @@
                         <% } %>
                     <% } %>
                     <input type="text" name="projectId" value="<%=projectId%>" style="display: none"></br>
-                    <button type="submit" class="button">Submit</button>
+                    <button type="submit" class="btn btn-colordelete">Add To This Project</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -294,10 +310,10 @@
                         <% if(user.project[j]._id==projectId){ %>
                             <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
                             <form action="/user-eportfolio/savePosition" method="post">
-                                <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>">
-                                <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>">
-                                <input type="text" name="project" value="<%=projectId%>">
-                                <button type="submit" class="button">Save Position</button></br>
+                                <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
+                                <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
+                                <input type="text" name="project" value="<%=projectId%>" style = "margin-right: 10px;  margin-top:5px; margin-height: 35px;">
+                                <button type="submit" class="btn btn-deleteComment" style = "color: lightgoldenrodyellow">Save Position</button></br>
                             </form>
                             <% } %>
                         <% } %>
@@ -367,28 +383,58 @@
 </div>
 <div class="container-fluid"  id="comment">
     <h2 id="comment-colour">Comments</h2>
+    <button type="button" id="comment" class="btn comment-button" data-toggle="modal"data-target="#commentForm" style="margin-bottom: 10px;">
+        Add Your Comment
+    </button>
     <!-- Button trigger modal -->
     <% if (user) { %>
         <% for(var j=0; j<user.project.length;j++){%>
             <% if(user.project[j]._id==projectId){ %>
-                <div class="container-fluid">
                     <% user.project[j].comments.forEach( function (comment) { %>
-                        <div id="comment_text" class="card card-body mb-3">
-                            <h4 class="card-title"><%= comment.visitorName%> : <%= comment.comment%></h4>
+                        <div id="comment_text" class="card" style = "padding-top: 15px; padding-bottom: 15px">
+                            <div class="row ml-1">
+                                <div>
+                                    <h4 style = "padding: 0px;"><%= comment.visitorName%> : <%= comment.comment%></h4>
+                                </div>
+                                <%if (isUser == undefined) { %>
+
+                                <% } else { %>
+                                <div class="ml-auto mr-3">
+                                    <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
+                                        <button class="btn comment-button" id = "comment">Delete</button>
+                                    </form>
+                                </div>
+                                <% } %>
+                            </div>
                         </div>
                         <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
                             <button class="btn" style = "width: 180px; color: whitesmoke">Delete</button>
                         </form>
                     <% })%>
-                </div>
             <% } %>
         <% } %>
     <% } else { %>
         <p> No Comments to show </p>
     <% } %>
-    <button type="button" id="commentButton" class="btn btn-primary comment-button" data-toggle="modal"data-target="#commentForm">
-        Add Your Comment
-    </button>
+
+    <div class="footer" style = "margin-top: 300px">
+        <div id="google_translate_element" ></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google
+                    .translate
+                    .TranslateElement({
+                            pageLanguage: 'en',
+                            includedLanguages: 'en,fr,es,ko,ja,hi,id,zh-CN'
+                        },
+                        'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <p style = "position: fixed; bottom: 0; width:100%; text-align: center; font-size: 80%;">Copyright © 2020 · My E-Portfolio Unimelb</p>
+    </div>
 </div>
 <br/>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
