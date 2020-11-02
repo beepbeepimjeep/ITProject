@@ -17,9 +17,7 @@ userRouter.post('/user-eportfolio/user-project/editTheme/:projectId', requireLog
 
 userRouter.get('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.editProject);
 userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextbox);
-userRouter.post('/user-eportfolio/user-project/edit-project/delete-tb/:projectId/:textboxId', requireLogin,userController.deleteTextbox);
-
-
+userRouter.post('/user-eportfolio/user-project/edit-project/:projectId/delete-tb/:textboxId', requireLogin,userController.deleteTextbox);
 
 userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);
 userRouter.post("/user-eportfolio/user-project/:projectId/deleteComment/:commentId", requireLogin,userController.deleteComment);

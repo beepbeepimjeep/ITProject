@@ -377,7 +377,7 @@
                             <h4 class="card-title"><%= comment.visitorName%> : <%= comment.comment%></h4>
                         </div>
                         <form  method="POST" action="/user-eportfolio/user-project/<%=projectId%>/deleteComment/<%= comment._id%>">
-                            <button class="btn" style = "width: 180px">Delete</button>
+                            <button class="btn" style = "width: 180px; color: whitesmoke">Delete</button>
                         </form>
                     <% })%>
                 </div>
@@ -480,6 +480,7 @@
                             left:<%= user.project[j].textboxs[i].left%>;
                             height:<%= user.project[j].textboxs[i].height%>;
                             width:<%= user.project[j].textboxs[i].width%>;
+                            border:<%= user.project[j].textboxs[i].border%>;
                             position:absolute;
                             background: <%= user.project[j].textboxs[i].background%>">
                         <%=user.project[j].textboxs[i].text%>

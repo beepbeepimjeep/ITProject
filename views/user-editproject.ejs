@@ -47,10 +47,6 @@
             height: 100%;
         }
 
-        .textbox{
-            background: white;
-        }
-
         .project-body {
             height: 100%;
         }
@@ -212,14 +208,15 @@
                         <div class = "textbox-container"
                              style = "top:<%= user.project[j].textboxs[i].top%>;
                                      left:<%= user.project[j].textboxs[i].left%>; position: absolute">
-                            <div class="textbox" style = "border:3px solid whitesmoke;
+                            <div class="textbox" style = "
                                     background: <%= user.project[j].textboxs[i].background%>;
                                     height:<%= user.project[j].textboxs[i].height%>;
+                                    border:<%= user.project[j].textboxs[i].border%>;
                                     width:<%= user.project[j].textboxs[i].width%>;">
                                 <%=user.project[j].textboxs[i].text%>
                             </div>
-                            <form action="user-eportfolio/user-project/edit-project/detele-tb/<%=projectId%>/<%=user.project[j].textboxs[i]._id %>)" method="POST" style = "position:static">
-                                <button type = "submit"> Delete </button>
+                            <form method="POST" action="/user-eportfolio/user-project/edit-project/<%=projectId%>/delete-tb/<%=user.project[j].textboxs[i]._id%>" style = "background-color:whitesmoke; width:70px; position:static">
+                                <button class="btn">Delete</button>
                             </form>
                         </div>
                     <% } %>
@@ -234,12 +231,15 @@
     function saveEdit (form) {
         textbox = document.getElementsByName("richTextField")[0];
         textbox_cont = document.getElementById("popup");
+        var top_tb = parseInt((element.style.width).slice(0,-2));
+        console.log(top_tb);
+        var top_px = top_tb - 40 + 'px';
         value = richTextField.document.getElementsByTagName('body')[0].innerHTML;
         $.ajax({
             url:"/user-eportfolio/user-project/edit-project/<%=projectId%>",
             method:"POST",
             //save position and text value to mongodb
-            data: {top: textbox_cont.style.top,
+            data: {top: top_px,
                 left: textbox_cont.style.left,
                 width: textbox.style.width,
                 height: textbox.style.height,
@@ -253,6 +253,7 @@
         return false;
     }
 </script>
+
 <script>
     //draggable div script
     window.onload = function() {
@@ -433,24 +434,10 @@
 
     //to be modified
     function change_border_color(color){
-        document.getElementsByClassName("popup")[0].style.border = color;
+        var border = "3px solid".concat(color);
+        document.getElementsByClassName("popup")[0].style.border = border;
     }
 
-    /*
-    //delete textbox
-    function delete_tb(id){
-        console.log("in");
-        $.ajax({
-            url:"/user-eportfolio/user-project/edit-project/detele-tb/<%=projectId%>",
-            method:"POST",
-            //delete textbox by id in mongodb
-            data: {id: id},
-            success: function(res){
-            }
-        });
-        return false;
-    }
-    */
 </script>
 
 <script>
