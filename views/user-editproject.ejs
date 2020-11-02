@@ -48,7 +48,7 @@
         }
 
         .textbox{
-            background-color: white;
+            background: white;
         }
 
         .project-body {
@@ -59,7 +59,7 @@
 
         .popup {
             z-index: 9;
-            background-color: #f1f1f1;
+            background: transparent;
             border: 1px solid #d3d3d3;
             text-align: center;
             min-height: 150px;
@@ -134,6 +134,9 @@
 <hr id="top_hr">
 <hr id = "left_hr">
 
+<form action="/user-eportfolio/userProject/<%=projectId%>">
+    <input type="submit" value="Back">
+</form>
 
 <div>
     <button onclick="execCmd('bold');"><i class="fa fa-bold"></i></button>
@@ -177,10 +180,10 @@
         <option value="6">6</option>
         <option value="7">7</option>
     </select>
-    Fore Color: <input type="color" onchange="execCommandWithArg('foreColor', this.value);">
-    Background: <input type="color"  onchange="execCommandWithArg('hiliteColor', this.value);">
-    textbox background: <input type="color"  onchange="change_tb_background(this.value);">
-    border: <input type="color"  onchange="change_border_color(this.value);">
+    Text Color: <input type="color" onchange="execCommandWithArg('foreColor', this.value);">
+    Text Background: <input type="color"  onchange="execCommandWithArg('hiliteColor', this.value);">
+    Textbox Background: <input type="color"  onchange="change_tb_background(this.value);">
+    Border: <input type="color"  onchange="change_border_color(this.value);">
 </div>
 
 <!-- Draggable DIV -->
@@ -190,7 +193,7 @@
     <form action="/user-eportfolio/user-project/edit-project/<%=projectId%>" class="text-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
 
         <div onload="enableEditMode();" class = "undone_textbox" style = "display: block">
-            <iframe name="richTextField" style="background-color: white; width: 300px; height: 150px;"></iframe>
+            <iframe name="richTextField" style="background-color: transparent; width: 300px; height: 150px;"></iframe>
         <div class="modal-footer">
             <button onclick="toggleEdit();" type = "button">Toggle Edit</button>
             <button type="submit" class="btn btn-secondary">Save</button>
@@ -206,14 +209,18 @@
             <% for(var j=0; j<user.project.length;j++){%>
                 <% if(user.project[j]._id==projectId){ %>
                     <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
-                        <div class="textbox" style = "border:3px solid red;
-                                background: <%= user.project[j].textboxs[i].background%>;
-                                top:<%= user.project[j].textboxs[i].top%>;
-                                left:<%= user.project[j].textboxs[i].left%>;
-                                height:<%= user.project[j].textboxs[i].height%>;
-                                width:<%= user.project[j].textboxs[i].width%>;
-                                position:absolute">
-                            <%=user.project[j].textboxs[i].text%>
+                        <div class = "textbox-container"
+                             style = "top:<%= user.project[j].textboxs[i].top%>;
+                                     left:<%= user.project[j].textboxs[i].left%>; position: absolute">
+                            <div class="textbox" style = "border:3px solid whitesmoke;
+                                    background: <%= user.project[j].textboxs[i].background%>;
+                                    height:<%= user.project[j].textboxs[i].height%>;
+                                    width:<%= user.project[j].textboxs[i].width%>;">
+                                <%=user.project[j].textboxs[i].text%>
+                            </div>
+                            <form action="user-eportfolio/user-project/edit-project/detele-tb/<%=projectId%>/<%=user.project[j].textboxs[i]._id %>)" method="POST" style = "position:static">
+                                <button type = "submit"> Delete </button>
+                            </form>
                         </div>
                     <% } %>
                 <% } %>
@@ -240,7 +247,7 @@
                 border: textbox_cont.style.border,
                 text: value},
             success: function(res){
-
+                location.reload();
             }
         });
         return false;
@@ -428,6 +435,22 @@
     function change_border_color(color){
         document.getElementsByClassName("popup")[0].style.border = color;
     }
+
+    /*
+    //delete textbox
+    function delete_tb(id){
+        console.log("in");
+        $.ajax({
+            url:"/user-eportfolio/user-project/edit-project/detele-tb/<%=projectId%>",
+            method:"POST",
+            //delete textbox by id in mongodb
+            data: {id: id},
+            success: function(res){
+            }
+        });
+        return false;
+    }
+    */
 </script>
 
 <script>
