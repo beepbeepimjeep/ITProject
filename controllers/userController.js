@@ -265,7 +265,10 @@ const deleteComment = async (req,res,next)=> {
             return res.send("Fail to delete this comment")
         }
     res.redirect("back")
-};
+    };
+
+
+
 
 const deleteProjectFile = async (req,res,next)=>{
     console.log("line 255 : "+ req.body.fileId);
@@ -295,8 +298,7 @@ const deleteProjectFile = async (req,res,next)=>{
     await User.findOneAndUpdate({_id:req.user._id},{$unset:{[indexS]:1}})
     await User.findOneAndUpdate({_id:req.user._id},{$pull:{[indexS1]:null}})
     res.redirect("back")
-}
-
+};
 
 
 module.exports = {

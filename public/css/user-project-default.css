@@ -34,3 +34,6 @@ body { background:rgba(26,38,57,1) !important;}
 #comment-colour{
     color: rgba(26,38,57,1);
 }
+#comment:hover{
+    color: saddlebrown;
+}
