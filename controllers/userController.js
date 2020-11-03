@@ -183,10 +183,9 @@ const changeTheme = async (req, res, next) => {
 
 };
 
-
 const createNewTextbox = async (req, res) => {
     try {
-        console.log(req.body.background);
+        console.log(req.body.border);
         var text_top = req.body.top;
         var text_left = req.body.left;
         var text_text = req.body.text;
@@ -214,6 +213,22 @@ const createNewTextbox = async (req, res) => {
     res.redirect("back")
 };
 
+const deleteTextbox =async (req,res,next)=>{
+    console.log("ddelte");
+    try {
+        var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+        var query = { $pull: {"project.$.textboxs":{_id:req.params.textboxId}}}
+        await User.updateOne(condition,query,function(err,res){
+            if (err) throw err;
+            console.log("Textbox deleted");
+            User.close;
+        })
+    } catch (err){
+        res.status(400);
+        return res.send("Fail to delete textbox")
+    }
+    res.redirect("back")
+}
 
 const editProject = async (req, res) => {
     try {
@@ -315,6 +330,6 @@ module.exports = {
     createNewTextbox,
     createNewComment,
     deleteComment,
-    deleteProjectFile
-
+    deleteProjectFile,
+    deleteTextbox,
 };
