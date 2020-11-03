@@ -23,6 +23,36 @@
         <% } %>
     <% } %>
     <style>
+
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+
+        #right-panel {
+            background-color:transparent;
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+        }
+
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
         body {
             background:rgba(26,38,57,1);
             min-height: 100vh;
@@ -31,31 +61,6 @@
         hr {
             color: #ffffff;
             position: absolute;
-        }
-
-        /*- not sure what the margins are, I made them up, pls change in the future -*/
-        #top_hr {
-            top: 80px;
-            height:1px;
-            width:100%;
-        }
-
-        #bottom_hr {
-            bottom:80px;
-            height:1px;
-            width:100%;
-        }
-
-        #left_hr {
-            left: 80px;
-            width:1px;
-            height:100%;
-        }
-
-        #right_hr {
-            right: 80px;
-            width:1px;
-            height:100%;
         }
 
         html, body {
@@ -142,12 +147,35 @@
     </style>
 </head>
 <body>
-<hr id="top_hr">
-<hr id = "left_hr">
 
-<form action="/user-eportfolio/userProject/<%=projectId%>">
-    <input type="submit" value="Back">
-</form>
+<nav class="navbar nav" style = "padding-left: 0px">
+    <ul class="navbar-nav">
+        <div>
+            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+            <span  class = 'logo_text' id = "logo-e">E</span>
+            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+        </div>
+    </ul>
+    <div class = "topnav-right">
+        <div class ="row">
+            <ul class="navbar-nav nav-btn">
+                <form action="/user-eportfolio/userProject/<%=projectId%>">
+                    <button class = "btn" id="right-panel">Back</button>
+                </form>
+            </ul>
+            <ul class="navbar-nav nav-btn">
+                <form action="/file/main" method="get">
+                    <button class = "btn" id="right-panel">Cloud</button>
+                </form>
+            </ul>
+            <ul class="navbar-nav nav-btn">
+                <form action="/api/logout" method="get">
+                    <button class = "btn" id="right-panel">Logout</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div>
     <button onclick="execCmd('bold');"><i class="fa fa-bold"></i></button>
@@ -240,8 +268,6 @@
         <% } %>
 </div>
 
-<hr id = "right_hr">
-<hr id="bottom_hr">
 <script>
     function saveEdit (form) {
         textbox = document.getElementsByName("richTextField")[0];
