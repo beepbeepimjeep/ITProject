@@ -182,9 +182,10 @@ const changeTheme = async (req, res, next) => {
 
 };
 
+
 const createNewTextBox = async (req, res) => {
     try {
-        console.log(req.body.background);
+        console.log(req.body.border);
         var text_top = req.body.top;
         var text_left = req.body.left;
         var text_text = req.body.text;
@@ -211,6 +212,24 @@ const createNewTextBox = async (req, res) => {
     }
     res.redirect("back")
 };
+
+const deleteTextbox =async (req,res,next)=>{
+    console.log("delete");
+    try {
+        var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+        var query = { $pull: {"project.$.textboxs":{_id:req.params.textboxId}}}
+        await User.updateOne(condition,query,function(err,res){
+            if (err) throw err;
+            console.log("Textbox deleted");
+            User.close;
+        })
+    } catch (err){
+        res.status(400);
+        return res.send("Fail to delete textbox")
+    }
+    res.redirect("back")
+}
+
 
 const editProject = async (req, res) => {
     try {
@@ -264,6 +283,7 @@ const deleteComment = async (req,res,next)=> {
     res.redirect("back")
 };
 
+
 const deleteProjectFile = async (req,res,next)=>{
     console.log("line 255 : "+ req.body.fileName);
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
@@ -279,9 +299,7 @@ const deleteProjectFile = async (req,res,next)=>{
     await User.findOneAndUpdate({_id:req.user._id},{$unset:{[indexS]:1}})
     await User.findOneAndUpdate({_id:req.user._id},{$pull:{[indexS1]:null}})
     res.redirect("back")
-}
-
-
+};
 
 module.exports = {
     userUploadFile,
@@ -298,5 +316,6 @@ module.exports = {
     deleteProjectFile,
     deleteComment,
     indexOfProject,
-    positionOfProject
+    positionOfProject,
+    deleteTextbox
 };

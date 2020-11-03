@@ -2,12 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script href="/js/bootstrap.js"></script>
     <title>user-project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <% if (user) {%>
+        <% for(var j=0; j<user.project.length;j++){%>
+            <% if(user.project[j]._id==projectId){ %>
+                <% if(user.project[j].projectTheme == 3){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-forest.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 2){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-sc.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 1){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-default.css">
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
     <style>
+
+        .nav-btn {
+            margin-left: 30px;
+        }
+        /* Right-aligned section inside the top navigation */
+        .topnav-right {
+            float: right;
+        }
+
+        #right-panel {
+            background-color:transparent;
+            width: 150px;
+            font-size: 160%;
+            font-weight: normal;
+            border:none;
+            text-align: right;
+        }
+
+        .logo_text {
+            font-size: 250%;
+            margin-left: unset;
+        }
+
+        .item:active {
+            opacity: .75;
+        }
+
+        .item:hover {
+            cursor: pointer;
+        }
         body {
             background:rgba(26,38,57,1);
             min-height: 100vh;
@@ -18,37 +63,8 @@
             position: absolute;
         }
 
-        /*- not sure what the margins are, I made them up, pls change in the future -*/
-        #top_hr {
-            top: 80px;
-            height:1px;
-            width:100%;
-        }
-
-        #bottom_hr {
-            bottom:80px;
-            height:1px;
-            width:100%;
-        }
-
-        #left_hr {
-            left: 80px;
-            width:1px;
-            height:100%;
-        }
-
-        #right_hr {
-            right: 80px;
-            width:1px;
-            height:100%;
-        }
-
         html, body {
             height: 100%;
-        }
-
-        .textbox{
-            background-color: white;
         }
 
         .project-body {
@@ -59,13 +75,11 @@
 
         .popup {
             z-index: 9;
-            background-color: #f1f1f1;
+            background: transparent;
             border: 1px solid #d3d3d3;
             text-align: center;
             min-height: 150px;
             min-width: 300px;
-            max-height: 500px;
-            max-width: 600px;
         }
 
         .popup {
@@ -131,9 +145,35 @@
     </style>
 </head>
 <body>
-<hr id="top_hr">
-<hr id = "left_hr">
-
+<div class="container-fluid">
+<nav class="navbar nav" style = "padding-left: 0px">
+    <ul class="navbar-nav">
+        <div>
+            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">My</span>
+            <span  class = 'logo_text' id = "logo-e">E</span>
+            <span  class = 'logo_text' style="color:rgba(194,77,44,1);">Portfolio</span>
+        </div>
+    </ul>
+    <div class = "topnav-right">
+        <div class ="row">
+            <ul class="navbar-nav nav-btn">
+                <form action="/user-eportfolio/userProject/<%=projectId%>">
+                    <button class = "btn" id="right-panel">Back</button>
+                </form>
+            </ul>
+            <ul class="navbar-nav nav-btn">
+                <form action="/file/main" method="get">
+                    <button class = "btn" id="right-panel">Cloud</button>
+                </form>
+            </ul>
+            <ul class="navbar-nav nav-btn">
+                <form action="/api/logout" method="get">
+                    <button class = "btn" id="right-panel">Logout</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div>
     <button onclick="execCmd('bold');"><i class="fa fa-bold"></i></button>
@@ -177,24 +217,23 @@
         <option value="6">6</option>
         <option value="7">7</option>
     </select>
-    Fore Color: <input type="color" onchange="execCommandWithArg('foreColor', this.value);">
-    Background: <input type="color"  onchange="execCommandWithArg('hiliteColor', this.value);">
-    textbox background: <input type="color"  onchange="change_tb_background(this.value);">
-    border: <input type="color"  onchange="change_border_color(this.value);">
+    Text Color: <input type="color" onchange="execCommandWithArg('foreColor', this.value);">
+    Text Background: <input type="color"  onchange="execCommandWithArg('hiliteColor', this.value);">
+    Textbox Background: <input type="color"  onchange="change_tb_background(this.value);">
+    Border: <input type="color"  onchange="change_border_color(this.value);">
 </div>
 
 <!-- Draggable DIV -->
 <div class="popup" id = "popup">
-    <div class="popup-header noselect">Click here to move</div>
+    <div class="popup-header noselect " id = "logo-e">Click here to move</div>
 
     <form action="/user-eportfolio/user-project/edit-project/<%=projectId%>" class="text-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
 
         <div onload="enableEditMode();" class = "undone_textbox" style = "display: block">
-            <iframe name="richTextField" style="background-color: white; width: 300px; height: 150px;"></iframe>
+            <iframe name="richTextField" style="background-color: transparent; width: 300px; height: 150px;"></iframe>
         <div class="modal-footer">
             <button onclick="toggleEdit();" type = "button">Toggle Edit</button>
             <button type="submit" class="btn btn-secondary">Save</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
         </div>
     </form>
@@ -206,33 +245,69 @@
             <% for(var j=0; j<user.project.length;j++){%>
                 <% if(user.project[j]._id==projectId){ %>
                     <% for(var i=0; i<user.project[j].textboxs.length; i++){ %>
-                        <div class="textbox" style = "border:3px solid red;
-                                background: <%= user.project[j].textboxs[i].background%>;
-                                top:<%= user.project[j].textboxs[i].top%>;
-                                left:<%= user.project[j].textboxs[i].left%>;
-                                height:<%= user.project[j].textboxs[i].height%>;
-                                width:<%= user.project[j].textboxs[i].width%>;
-                                position:absolute">
-                            <%=user.project[j].textboxs[i].text%>
+                        <div class = "textbox-container"
+                             style = "top:<%= user.project[j].textboxs[i].top%>;
+                                     left:<%= user.project[j].textboxs[i].left%>; position: absolute">
+                            <div class="textbox" style = "
+                                    background: <%= user.project[j].textboxs[i].background%>;
+                                    height:<%= user.project[j].textboxs[i].height%>;
+                                    border:<%= user.project[j].textboxs[i].border%>;
+                                    width:<%= user.project[j].textboxs[i].width%>;">
+                                <%=user.project[j].textboxs[i].text%>
+                            </div>
+                            <form method="POST" action="/user-eportfolio/user-project/edit-project/<%=projectId%>/delete-tb/<%=user.project[j].textboxs[i]._id%>" style = "background-color:whitesmoke; width:70px; position:static">
+                                <button class="btn">Delete</button>
+                            </form>
                         </div>
                     <% } %>
                 <% } %>
             <% } %>
         <% } %>
+        <div style="width: 100vw">
+            <% if (user) { %>
+                <% for(var j=0; j<user.project.length;j++){%>
+                    <% if(user.project[j]._id==projectId){ %>
+                        <div id="container">
+                            <% for (var i = 0; i < user.project[j].fileInfo.length; i++) { %>
+                            <div class="item" style="<%=user.project[j].fileInfo[i].fileStyle%>">
+                                <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
+                                    <% //var imgStyle = "width: 400px;".concat(user.project[j].fileInfo[i].fileStyle) %>
+                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"
+                                         src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>"
+                                         style= "width: 400px; height: auto"
+                                    >
+                                <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
+                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"
+                                       style="<%=user.project[j].fileInfo[i].fileStyle%>"><%=user.project[j].fileInfo[i].fileName%></a>
+                                <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
+                                <video class="item" width="320" height="240" style="<%=user.project[j].fileInfo[i].fileStyle%>" controls>
+                                    <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
+                                </video>
+                                <% } %>
+                            </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                <% } %>
+            <% } else { %>
+                <p> No Files to show</p>
+            <% } %>
+        </div>
 </div>
 
-<hr id = "right_hr">
-<hr id="bottom_hr">
 <script>
     function saveEdit (form) {
         textbox = document.getElementsByName("richTextField")[0];
         textbox_cont = document.getElementById("popup");
+        var top_tb = parseInt((textbox_cont.style.top).slice(0,-2));
+
+        var top_px = top_tb + 43 + 'px';
         value = richTextField.document.getElementsByTagName('body')[0].innerHTML;
         $.ajax({
             url:"/user-eportfolio/user-project/edit-project/<%=projectId%>",
             method:"POST",
             //save position and text value to mongodb
-            data: {top: textbox_cont.style.top,
+            data: {top: top_px,
                 left: textbox_cont.style.left,
                 width: textbox.style.width,
                 height: textbox.style.height,
@@ -240,12 +315,13 @@
                 border: textbox_cont.style.border,
                 text: value},
             success: function(res){
-
+                location.reload();
             }
         });
         return false;
     }
 </script>
+
 <script>
     //draggable div script
     window.onload = function() {
@@ -426,7 +502,8 @@
 
     //to be modified
     function change_border_color(color){
-        document.getElementsByClassName("popup")[0].style.border = color;
+        var border = "3px solid".concat(color);
+        document.getElementsByClassName("popup")[0].style.border = border;
     }
 </script>
 
@@ -440,5 +517,6 @@
             textbox[i].innerHTML = textbox[i].innerText;
         }
 </script>
+</div>
 </body>
 </html>
