@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script href="/js/bootstrap.js"></script>
     <title>user-project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <% if (user) {%>
+        <% for(var j=0; j<user.project.length;j++){%>
+            <% if(user.project[j]._id==projectId){ %>
+                <% if(user.project[j].projectTheme == 3){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-forest.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 2){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-sc.css">
+                <% } %>
+                <% if(user.project[j].projectTheme == 1){ %>
+                    <link rel= "stylesheet" id="main" type="text/css"href="/css/user-project-default.css">
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
     <style>
         body {
             background:rgba(26,38,57,1);
@@ -437,7 +452,6 @@
         var border = "3px solid".concat(color);
         document.getElementsByClassName("popup")[0].style.border = border;
     }
-
 </script>
 
 <script>
