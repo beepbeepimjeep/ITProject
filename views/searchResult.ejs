@@ -12,7 +12,7 @@
             background-color:transparent;
             color:rgba(194,77,44,1);
             width: 150px;
-            font-size: 160%;
+            font-size: 180%;
             font-weight: normal;
             border:none;
             text-align: right;
@@ -27,6 +27,7 @@
         }
         .search-btn{
             background-color:lightgoldenrodyellow;
+            color: rgba(26,38,57,1);
             width: 100px;
             font-size: 150%;
             border:none;
@@ -43,6 +44,7 @@
         .nav {
             background-color:rgba(26,38,57,1);
             padding-left: unset;
+            margin-top: 5px;
         }
         .profile-text {
             margin-right:20px;
@@ -64,22 +66,10 @@
             width: 120px;
             height: 120px;
         }
-        #right-panel {
-            background-color:transparent;
-            color:rgba(194,77,44,1);
-            width: 150px;
-            font-size: 160%;
-            font-weight: normal;
-            border:none;
-            text-align: right;
-        }
+
         .logo_text {
-            font-size: 250%;
+            font-size: 270%;
             margin-left: unset;
-        }
-        #right-panel:hover{
-            color: rgba(246,225,184,1);
-            background-color: transparent;
         }
         .footer {
             position: fixed;
@@ -142,9 +132,9 @@
         <h3 style="color:#f8fff1" ;><%= noMatch %></h3>
     <%}else{%>
     <h4 style="color: lightgoldenrodyellow; padding-top: 20px"> There are <%= users.length%> results</h4>
+    <div style="margin-bottom: 100px">
     <% users.forEach(function(user){ %>
         <div class="col-11" style="border-style: solid none solid none; border-color: lightgoldenrodyellow; margin-left: 15px; margin-top: 30px; padding-top: 20px; padding-bottom:20px; ">
-
                 <div class = "row ml-1">
                     <%if(user.iconImage){%>
                     <img class="circle-img rounded-circle" src="/file/main/image/<%=user.iconImage%>" alt="user.iconImage">
@@ -170,6 +160,7 @@
                 </div>
         </div>
     <% })}; %>
+    </div>
     </div>
     <!-- Modal for contact form -->
     <div class="modal fade" id="queryForm" tabindex="-1" role="dialog" aria-labelledby="queryFormLabel" aria-hidden="true">

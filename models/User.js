@@ -13,6 +13,7 @@ const textboxSchema = new mongoose.Schema({
     height: String,
     width: String,
     background: String,
+    border: String,
     text: String
 });
 

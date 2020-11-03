@@ -14,7 +14,8 @@ userRouter.post('/user-eportfolio/savePosition',requireLogin,userController.save
 userRouter.post('/user-eportfolio/user-project/editTheme/:projectId', requireLogin,userController.changeTheme);
 
 userRouter.get('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.editProject);
-userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextBox);
+userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextbox);
+userRouter.post('/user-eportfolio/user-project/edit-project/:projectId/delete-tb/:textboxId', requireLogin,userController.deleteTextbox);
 
 
 userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);

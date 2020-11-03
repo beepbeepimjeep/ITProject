@@ -34,3 +34,6 @@ body { background:#d8ebb5 !important;}
 #comment-colour{
     color: #2b580c;;
 }
+#comment:hover{
+    color: floralwhite;
+}

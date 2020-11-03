@@ -21,6 +21,10 @@ body { background:#fff5ea !important;}
     color: #d6d2c4;
 }
 
+#comment:hover{
+    color: floralwhite;
+}
+
 .nav {
     background-color:#fff5ea;
 }
@@ -33,5 +37,5 @@ body { background:#fff5ea !important;}
     color: #d6d2c4;
 }
 #comment-colour{
-    color: #4d3e3e;;
+    color: #4d3e3e;
 }
