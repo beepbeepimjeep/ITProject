@@ -79,12 +79,15 @@ describe('App',function (){
         })
 
         it('test visitor page nav bar',function (){
-            var search = driver.findElement(sw.By.name('q'))
+            var search = driver.findElement(sw.by.name('q'))
             search.sendKeys('lillian')
             search.getAttribute('value').then(function (value){
                 assert.equal(value,'lillian')
             })
+        })
 
+        it('',function (){
+            var login = driver.findElement(sw.by.name('login'))
         })
 
     });
