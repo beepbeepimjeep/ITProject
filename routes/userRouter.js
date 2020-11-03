@@ -1,11 +1,9 @@
 const express = require('express');
-
 const userRouter = express.Router();
 
 const userController = require('../controllers/userController.js');
 const requireLogin = require('../middleware/requireLogin');
 
-userRouter.get('/', requireLogin,userController.getCurrentUser);
 userRouter.get('/user-eportfolio/', requireLogin,userController.userUploadFile);
 userRouter.put('/', requireLogin,userController.userInfoUpdate);
 userRouter.get('/user-eportfolio/addNewProject', requireLogin,userController.addNewProject);
@@ -16,7 +14,7 @@ userRouter.post('/user-eportfolio/savePosition',requireLogin,userController.save
 userRouter.post('/user-eportfolio/user-project/editTheme/:projectId', requireLogin,userController.changeTheme);
 
 userRouter.get('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.editProject);
-userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextbox);
+userRouter.post('/user-eportfolio/user-project/edit-project/:projectId', requireLogin,userController.createNewTextBox);
 
 
 userRouter.post('/user-eportfolio/user-project/addComment/:projectId', requireLogin,userController.createNewComment);
