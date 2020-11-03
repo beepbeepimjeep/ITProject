@@ -26,5 +26,4 @@ db.once("open", async () => {
         db.port);
 });
 
-require('./usertest')
 
