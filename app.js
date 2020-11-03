@@ -1,4 +1,9 @@
-
+require('./models/User');
+require('./models/Project');
+require('./services/passport');
+require('./models')
+require('./models/index')
+require('./models/file')
 const express = require('express');
 const path = require('path');
 const crypto = require ('crypto');
@@ -16,12 +21,7 @@ const formidable = require('formidable')
 
 const requireLogin = require('./middleware/requireLogin');
 
-require('./models/User');
-require('./models/Project');
-require('./services/passport');
-require('./models')
-require('./models/index')
-require('./models/file')
+
 
 const user = mongoose.model('users')
 const files = mongoose.model("file")
@@ -92,14 +92,12 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-const usertestRouter = require('./routes/usertestRouter')
 const fileRouter = require('./routes/fileRouter')
 const inquiryRouter = require('./routes/inquiryRouter')
 const userRouter = require('./routes/userRouter')
 const projectRouter = require('./routes/projectRouter')
 const visitorRouter = require('./routes/visitorRouter')
 
-app.use('/user',usertestRouter);
 
 app.use('/file',fileRouter);
 
@@ -129,8 +127,6 @@ app.get('/visitor-mainpage', (req, res) => {
 
 
 //user
-app.use('/user-mainpage', userRouter);
-app.get('/user-mainpage', userRouter)
 app.get('/user-eportfolio', userRouter)
 app.use('/user-eportfolio', userRouter);
 app.post('/user-eportfolio/user-project/editTheme/:projectId', userRouter);
@@ -209,3 +205,4 @@ app.listen(process.env.PORT||3000, () => {
     console.log('The library app is listening on port 3000!')
 });
 
+module.exports = app

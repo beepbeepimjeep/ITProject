@@ -1,17 +1,8 @@
 const mongoose = require("mongoose");
-const User = mongoose.model("users");
-const files = mongoose.model("file")
-
-const getCurrentUser = async (req, res, next) => {
-    try {
-        const current_user = await req.user;
-        const isLoggedIn = await req.login
-        res.render('user-mainpage', {user: current_user, isUser: isLoggedIn })
-    } catch (err){
-        res.status(400);
-        return res.send("Database query failed on getting the current user")
-    }
-};
+const User = require("../models/User")
+//const User = mongoose.model("users");
+const files = require("../models/file")
+//const files = mongoose.model("file")
 
 const userUploadFile = async (req, res, next) => {
     try {
@@ -60,6 +51,7 @@ const userInfoUpdate = async (req, res, next) => {
         return res.send("Database query failed2");
     }
 };
+
 const addNewProject = async (req,res,next)=>{
     var newProjName = req.query.projectName;
     var newProjDesc = req.query.projectDesc;
@@ -114,6 +106,35 @@ const editProjectFile = async (req, res, next)=>{
     }
 }
 
+function indexOfProject(projects,projectId){
+    var index;
+    try{
+        for(let i=0; i<projects.project.length; i++){
+            var obj = projects.project[i];
+            if(obj._id==projectId){
+                console.log("index = "+i)
+                index = i;
+                return index;
+            }
+        }
+    }catch (e){
+        throw e;
+    }
+    return index;
+}
+
+function positionOfProject(project,fileName,index){
+    var position;
+    for(let i=0; i<project.project[index].fileInfo.length;i++){
+        var obj = project.project[index].fileInfo[i];
+        if(obj.fileName==fileName){
+            console.log("position in project.file array is :"+i)
+            position=i;
+            return position;
+        }
+    }
+}
+
 const savePosition = async (req,res,next)=>{
     console.log("filename is "+req.body.fileName)
     console.log("position is "+req.body.position)
@@ -121,28 +142,12 @@ const savePosition = async (req,res,next)=>{
     var queryf = {filename:req.body.fileName}
     const file = await files.findOne(queryf,{_id:1,"filename":1,"contentType":1}).limit(1);
     console.log("line 116 "+file)
-    var query = {$pull:{project:{"fileInfo.fileName":req.body.fileName}}}
-    //var index = User.aggregate([{"$project":{"matchedIndex":{"$indexOfArray":["$project._id",req.body.project]}}}])
-    //console.log("line 120 index = "+index)
-
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
     console.log("projectArray :"+ projectArray)
-    var index;
-    var position;
-    for(let i=0; i<projectArray.project.length; i++){
-        var obj = projectArray.project[i];
-        if(obj._id==req.body.project){
-            console.log("index = "+i)
-            index = i;
-        }
-    }
-    for(let i=0; i<projectArray.project[index].fileInfo.length;i++){
-        var obj = projectArray.project[index].fileInfo[i];
-        if(obj.fileName==req.body.fileName){
-            console.log("position in project.file array is :"+i)
-            position=i;
-        }
-    }
+    var index = indexOfProject(projectArray,req.body.project);
+    console.log("line 137 index : "+index)
+    var position = positionOfProject(projectArray,req.body.fileName, index);
+
 
     const indexString = ["project.",index,".fileInfo.",position,".fileStyle"]
     var indexS = indexString.join('');
@@ -156,12 +161,6 @@ const savePosition = async (req,res,next)=>{
         }
         User.close;
     })
-
-/*
-    var match = {$match:{"project.$._id":req.body.project}}
-    var testQueryPlus = {$set:{"fileInfo.$.fileStyle":req.body.position}}
-    User.aggregate([match,testQueryPlus])
-*/
 
     res.redirect('back')
 }
@@ -183,7 +182,8 @@ const changeTheme = async (req, res, next) => {
 
 };
 
-const createNewTextbox = async (req, res) => {
+
+const createNewTextBox = async (req, res) => {
     try {
         console.log(req.body.border);
         var text_top = req.body.top;
@@ -214,7 +214,7 @@ const createNewTextbox = async (req, res) => {
 };
 
 const deleteTextbox =async (req,res,next)=>{
-    console.log("ddelte");
+    console.log("delete");
     try {
         var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
         var query = { $pull: {"project.$.textboxs":{_id:req.params.textboxId}}}
@@ -229,6 +229,7 @@ const deleteTextbox =async (req,res,next)=>{
     }
     res.redirect("back")
 }
+
 
 const editProject = async (req, res) => {
     try {
@@ -280,30 +281,15 @@ const deleteComment = async (req,res,next)=> {
             return res.send("Fail to delete this comment")
         }
     res.redirect("back")
-    };
-
-
+};
 
 
 const deleteProjectFile = async (req,res,next)=>{
-    console.log("line 255 : "+ req.body.fileId);
+    console.log("line 255 : "+ req.body.fileName);
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
-    var index;
-    var position;
-    for(let i=0; i<projectArray.project.length; i++){
-        var obj = projectArray.project[i];
-        if(obj._id==req.body.projectId){
-            console.log("index = "+i)
-            index = i;
-        }
-    }
-    for(let i=0; i<projectArray.project[index].fileInfo.length;i++){
-        var obj = projectArray.project[index].fileInfo[i];
-        if(obj.fileId==req.body.fileId){
-            console.log("position in project.file array is :"+i)
-            position=i;
-        }
-    }
+    var index = indexOfProject(projectArray,req.body.projectId);
+    var position = positionOfProject(projectArray,req.body.fileName,index);
+
     const indexString = ["project.",index,".fileInfo.",position]
     var indexS = indexString.join('');
     console.log(indexS)
@@ -315,9 +301,7 @@ const deleteProjectFile = async (req,res,next)=>{
     res.redirect("back")
 };
 
-
 module.exports = {
-    getCurrentUser,
     userUploadFile,
     userInfoUpdate,
     addNewProject,
@@ -327,9 +311,11 @@ module.exports = {
     savePosition,
     changeTheme,
     editProject,
-    createNewTextbox,
+    createNewTextBox,
     createNewComment,
-    deleteComment,
     deleteProjectFile,
-    deleteTextbox,
+    deleteComment,
+    indexOfProject,
+    positionOfProject,
+    deleteTextbox
 };

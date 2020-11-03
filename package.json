@@ -4,9 +4,11 @@
   "description": "A ePortfolio App Porject for COMP30022",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=test",
+    "chimp-test": "chimp --mocha --path=test"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,9 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
     "bootswatch": "^4.5.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-webdriver": "^1.2.3",
+    "chromedriver": "^86.0.0",
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
@@ -47,10 +52,15 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
-    "react-dropzone": "^11.0.3"
+    "react-dropzone": "^11.0.3",
+    "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "grunt": "^1.3.0",
-    "locus": "^2.0.4"
+    "locus": "^2.0.4",
+    "mocha": "^8.2.0",
+    "request": "^2.88.2"
   }
 }

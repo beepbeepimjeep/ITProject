@@ -300,9 +300,9 @@
                                     <td><%=user.project[j].fileInfo[i].fileType%></td>
                                     <td>
                                         <form action="/user-eportfolio/deleteProjectFile" method="post" >
-                                            <input type="text" name="fileId" value="<%=user.project[j].fileInfo[i].fileId%>" style="visibility: hidden">
-                                            <input type="text" name="projectId" value="<%=projectId%>" style="visibility: hidden">
                                             <button class="btn btn-colordelete">Delete</button>
+                                            <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>" style="visibility: hidden">
+                                            <input type="text" name="projectId" value="<%=projectId%>" style="visibility: hidden">
                                         </form>
                                     </td>
                                 </tr>
@@ -330,10 +330,12 @@
                         <% if(user.project[j]._id==projectId){ %>
                             <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
                             <form action="/user-eportfolio/savePosition" method="post">
+
                                 <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
                                 <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
-                                <input type="text" name="project" value="<%=projectId%>" style = "margin-right: 10px;  margin-top:5px; margin-height: 35px;">
                                 <button type="submit" class="btn btn-deleteComment" style = "color: lightgoldenrodyellow">Save Position</button></br>
+                                <input type="text" name="project" value="<%=projectId%>" style = "margin-right: 10px;  margin-top:5px; margin-height: 35px;">
+                                
                             </form>
                             <% } %>
                         <% } %>
