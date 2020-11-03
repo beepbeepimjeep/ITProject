@@ -1,5 +1,4 @@
 require('./models/User');
-require('./models/Project');
 require('./services/passport');
 require('./models')
 require('./models/index')
@@ -95,7 +94,6 @@ const upload = multer({ storage });
 const fileRouter = require('./routes/fileRouter')
 const inquiryRouter = require('./routes/inquiryRouter')
 const userRouter = require('./routes/userRouter')
-const projectRouter = require('./routes/projectRouter')
 const visitorRouter = require('./routes/visitorRouter')
 
 
@@ -146,12 +144,6 @@ app.get('/eportfolio/:user_id/project/:project_id', visitorRouter)
 
 //check url
 //app.post('/user-mainpage/go_to_upload/:user_id', userRouter)
-
-//comment box
-app.use('/user-eportfolio/user-project', projectRouter)
-app.get('/user-eportfolio/user-project/:project_id', projectRouter)
-app.post('/user-eportfolio/user-project/:project_id', projectRouter)
-
 
 //search
 const searchRouter = require('./routes/searchRouter')
