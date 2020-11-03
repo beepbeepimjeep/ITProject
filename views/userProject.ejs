@@ -502,8 +502,11 @@
             activeItem.initialY = activeItem.currentY;
         }
         var rect = activeItem.getBoundingClientRect();
+        var left = rect.left + window.scrollX;
+        var top = rect.top + window.scrollY;
         document.getElementById(activeItem.name).setAttribute("value","Position: absolute; left: "+rect.left+"px; top: "+rect.top+"px;")
-        console.log("left:"+rect.left+" top: "+rect.top+" width: "+rect.width+" height: "+rect.height)
+
+        console.log("left:"+left+" top: "+top+" width: "+rect.width+" height: "+rect.height)
         console.log("transform: translate3d("+activeItem.currentX.toString()+"px, "+activeItem.currentY.toString()+"px, 0px)")
         console.log("line 181"+activeItem.name)
         active = false;
