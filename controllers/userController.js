@@ -31,7 +31,6 @@ const userInfoUpdate = async (req, res, next) => {
         if(username != "") {
             current_user["userName"] = username;
         }
-
         if(useremail != ""){
             current_user["email"] = useremail;
         }
@@ -44,7 +43,6 @@ const userInfoUpdate = async (req, res, next) => {
         if(iconImage!=""){
             current_user["iconImage"] = iconImage;
         }
-
         // save the updated user data in the database
         current_user.save();
         res.render('user-eportfolio', {user: current_user, isUser: isLoggedIn})
@@ -250,6 +248,21 @@ const createNewComment = async (req, res) => {
     res.redirect("back")
 };
 
+const deleteComment = async (req,res,next)=> {
+    try {
+    var condition = {$and:[{_id: req.user._id},{"project._id": req.params.projectId}]}
+    var query = { $pull: {"project.$.comments":{_id:req.params.commentId}}}
+    await User.updateOne(condition,query,function(err,res){
+        if (err) throw err;
+        console.log("comment deleted");
+        User.close;
+    })
+    } catch (err){
+            res.status(400);
+            return res.send("Fail to delete this comment")
+        }
+    res.redirect("back")
+
 const deleteProjectFile = async (req,res,next)=>{
     console.log("line 255 : "+ req.body.fileName);
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
@@ -267,6 +280,8 @@ const deleteProjectFile = async (req,res,next)=>{
     res.redirect("back")
 }
 
+
+ };
 module.exports = {
     userUploadFile,
     userInfoUpdate,
@@ -282,4 +297,5 @@ module.exports = {
     deleteProjectFile,
     indexOfProject,
     positionOfProject
+
 };
