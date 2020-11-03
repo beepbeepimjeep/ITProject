@@ -80,8 +80,6 @@
             text-align: center;
             min-height: 150px;
             min-width: 300px;
-            max-height: 500px;
-            max-width: 600px;
         }
 
         .popup {
@@ -236,7 +234,6 @@
         <div class="modal-footer">
             <button onclick="toggleEdit();" type = "button">Toggle Edit</button>
             <button type="submit" class="btn btn-secondary">Save</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
         </div>
     </form>
@@ -266,6 +263,36 @@
                 <% } %>
             <% } %>
         <% } %>
+        <div style="width: 100vw">
+            <% if (user) { %>
+                <% for(var j=0; j<user.project.length;j++){%>
+                    <% if(user.project[j]._id==projectId){ %>
+                        <div id="container">
+                            <% for (var i = 0; i < user.project[j].fileInfo.length; i++) { %>
+                            <div class="item" style="<%=user.project[j].fileInfo[i].fileStyle%>">
+                                <% if(user.project[j].fileInfo[i].fileType=="image/jpeg"){%>
+                                    <% //var imgStyle = "width: 400px;".concat(user.project[j].fileInfo[i].fileStyle) %>
+                                    <img class="item card-img-top" name="<%= user.project[j].fileInfo[i].fileName%>"
+                                         src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" alt="<%=user.project[j].fileInfo[i]._id%>"
+                                         style= "width: 400px; height: auto"
+                                    >
+                                <% }else if(user.project[j].fileInfo[i].fileType=="application/pdf"){ %>
+                                    <a href="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" class="item"
+                                       style="<%=user.project[j].fileInfo[i].fileStyle%>"><%=user.project[j].fileInfo[i].fileName%></a>
+                                <% }else if(user.project[j].fileInfo[i].fileType=="video/mp4"){ %>
+                                <video class="item" width="320" height="240" style="<%=user.project[j].fileInfo[i].fileStyle%>" controls>
+                                    <source src="/file/main/image/<%= user.project[j].fileInfo[i].fileName%>" type="video/mp4">
+                                </video>
+                                <% } %>
+                            </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                <% } %>
+            <% } else { %>
+                <p> No Files to show</p>
+            <% } %>
+        </div>
 </div>
 
 <script>
