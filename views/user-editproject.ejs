@@ -145,7 +145,7 @@
     </style>
 </head>
 <body>
-
+<div class="container-fluid">
 <nav class="navbar nav" style = "padding-left: 0px">
     <ul class="navbar-nav">
         <div>
@@ -225,7 +225,7 @@
 
 <!-- Draggable DIV -->
 <div class="popup" id = "popup">
-    <div class="popup-header noselect">Click here to move</div>
+    <div class="popup-header noselect " id = "logo-e">Click here to move</div>
 
     <form action="/user-eportfolio/user-project/edit-project/<%=projectId%>" class="text-form" method="POST" target="_blank" onsubmit="return saveEdit(this);">
 
@@ -517,5 +517,6 @@
             textbox[i].innerHTML = textbox[i].innerText;
         }
 </script>
+</div>
 </body>
 </html>
