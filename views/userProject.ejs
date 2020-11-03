@@ -331,10 +331,10 @@
                             <% for(var i=0; i<user.project[j].fileInfo.length; i++){ %>
                             <form action="/user-eportfolio/savePosition" method="post">
 
-                                <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
-                                <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;">
+                                <input type="text" id="<%=user.project[j].fileInfo[i].fileName%>" name="position" value="" placeholder="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px; visibility: hidden">
+                                <input type="text" name="fileName" value="<%=user.project[j].fileInfo[i].fileName%>" style = "margin-right: 5px;  margin-top:5px; margin-height: 35px;" disabled>
                                 <button type="submit" class="btn btn-deleteComment" style = "color: lightgoldenrodyellow">Save Position</button></br>
-                                <input type="text" name="project" value="<%=projectId%>" style = "margin-right: 10px;  margin-top:5px; margin-height: 35px;">
+                                <input type="text" name="project" value="<%=projectId%>" style = "margin-right: 10px;  margin-top:5px; margin-height: 35px; visibility: hidden">
                                 
                             </form>
                             <% } %>
