@@ -231,9 +231,9 @@
     function saveEdit (form) {
         textbox = document.getElementsByName("richTextField")[0];
         textbox_cont = document.getElementById("popup");
-        var top_tb = parseInt((element.style.width).slice(0,-2));
-        console.log(top_tb);
-        var top_px = top_tb - 40 + 'px';
+        var top_tb = parseInt((textbox_cont.style.top).slice(0,-2));
+
+        var top_px = top_tb + 43 + 'px';
         value = richTextField.document.getElementsByTagName('body')[0].innerHTML;
         $.ajax({
             url:"/user-eportfolio/user-project/edit-project/<%=projectId%>",
