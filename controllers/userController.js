@@ -139,9 +139,6 @@ const savePosition = async (req,res,next)=>{
     console.log("filename is "+req.body.fileName)
     console.log("position is "+req.body.position)
 
-    var queryf = {filename:req.body.fileName}
-    const file = await files.findOne(queryf,{_id:1,"filename":1,"contentType":1}).limit(1);
-    console.log("line 116 "+file)
     var projectArray = await User.findOne({_id:req.user._id},{_id:0,"project":1})
     console.log("projectArray :"+ projectArray)
     var index = indexOfProject(projectArray,req.body.project);
@@ -151,7 +148,7 @@ const savePosition = async (req,res,next)=>{
 
     const indexString = ["project.",index,".fileInfo.",position,".fileStyle"]
     var indexS = indexString.join('');
-    console.log(indexS)
+    console.log("line 151"+indexS)
 
     var condition = {$and:[{_id:req.user._id},{"project.fileInfo.fileName":req.body.fileName}]}
     var testQuery = {$set:{[indexS]:req.body.position}}
