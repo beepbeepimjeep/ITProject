@@ -1,7 +1,9 @@
 const nodemailer = require("nodemailer");
 const keys = require('../config/keys');
+const mongoose = require("mongoose");
+const User = mongoose.model("users");
 
-const getInquiry = function (req,res) {
+const getInquiry = async function (req,res) {
 
 
     const transporter = nodemailer.createTransport({
@@ -13,14 +15,16 @@ const getInquiry = function (req,res) {
             pass: keys.emailPassword // this should be your password
         }
     });
+    console.log(req.params.user_id + "line18")
+    const current_user = await User.findById({_id: req.params.user_id});
 
-    const User = req.user
+    console.log(current_user + "line20")
 
     var textBody = `FROM: ${req.body.name} EMAIL: ${req.body.email} MESSAGE: ${req.body.message}`;
     var htmlBody = `<h2>Greetings from ${req.body.name}</h2><p>from: ${req.body.name} <a href="mailto:${req.body.email}">${req.body.email}</a></p><p>Message: ${req.body.message}</p>`;
     var mail = {
         from: "myeportfoliounimelb@gmail.com", // sender address
-        to: User.email, // list of receivers (THIS COULD BE A DIFFERENT ADDRESS or ADDRESSES SEPARATED BY COMMAS)
+        to: current_user.email, // list of receivers (THIS COULD BE A DIFFERENT ADDRESS or ADDRESSES SEPARATED BY COMMAS)
         subject: "A Message From My E-Portfolio", // Subject line
         text: textBody,
         html: htmlBody

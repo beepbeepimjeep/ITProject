@@ -156,11 +156,11 @@
             <div class = "row ml-1">
                 <p class = "profile-text" style="color:rgba(246,225,184,1);"value="<%= user %>" id = user_description><%=user.description%></p>
             </div>
-            <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
-                Contact <%=user.userName%>
-            </button>
 
             <%if (isUser == undefined) { %>
+                <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
+                    Contact <%=user.userName%>
+                </button>
 
             <% } else { %>
                 <button type="button" class="btn  btn-viewproject" id="emailButton" data-toggle="modal" data-target="#editProfile">
@@ -185,7 +185,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="contact-form" action="/ajax/email" method="POST" onsubmit="return submitEmailForm(this);">
+                    <form class="contact-form" action="/ajax/email/<%=user._id%>" method="POST" onsubmit="return submitEmailForm(this);">
                         <div>
                             <label for="sendername" class="col-form-label">Name</label>
                             <input type="text" id="sendername" name="name" class="form-control" placeholder="Name" required />
