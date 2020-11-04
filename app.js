@@ -108,7 +108,7 @@ app.get('/file/image/:filename', function (req,res,next){
 },fileRouter)
 
 
-app.post('/ajax/email',inquiryRouter);
+app.post('/ajax/email/:user_id',inquiryRouter);
 
 require('./routes/authRouter')(app);
 

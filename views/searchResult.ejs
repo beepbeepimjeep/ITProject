@@ -149,9 +149,9 @@
                             <p class = "profile-text" style="color:rgba(246,225,184,1); font-size: 130%; "value="<%= user.expertise %>" id = user_expertise>Expertise: <%=user.expertise%></p>
                         </div>
                         <div class = "row ml-1">
-                            <button type="button" class="btn  btn-viewproject" style="margin-right: 10px" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
+                            <!--<button type="button" class="btn  btn-viewproject" style="margin-right: 10px" id="emailButton" data-toggle="modal" data-target="#queryForm" value="<%= user.userName %>">
                                 Contact <%=user.userName%>
-                            </button>
+                            </button>-->
                             <form action="/eportfolio/<%=user._id%>" method="get">
                                 <button type="submit" class = "btn btn-viewproject" >Go to E-Portfolio</button>
                             </form>
@@ -172,7 +172,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <!--<div class="modal-body">
                     <form class="contact-form" action="/ajax/email" method="POST" onsubmit="return submitEmailForm(this);">
                         <div>
                             <label for="sendername" class="col-form-label">Name</label>
@@ -191,7 +191,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </form>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
